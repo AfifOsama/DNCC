@@ -41,6 +41,8 @@ android {
 
 dependencies {
 
+    implementation("com.louiscad.splitties:splitties-fun-pack-android-base:3.0.0")
+
     //core
     implementation "androidx.core:core-ktx:$ktx_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
