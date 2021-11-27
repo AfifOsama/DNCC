@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_email"
+        android:id="@+id/input_layout_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -39,6 +39,7 @@
         app:boxStrokeColor="@color/primary_blue"
         app:hintTextAppearance="@style/nunitoRegular_12"
         app:shapeAppearance="@style/TextInputRoundedContainer"
+        app:shapeAppearanceOverlay="@style/TextInputRoundedContainer"
         app:layout_constraintVertical_bias="0.1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
@@ -46,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"/>
@@ -53,7 +55,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_sandi"
+        android:id="@+id/input_layout_sandi"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -64,10 +66,11 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_email"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_sandi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
@@ -84,7 +87,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/edt_sandi" />
+        app:layout_constraintTop_toBottomOf="@id/input_layout_sandi" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
