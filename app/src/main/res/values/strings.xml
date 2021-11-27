@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">DNCC</string>
+    <string name="masuk">Masuk</string>
+    <string name="email_edt">Email</string>
+    <string name="sandi_edt">Sandi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello this is daftar</string>
+    <string name="hello_forget_fragment">Hello this is forget</string>
+
 </resources>
