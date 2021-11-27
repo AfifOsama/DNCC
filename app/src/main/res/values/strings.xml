@@ -3,8 +3,9 @@
     <string name="masuk">Masuk</string>
     <string name="email_edt">Email</string>
     <string name="sandi_edt">Sandi</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello this is daftar</string>
-    <string name="hello_forget_fragment">Hello this is forget</string>
+    <string name="lupa_kata_sandi">Lupa Kata Sandi?</string>
+    <string name="kirim_email">Kirim Email</string>
+    <string name="setelah_klik_kirim_email_cek_email_kamu_untuk_mengubah_kata_sandi">*Setelah klik Kirim Email, cek Email kamu untuk mengubah kata sandi.</string>
 
 </resources>
