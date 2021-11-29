@@ -41,6 +41,8 @@ android {
 
 dependencies {
 
+    implementation("com.louiscad.splitties:splitties-fun-pack-android-base:3.0.0")
+
     //core
     implementation "androidx.core:core-ktx:$ktx_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
@@ -50,6 +52,7 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.airbnb.android:lottie:$lottie_version"
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //DI
     implementation "com.google.dagger:hilt-android:$hilt_version"

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.register.RegisterFragment">
+
+    <TextView
+        android:id="@+id/tv_daftar"
+        style="@style/nunitoSemiBold_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/daftar"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        app:layout_constraintHorizontal_bias="0.51"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_daftar">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/img_user"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/perm_identity"
+            app:riv_corner_radius="10dip"
+            app:riv_border_width="2dip"
+            app:riv_border_color="@color/primary_blue"
+            app:riv_mutate_background="true"
+            />
+
+        <ImageButton
+            android:id="@+id/btn_upload_img"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/shape_circle"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_gravity="bottom|end"
+            />
+    </FrameLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/email_edt"
+        android:layout_marginTop="24dp"
+        app:boxStrokeColor="@color/primary_blue"
+        app:hintTextAppearance="@style/nunitoRegular_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:shapeAppearance="@style/TextInputRoundedContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_sandi"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/sandi_edt"
+        app:boxStrokeColor="@color/primary_blue"
+        app:endIconMode="password_toggle"
+        app:hintTextAppearance="@style/nunitoRegular_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_email"
+        app:shapeAppearance="@style/TextInputRoundedContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_sandi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_nama"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/nama_lengkap"
+        app:boxStrokeColor="@color/primary_blue"
+        app:hintTextAppearance="@style/nunitoRegular_12"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_sandi"
+        app:shapeAppearance="@style/TextInputRoundedContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_prodi"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/prodi"
+        app:boxStrokeColor="@color/primary_blue"
+        app:hintTextAppearance="@style/nunitoRegular_12"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_nama"
+        app:shapeAppearance="@style/TextInputRoundedContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_prodi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_nik"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/nomor_induk_mahasiswa"
+        app:boxStrokeColor="@color/primary_blue"
+        app:hintTextAppearance="@style/nunitoRegular_12"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_prodi"
+        app:shapeAppearance="@style/TextInputRoundedContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_nik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_noHp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/nomor_handphone"
+        app:boxStrokeColor="@color/primary_blue"
+        app:hintTextAppearance="@style/nunitoRegular_12"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_nik"
+        app:shapeAppearance="@style/TextInputRoundedContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_noHp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_daftar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/daftar"
+        android:layout_marginTop="16dp"
+        app:cornerRadius="10dp"
+        app:layout_constraintVertical_bias="0.10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_noHp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
