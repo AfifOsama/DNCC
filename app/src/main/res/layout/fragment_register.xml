@@ -29,12 +29,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_daftar">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/img_user"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/shape_rectangle_img_profile"
             android:src="@drawable/perm_identity"
-        />
+            app:riv_corner_radius="10dip"
+            app:riv_border_width="2dip"
+            app:riv_border_color="@color/primary_blue"
+            app:riv_mutate_background="true"
+            />
 
         <ImageButton
             android:id="@+id/btn_upload_img"
@@ -44,7 +48,6 @@
             android:src="@drawable/ic_baseline_edit_24"
             android:layout_gravity="bottom|end"
             />
-
     </FrameLayout>
 
     <com.google.android.material.textfield.TextInputLayout

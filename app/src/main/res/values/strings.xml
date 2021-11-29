@@ -11,5 +11,10 @@
     <string name="nomor_induk_mahasiswa">Nomor Induk Mahasiswa</string>
     <string name="nomor_handphone">Nomor Handphone</string>
     <string name="daftar">Daftar</string>
+    <string name="user_name">Shinoa Hiiragi</string>
+    <string name="nim">A11.2019.11377</string>
+    <string name="pelatihan">Pelatihan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

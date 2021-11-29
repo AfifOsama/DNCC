@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="black_text">#222222</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="success_green">#17D32A</color>
+    <color name="success_green">#FF17D32A</color>
     <color name="error_red">#DB241B</color>
     <color name="warning_yellow">#FFCC00</color>
     <color name="grey">#DBDBDB</color>
@@ -15,4 +16,7 @@
     <color name="dark_red">#C82A14</color>
     <color name="secondary_red">#E15757</color>
     <color name="light_red">#FB7B7B</color>
+
+    <color name="transparent">#0000ffff</color>
+
 </resources>

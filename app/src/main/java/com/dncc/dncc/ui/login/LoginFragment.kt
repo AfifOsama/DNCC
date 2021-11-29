@@ -32,7 +32,9 @@ class LoginFragment : Fragment() {
 
         textSpanDaftar()
         textSpanLupaSandi()
-
+        binding.btnMasuk.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        }
     }
 
     private val sColor=ForegroundColorSpan(Color.rgb(9,121,189))
