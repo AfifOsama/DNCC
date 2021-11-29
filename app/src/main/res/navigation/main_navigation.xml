@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.dncc.dncc.ui.login.LoginFragment"
+        android:name="com.dncc.dncc.presentation.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.dncc.dncc.ui.register.RegisterFragment"
+        android:name="com.dncc.dncc.presentation.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -31,12 +31,12 @@
     </fragment>
     <fragment
         android:id="@+id/forgetPasswordFragment"
-        android:name="com.dncc.dncc.ui.forgetpw.ForgetPasswordFragment"
+        android:name="com.dncc.dncc.presentation.forgetpw.ForgetPasswordFragment"
         android:label="fragment_forget_password"
         tools:layout="@layout/fragment_forget_password" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.dncc.dncc.ui.home.user.HomeFragment"
+        android:name="com.dncc.dncc.presentation.home.user.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.dncc.dncc.ui.register
+package com.dncc.dncc.presentation.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

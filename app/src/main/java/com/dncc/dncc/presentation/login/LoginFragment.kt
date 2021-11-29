@@ -1,4 +1,4 @@
-package com.dncc.dncc.ui.login
+package com.dncc.dncc.presentation.login
 
 import android.graphics.Color
 import android.os.Bundle

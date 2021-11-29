@@ -1,15 +1,12 @@
-package com.dncc.dncc.ui.home.user
+package com.dncc.dncc.presentation.home.user
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.text.SpannableString
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.dncc.dncc.R
-import com.dncc.dncc.databinding.ActionBarBinding
 import com.dncc.dncc.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

@@ -47,9 +47,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //UI
+    implementation("com.louiscad.splitties:splitties-fun-pack-android-base:3.0.0")
     implementation "androidx.constraintlayout:constraintlayout:$constrain_version"
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation("io.coil-kt:coil:1.4.0")
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 

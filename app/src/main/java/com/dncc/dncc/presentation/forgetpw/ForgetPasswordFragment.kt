@@ -1,13 +1,11 @@
-package com.dncc.dncc.ui.forgetpw
+package com.dncc.dncc.presentation.forgetpw
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentForgetPasswordBinding
-import com.dncc.dncc.databinding.FragmentLoginBinding
 
 class ForgetPasswordFragment : Fragment() {
     private var _binding: FragmentForgetPasswordBinding?=null
