@@ -1,4 +1,4 @@
-package com.dncc.dncc.ui
+package com.dncc.dncc.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
