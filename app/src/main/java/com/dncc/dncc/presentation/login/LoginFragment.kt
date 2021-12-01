@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.set
+import androidx.core.text.toSpannable
 import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentLoginBinding
@@ -39,34 +41,25 @@ class LoginFragment : Fragment() {
 
     private val sColor=ForegroundColorSpan(Color.rgb(9,121,189))
     private fun textSpanDaftar() {
-        val spannable=SpannableString("Belum punya akun? daftar di sini")
-        val clickableSpan=object :ClickableSpan(){
+        val text="Belum punya akun? daftar di sini".toSpannable()
+        text[24..32]=object:ClickableSpan(){
             override fun onClick(p0: View) {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
-
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
                 ds.color=Color.rgb(9,121,189)
                 ds.isUnderlineText=false
             }
-        }
-        spannable.setSpan(
-            sColor,
-            24, 32,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-        spannable.setSpan(
-            clickableSpan,
-            24, 32,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-        binding.tvDaftar.text=spannable
-        binding.tvDaftar.movementMethod=LinkMovementMethod.getInstance()
+        }.also { sColor }
+        binding.tvDaftar.text=text
+        binding.tvDaftar.movementMethod=LinkMovementMethod()
 
     }
 
     private fun textSpanLupaSandi() {
-        val spannableSandi=SpannableString("lupa kata sandi? tekan di sini")
-        val clickableSpanSandi=object :ClickableSpan(){
+        val text="lupa kata sandi? tekan di sini".toSpannable()
+        text[23..30]=object:ClickableSpan(){
             override fun onClick(p0: View) {
                 findNavController().navigate(R.id.action_loginFragment_to_forgetPasswordFragment)
             }
@@ -76,16 +69,9 @@ class LoginFragment : Fragment() {
                 ds.color=Color.rgb(9,121,189)
                 ds.isUnderlineText=false
             }
-        }
-        spannableSandi.setSpan(
-            sColor,23,30,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-        )
-        spannableSandi.setSpan(
-            clickableSpanSandi,23,30,
-            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
-        )
-        binding.tvLupasandi.text=spannableSandi
+        }.also { sColor }
+
+        binding.tvLupasandi.text=text
         binding.tvLupasandi.movementMethod=LinkMovementMethod.getInstance()
     }
 

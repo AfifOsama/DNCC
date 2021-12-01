@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentRegisterBinding
 
@@ -23,15 +25,15 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initiateButton()
+        initiateUI()
     }
 
-    private fun initiateButton() {
-         binding.btnUploadImg.setOnClickListener{
+    private fun initiateUI() {
+        binding.btnUploadImg.setOnClickListener{
          }
         binding.btnDaftar.setOnClickListener{
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-            Toast.makeText(activity, "Akun Anda berhasil terdaftar, silahkan login", Toast.LENGTH_LONG ).show();
+            Toast.makeText(activity, "Akun Anda berhasil terdaftar, silahkan login", Toast.LENGTH_LONG ).show()
         }
     }
 }
