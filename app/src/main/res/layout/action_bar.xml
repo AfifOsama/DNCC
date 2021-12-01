@@ -4,6 +4,7 @@
     android:id="@+id/action_bar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
+    android:elevation="4dp"
     android:background="@color/primary_blue">
         <ImageView
             android:id="@+id/btn_back"
@@ -12,6 +13,7 @@
             android:adjustViewBounds="true"
             android:layout_margin="20dp"
             android:src="@drawable/ic_baseline_arrow_back_24"
+            android:contentDescription="@string/back_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:text="@string/app_name"
+            android:text="@string/dncc_app"
             android:textColor="@color/white"
             android:layout_margin="20dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -48,4 +48,17 @@
     </integer-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pelatihan_divisi">Pelatihan Divisi Mobile</string>
+    <string name="divisi_description">Mobile developer ditujukan pada mereka yang punya spesialiasi dalam teknologi perangkat bergerak</string>
+    <string name="daftar_divisi_description">DNCC mengadakan pelatihan rutin yang membahas tentang ilmu komputer </string>
+    <string name="link_group_whatsapp"><u>Link Group Whatsapp</u></string>
+    <string name="daftar_pelatihan_divisi">Daftar Pelatihan Divisi</string>
+    <string name="divisi_web">Divisi Web</string>
+    <string name="number_of_anggota">4/10</string>
+    <string name="terdaftar">Terdaftar</string>
+    <string name="dncc_app">DNCC APP</string>
+    <string name="back_button">back button</string>
+    <string name="upload_img_button">upload img button</string>
+    <string name="divisi_illustration">divisi illustration</string>
+    <string name="anggota">Anggota</string>
 </resources>

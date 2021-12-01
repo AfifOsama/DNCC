@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.set
 import androidx.core.text.toSpannable
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dncc.dncc.R
 import com.dncc.dncc.data.source.local.DataPhotoKegiatan
@@ -35,6 +36,9 @@ class HomeFragment : Fragment() {
         textSpanActionBarRole()
         textSpanTelahhadir()
         imgKegiatan()
+        binding.btnPelatihan.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_listPelatihanFragment)
+        }
 
     }
 
