@@ -5,17 +5,91 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    >
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".presentation.home.user.HomeFragment">
 
-        <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar" />
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/header_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rectangle_actionbar"
+            android:elevation="5dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="147dp"
+                    android:padding="16dp">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_user"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        app:layout_constraintVertical_bias="0.1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/perm_identity"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="w,1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:riv_border_color="@color/transparent"
+                        app:riv_border_width="2dp"
+                        app:riv_corner_radius="10dp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_user"
+                        style="@style/nunitoSemiBold_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/user_name"
+                        android:textColor="@color/black_text"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/img_user"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.1" />
+
+                    <TextView
+                        android:id="@+id/tv_nim"
+                        style="@style/nunitoRegular_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/nim"
+                        android:textColor="@color/black_text"
+                        app:layout_constraintStart_toEndOf="@id/img_user"
+                        app:layout_constraintTop_toBottomOf="@id/tv_user" />
+
+                    <TextView
+                        android:id="@+id/tv_role"
+                        style="@style/nunitoRegular_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/pelatihan"
+                        android:textColor="@color/black_text"
+                        app:layout_constraintStart_toEndOf="@id/img_user"
+                        app:layout_constraintTop_toBottomOf="@id/tv_nim" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -25,8 +99,8 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/shape_rounded_rectangle"
             android:elevation="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/action_bar"
-            app:layout_constraintTop_toBottomOf="@+id/action_bar"
+            app:layout_constraintBottom_toBottomOf="@id/header_home"
+            app:layout_constraintTop_toBottomOf="@id/header_home"
             app:layout_constraintVertical_bias="1.4"
             tools:layout_editor_absoluteX="16dp">
 
@@ -75,7 +149,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/static_img_pertemuan" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -168,8 +241,7 @@
             app:layout_constraintTop_toBottomOf="@id/rv_img_kegiatan"
             android:paddingHorizontal="16dp"
             style="@style/nunitoBold_16"
-            android:textColor="@color/primary_blue"
-            />
+            android:textColor="@color/primary_blue"/>
 
         <TextView
             android:id="@+id/body2"
@@ -203,8 +275,7 @@
             android:text="@string/body3"
             android:textColor="@color/black_text"
             style="@style/nunitoRegular_14"
-            app:layout_constraintTop_toBottomOf="@id/subheading3"
-             />
+            app:layout_constraintTop_toBottomOf="@id/subheading3"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

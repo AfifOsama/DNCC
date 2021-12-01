@@ -35,9 +35,6 @@ class HomeFragment : Fragment() {
         textSpanActionBarRole()
         textSpanTelahhadir()
         imgKegiatan()
-        binding.btnPelatihan.setOnClickListener {
-
-        }
 
     }
 
@@ -45,21 +42,7 @@ class HomeFragment : Fragment() {
         binding.rvImgKegiatan.setHasFixedSize(true)
         list.addAll(listPhotos)
         binding.rvImgKegiatan.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        val photoKegiatanAdapter=PhotoKegiatanAdapter(list)
-        binding.rvImgKegiatan.adapter=photoKegiatanAdapter
-    }
-
-    private val listPhotos: ArrayList<DataPhotoKegiatan>
-    get(){
-        val name=resources.getStringArray(R.array.data_name_kegiatan)
-        val photo=resources.obtainTypedArray(R.array.data_photo_kegiatan)
-        val listPhoto = ArrayList<DataPhotoKegiatan>()
-        for (i in name.indices) {
-            val photos = DataPhotoKegiatan(photo.getResourceId(i, -1))
-            listPhoto.add(photos)
-        }
-        photo.recycle()
-        return listPhoto
+        binding.rvImgKegiatan.adapter=PhotoKegiatanAdapter(list)
     }
 
     private fun textSpanTelahhadir() {
@@ -81,7 +64,19 @@ class HomeFragment : Fragment() {
 
         text[7..spanRole]=bold
 
-        binding.actionBar.tvRole.text=text
+        binding.tvRole.text=text
     }
 
+    private val listPhotos: ArrayList<DataPhotoKegiatan>
+        get(){
+            val name=resources.getStringArray(R.array.data_name_kegiatan)
+            val photo=resources.obtainTypedArray(R.array.data_photo_kegiatan)
+            val listPhoto = ArrayList<DataPhotoKegiatan>()
+            for (i in name.indices) {
+                val photos = DataPhotoKegiatan(photo.getResourceId(i, -1))
+                listPhoto.add(photos)
+            }
+            photo.recycle()
+            return listPhoto
+        }
 }
