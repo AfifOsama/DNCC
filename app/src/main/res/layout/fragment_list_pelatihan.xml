@@ -52,18 +52,6 @@
                     android:layout_marginStart="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_pelatihan_title" />
-
-                <TextView
-                    android:id="@+id/btn_link_whatsapp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="10dp"
-                    style="@style/robotoMedium_12"
-                    android:textColor="@color/dark_blue"
-                    android:text="@string/link_group_whatsapp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_pelatihan_description"
-                    app:layout_constraintStart_toStartOf="parent"/>
                 
                 <ImageView
                     android:layout_width="112dp"
