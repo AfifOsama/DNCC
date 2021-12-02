@@ -58,10 +58,14 @@
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:lines="1"
                 android:text="@string/judul_pertemuan"
                 android:layout_marginTop="10dp"
+                style="@style/nunitoRegular_14"
+                android:textColor="@color/black_text"
+                android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@id/icon_book"
                 app:layout_constraintTop_toBottomOf="@id/frame_layout"/>
 

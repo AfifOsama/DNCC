@@ -83,7 +83,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +107,8 @@
                 android:id="@+id/edt_sandi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,7 +129,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_nama"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +151,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_prodi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -169,7 +173,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_nik"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,7 +195,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_noHp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

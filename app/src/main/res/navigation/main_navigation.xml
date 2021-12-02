@@ -73,5 +73,19 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_detailPelatihanFragment_to_detailPertemuanFragment"
+            app:destination="@id/detailPertemuanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPertemuanFragment"
+        android:name="com.dncc.dncc.presentation.pertemuan.DetailPertemuanFragment"
+        android:label="fragment_detail_pertemuan"
+        tools:layout="@layout/fragment_detail_pertemuan" >
+        <action
+            android:id="@+id/action_detailPertemuanFragment_to_detailPelatihanFragment"
+            app:destination="@id/detailPelatihanFragment"
+            app:popUpTo="@id/detailPelatihanFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

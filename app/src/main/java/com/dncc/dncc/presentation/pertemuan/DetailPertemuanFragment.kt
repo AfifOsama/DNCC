@@ -1,0 +1,35 @@
+package com.dncc.dncc.presentation.pertemuan
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.dncc.dncc.R
+import com.dncc.dncc.databinding.FragmentDetailPertemuanBinding
+
+class DetailPertemuanFragment : Fragment() {
+    private var _binding:FragmentDetailPertemuanBinding?=null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding= FragmentDetailPertemuanBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initateUi()
+    }
+
+    private fun initateUi() {
+        binding.actionBar.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_detailPertemuanFragment_to_detailPelatihanFragment)
+        }
+    }
+
+}

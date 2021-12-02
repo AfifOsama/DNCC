@@ -55,7 +55,8 @@
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +79,8 @@
                 android:id="@+id/edt_sandi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:lines="1"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

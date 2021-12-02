@@ -46,8 +46,7 @@
         <item>@drawable/reor</item>
         <item>@drawable/ultah</item>
     </integer-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="pelatihan_divisi">Pelatihan Divisi Mobile</string>
     <string name="divisi_description">Mobile developer ditujukan pada mereka yang punya spesialiasi dalam teknologi perangkat bergerak</string>
     <string name="daftar_divisi_description">DNCC mengadakan pelatihan rutin yang membahas tentang ilmu komputer </string>
@@ -66,7 +65,11 @@
     <string name="waktu">waktu</string>
     <string name="dummy_time">12 Nov 2021, 07:00</string>
     <string name="pertemuan_4">Pertemuan 4</string>
-    <string name="judul_pertemuan">Membuat Aplikasi Note Sederhana</string>
+    <string name="judul_pertemuan">Membuat Aplikasi Note Sederhana </string>
     <string name="_20_anggota">20 Anggota</string>
     <string name="icon_book">icon book</string>
+    <string name="detail_pertemuan_ke">Detail Pertemuan Ke-</string>
+    <string name="download">Download</string>
+    <string name="myfile_docx">myfile.docx</string>
+    <string name="arrow_down">arrow down</string>
 </resources>
