@@ -36,6 +36,7 @@
             android:src="@drawable/perm_identity"
             app:riv_corner_radius="10dip"
             app:riv_border_width="2dip"
+            android:scaleType="centerCrop"
             app:riv_border_color="@color/primary_blue"
             app:riv_mutate_background="true"
             />
@@ -190,5 +191,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_layout_noHp" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/primary_blue"
+        android:indeterminate="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:indeterminateTintMode="src_atop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
