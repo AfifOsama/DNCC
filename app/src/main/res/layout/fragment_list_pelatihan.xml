@@ -13,7 +13,7 @@
         <include layout="@layout/action_bar" android:id="@+id/action_bar"/>
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/header_home"
+            android:id="@+id/header_list_pelatihan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_rectangle_actionbar"
@@ -30,13 +30,14 @@
 
                 <TextView
                     android:id="@+id/tv_pelatihan_title"
+                    style="@style/nunitoBold_16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/nunitoBold_16"
-                    android:textColor="@color/black_text"
-                    android:text="@string/daftar_pelatihan_divisi"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    app:layout_constraintVertical_bias="0.25"
+                    android:text="@string/daftar_pelatihan_divisi"
+                    android:textColor="@color/black_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,7 +72,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_home"
+            app:layout_constraintTop_toBottomOf="@id/header_list_pelatihan"
             android:layout_marginTop="18dp"
             tools:listitem="@layout/item_card_divisi"
             />

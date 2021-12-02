@@ -2,9 +2,7 @@ package com.dncc.dncc.presentation.home.user
 
 import android.graphics.Typeface
 import android.os.Bundle
-import android.text.SpannableString
 import android.text.style.StyleSpan
-import android.text.style.TypefaceSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +23,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding= FragmentHomeBinding.inflate(inflater,container,false)
         return binding.root
 
@@ -38,6 +36,9 @@ class HomeFragment : Fragment() {
         imgKegiatan()
         binding.btnPelatihan.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_listPelatihanFragment)
+        }
+        binding.btnPertemuan.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_detailPelatihanFragment)
         }
 
     }

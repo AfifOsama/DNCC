@@ -8,15 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dncc.dncc.R
 import com.dncc.dncc.data.source.local.DataPhotoKegiatan
 
-class PhotoKegiatanAdapter(val list: ArrayList<DataPhotoKegiatan>):
+class PhotoKegiatanAdapter(private val list: ArrayList<DataPhotoKegiatan>):
     RecyclerView.Adapter<PhotoKegiatanAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var imgView: ImageView
-        init {
-            imgView = view
-                .findViewById(R.id.img_kegiatan)
-        }
+        var imgView: ImageView = view
+            .findViewById(R.id.img_kegiatan)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

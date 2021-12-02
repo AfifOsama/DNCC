@@ -15,8 +15,8 @@
     <string name="nim">A11.2019.11377</string>
     <string name="pelatihan">Pelatihan</string>
     <string name="kamu_telah_hadir_4_dari_10_pertemuan">Kamu telah hadir 4 dari 10 pertemuan</string>
-    <string name="pertemuan"><u>Pertemuan</u></string>
-    <string name="list_pelatihan"><u>List Pelatihan</u></string>
+    <string name="pertemuan">Pertemuan</string>
+    <string name="list_pelatihan">List Pelatihan</string>
     <string name="header1">We’re Not Only Organization But Also Family</string>
     <string name="bodytext1">Dian Nuswantoro Computer Club adalah UKM kampus Universitas Dian Nuswantoro Semarang yang berpusat pada bidang Ilmu Komputer</string>
     <string name="sub_heading1">Foto-foto Kegiatan DNCC</string>
@@ -61,4 +61,12 @@
     <string name="upload_img_button">upload img button</string>
     <string name="divisi_illustration">divisi illustration</string>
     <string name="anggota">Anggota</string>
+    <string name="nama_mentor">Eko Prasetya</string>
+    <string name="mentor">mentor</string>
+    <string name="waktu">waktu</string>
+    <string name="dummy_time">12 Nov 2021, 07:00</string>
+    <string name="pertemuan_4">Pertemuan 4</string>
+    <string name="judul_pertemuan">Membuat Aplikasi Note Sederhana</string>
+    <string name="_20_anggota">20 Anggota</string>
+    <string name="icon_book">icon book</string>
 </resources>

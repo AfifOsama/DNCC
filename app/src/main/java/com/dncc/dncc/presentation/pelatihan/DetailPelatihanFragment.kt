@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.R
-import com.dncc.dncc.databinding.FragmentListPelatihanBinding
+import com.dncc.dncc.databinding.FragmentDetailPelatihanBinding
 
-class ListPelatihanFragment : Fragment() {
-    private var _binding:FragmentListPelatihanBinding?=null
-    private val binding get()=_binding!!
+class DetailPelatihanFragment : Fragment() {
+    private var _binding:FragmentDetailPelatihanBinding?=null
+    private val binding get()= _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding= FragmentListPelatihanBinding.inflate(layoutInflater,container,false)
+        _binding= FragmentDetailPelatihanBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -27,8 +27,15 @@ class ListPelatihanFragment : Fragment() {
     }
 
     private fun initiateUI() {
+        binding.anggota.setOnClickListener {
+            if (binding.rvCardAnggota.visibility==View.GONE){
+                binding.rvCardAnggota.visibility=View.VISIBLE
+            }else{
+                binding.rvCardAnggota.visibility=View.GONE
+            }
+        }
         binding.actionBar.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_listPelatihanFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_detailPelatihanFragment_to_homeFragment)
         }
     }
 

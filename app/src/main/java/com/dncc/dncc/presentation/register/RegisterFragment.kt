@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentRegisterBinding
 
@@ -18,7 +16,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding= FragmentRegisterBinding.inflate(inflater,container,false)
         return binding.root
     }

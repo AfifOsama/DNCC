@@ -116,75 +116,77 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="24dp"
+            <ImageView
+                android:id="@+id/static_img_pertemuan"
+                android:layout_width="55dp"
+                android:layout_height="45dp"
+                android:contentDescription="@string/pertemuan"
+                android:src="@drawable/pertemuan"
+                android:layout_marginEnd="36dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/linearLayoutPelatihan"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintEnd_toStartOf="@+id/static_img_pelatihan"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.2" />
 
-
-                <ImageView
-                    android:id="@+id/static_img_pertemuan"
-                    android:layout_width="55dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/pertemuan"
-                    android:contentDescription="@string/pertemuan"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.3" />
-
-                <TextView
-                    android:id="@+id/btn_pertemuan"
-                    style="@style/robotoMedium_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/pertemuan"
-                    android:textColor="@color/primary_blue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/static_img_pertemuan" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/linearLayoutPelatihan"
+            <FrameLayout
+                android:id="@+id/btn_pertemuan"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/static_img_pertemuan"
+                app:layout_constraintStart_toStartOf="@+id/static_img_pertemuan"
+                app:layout_constraintTop_toBottomOf="@+id/static_img_pertemuan">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_rectangle_button"/>
+            <TextView
+                style="@style/robotoMedium_12"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/pertemuan"
+                android:textColor="@color/white"
+                 />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/static_img_pelatihan"
+                android:layout_width="55dp"
+                android:layout_height="45dp"
+                android:src="@drawable/pelatihan"
+                android:contentDescription="@string/pelatihan"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.2" />
 
-                <ImageView
-                    android:id="@+id/static_img_pelatihan"
-                    android:layout_width="55dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/pelatihan"
-                    android:contentDescription="@string/pelatihan"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.3" />
+            <FrameLayout
+                android:id="@+id/btn_pelatihan"
+                android:layout_width="80dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/static_img_pelatihan"
+                app:layout_constraintStart_toStartOf="@+id/static_img_pelatihan"
+                app:layout_constraintTop_toBottomOf="@+id/static_img_pelatihan">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_rectangle_button"/>
 
                 <TextView
-                    android:id="@+id/btn_pelatihan"
-                    style="@style/robotoMedium_12"
+                    style="@style/robotoMedium_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
                     android:text="@string/list_pelatihan"
-                    android:textColor="@color/primary_blue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/static_img_pelatihan" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:textColor="@color/white"
+                     />
+
+            </FrameLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
