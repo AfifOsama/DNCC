@@ -34,7 +34,7 @@ class RegisterFragment : Fragment() {
             Toast.makeText(activity, "Akun Anda berhasil terdaftar, silahkan login", Toast.LENGTH_LONG ).show()
         }
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            findNavController().popBackStack()
         }
     }
 }

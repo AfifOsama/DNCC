@@ -40,6 +40,9 @@ class HomeFragment : Fragment() {
         binding.btnPertemuan.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_detailPelatihanFragment)
         }
+        binding.headerHome.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profilFragment)
+        }
 
     }
 

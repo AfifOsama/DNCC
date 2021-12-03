@@ -35,8 +35,9 @@ class DetailPelatihanFragment : Fragment() {
             }
         }
         binding.actionBar.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_detailPelatihanFragment_to_homeFragment)
+            findNavController().popBackStack()
         }
+
     }
 
 }
