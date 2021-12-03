@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentRegisterBinding
 import com.dncc.dncc.domain.entity.register.RegisterEntity
@@ -107,36 +106,6 @@ class RegisterFragment : Fragment() {
         })
     }
 
-    private fun checkAlreadyStored() {
-        if (uploadStatus && storeUser) {
-            renderToast("berhasil mendaftarkan akun")
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-    }
-
-    private fun uploadImageAndStoreData(userId: String) {
-        binding.run {
-            val email = edtEmail.text.toString()
-            val password = edtSandi.text.toString()
-            val fullName = edtNama.text.toString()
-            val major = edtProdi.text.toString()
-            val nim = edtNik.text.toString()
-            val noHp = edtNoHp.text.toString()
-
-            viewModel.uploadImage(pathImage, userId)
-            viewModel.registerFirestore(
-                RegisterEntity(
-                    pathImage,
-                    email,
-                    password,
-                    fullName,
-                    major,
-                    nim,
-                    noHp
-                ), userId
-            )
-        }
-    }
-
     private fun initiateUI() {
         binding.frameLayout.setOnClickListener {
             getPictures()
@@ -148,7 +117,7 @@ class RegisterFragment : Fragment() {
                 val password = edtSandi.text.toString()
                 val fullName = edtNama.text.toString()
                 val major = edtProdi.text.toString()
-                val nim = edtNik.text.toString()
+                val nim = edtNim.text.toString()
                 val noHp = edtNoHp.text.toString()
 
                 if (validation(imageReport, email, password, fullName, major, nim, noHp)) {
@@ -166,9 +135,40 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
-        
+
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+    }
+
+    private fun checkAlreadyStored() {
+        if (uploadStatus && storeUser) {
+            renderToast("berhasil mendaftarkan akun")
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun uploadImageAndStoreData(userId: String) {
+        binding.run {
+            val email = edtEmail.text.toString()
+            val password = edtSandi.text.toString()
+            val fullName = edtNama.text.toString()
+            val major = edtProdi.text.toString()
+            val nim = edtNim.text.toString()
+            val noHp = edtNoHp.text.toString()
+
+            viewModel.uploadImage(pathImage, userId)
+            viewModel.registerFirestore(
+                RegisterEntity(
+                    pathImage,
+                    email,
+                    password,
+                    fullName,
+                    major,
+                    nim,
+                    noHp
+                ), userId
+            )
         }
     }
 
@@ -236,7 +236,8 @@ class RegisterFragment : Fragment() {
             false
         }
         !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-            Toast.makeText(context, "Salah memasukan format email anda", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Salah memasukan format email anda", Toast.LENGTH_SHORT)
+                .show()
             false
         }
         TextUtils.isEmpty(fullName) -> {
@@ -250,7 +251,7 @@ class RegisterFragment : Fragment() {
             false
         }
         TextUtils.isEmpty(nim) -> {
-            binding.edtNik.error = "harap isi nim anda"
+            binding.edtNim.error = "harap isi nim anda"
             Toast.makeText(context, "harap isi nim anda", Toast.LENGTH_SHORT).show()
             false
         }
