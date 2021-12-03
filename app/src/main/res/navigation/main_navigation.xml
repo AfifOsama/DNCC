@@ -18,17 +18,15 @@
             app:destination="@id/forgetPasswordFragment" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.dncc.dncc.presentation.register.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/forgetPasswordFragment"
         android:name="com.dncc.dncc.presentation.forgetpw.ForgetPasswordFragment"
@@ -38,5 +36,48 @@
         android:id="@+id/homeFragment"
         android:name="com.dncc.dncc.presentation.home.user.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_listPelatihanFragment"
+            app:destination="@id/listPelatihanFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailPelatihanFragment"
+            app:destination="@id/detailPelatihanFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profilFragment"
+            app:destination="@id/profilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.ListPelatihanFragment"
+        android:label="ListPelatihanFragment" >
+        <action
+            android:id="@+id/action_listPelatihanFragment_to_detailPelatihanFragment"
+            app:destination="@id/detailPelatihanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.DetailPelatihanFragment"
+        android:label="fragment_detail_pelatihan"
+        tools:layout="@layout/fragment_detail_pelatihan" >
+        <action
+            android:id="@+id/action_detailPelatihanFragment_to_detailPertemuanFragment"
+            app:destination="@id/detailPertemuanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPertemuanFragment"
+        android:name="com.dncc.dncc.presentation.pertemuan.DetailPertemuanFragment"
+        android:label="fragment_detail_pertemuan"
+        tools:layout="@layout/fragment_detail_pertemuan" >
+        <action
+            android:id="@+id/action_detailPertemuanFragment_to_detailPelatihanFragment"
+            app:destination="@id/detailPelatihanFragment"
+            app:popUpTo="@id/detailPelatihanFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.dncc.dncc.presentation.profil.ProfilFragment"
+        android:label="fragment_profil"
+        tools:layout="@layout/fragment_profil" />
 </navigation>

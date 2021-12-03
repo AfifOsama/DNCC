@@ -52,7 +52,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initiateObserver()
-        initiateButton()
+        initiateUI()
     }
 
     private fun initiateObserver() {
@@ -111,7 +111,6 @@ class RegisterFragment : Fragment() {
         if (uploadStatus && storeUser) {
             renderToast("berhasil mendaftarkan akun")
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-        }
     }
 
     private fun uploadImageAndStoreData(userId: String) {
@@ -138,7 +137,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun initiateButton() {
+    private fun initiateUI() {
         binding.frameLayout.setOnClickListener {
             getPictures()
         }
@@ -166,6 +165,10 @@ class RegisterFragment : Fragment() {
                     )
                 }
             }
+        }
+        
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

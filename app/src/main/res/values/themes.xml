@@ -28,13 +28,54 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="nunitoSemiBold_16">
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="nunitoSemiBold_18">
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="nunitoRegular_12">
         <item name="android:fontFamily">@font/nunito_regular</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="nunitoRegular_14">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="nunitoBold_12">
         <item name="android:fontFamily">@font/nunito_bold</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="nunitoBold_14">
+        <item name="android:fontFamily">@font/nunito_bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="nunitoBold_20">
+        <item name="android:fontFamily">@font/nunito_bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="nunitoBold_16">
+        <item name="android:fontFamily">@font/nunito_bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="robotoMedium_12">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="robotoMedium_10">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">10sp</item>
     </style>
 
     <style name="TextInputRoundedContainer" parent="ShapeAppearance.MaterialComponents.LargeComponent">
