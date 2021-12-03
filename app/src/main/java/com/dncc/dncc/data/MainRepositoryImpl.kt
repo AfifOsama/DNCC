@@ -42,13 +42,13 @@ class MainRepositoryImpl @Inject constructor() : MainRepository {
                                 Resource.Error(
                                     it.exception?.message ?: "Gagal mendaftarkan akun"
                                 )
-                            ).isFailure
+                            ).isSuccess
                         }
                     }
             awaitClose { snapshotListener.isCanceled() }
         }
 
-    override suspend fun uploadImage(path: String, userId: String): Flow<Resource<String>> =
+    override suspend fun uploadImage(path: String, userId: String): Flow<Resource<Boolean>> =
         callbackFlow {
             val file = Uri.fromFile(File(path))
             val storageRef = imagesRef.child(userId)
@@ -56,13 +56,13 @@ class MainRepositoryImpl @Inject constructor() : MainRepository {
             val snapshotListener = uploadTask.addOnCompleteListener {
                 if (it.isSuccessful) {
                     Log.i("MainRepositoryImpl", "uploadImage: success")
-                    trySend(Resource.Success("Success")).isSuccess
+                    trySend(Resource.Success(true)).isSuccess
                 } else {
                     trySend(
                         Resource.Error(
-                            it.exception?.message ?: "Gagal mendaftarkan akun"
+                            it.exception?.message ?: "Gagal upload gambar"
                         )
-                    ).isFailure
+                    ).isSuccess
                 }
             }
             awaitClose { snapshotListener.isCanceled() }
@@ -71,7 +71,7 @@ class MainRepositoryImpl @Inject constructor() : MainRepository {
     override suspend fun registerFirestore(
         registerEntity: RegisterEntity,
         userId: String
-    ): Flow<Resource<String>> = callbackFlow {
+    ): Flow<Resource<Boolean>> = callbackFlow {
         val snapshotListener = dbUsers.document(userId).set(
             mapOf(
                 "email" to registerEntity.email,
@@ -84,7 +84,7 @@ class MainRepositoryImpl @Inject constructor() : MainRepository {
                 "training" to TrainingEnum.EMPTY.trainingName
             )
         ).addOnSuccessListener {
-            trySend(Resource.Success("Success")).isSuccess
+            trySend(Resource.Success(true)).isSuccess
             Log.i("MainRepositoryImpl", "registerToFirestore user success")
         }
         awaitClose { snapshotListener.isCanceled() }
@@ -92,30 +92,39 @@ class MainRepositoryImpl @Inject constructor() : MainRepository {
 
     override suspend fun login(email: String, password: String): Flow<Resource<Boolean>> =
         callbackFlow {
-
-//            val snapshotListener = auth.createUserWithEmailAndPassword(registerEntity.email, registerEntity.password)
-//                .addOnCompleteListener {
-//                    val response = if (it.isSuccessful) {
-//                        Log.i("MainRepositoryImpl", "create user success")
-//                        val userId = auth.currentUser?.uid ?: ""
-//                        Log.i("MainRepositoryImpl", "userId: $userId")
-//                        if (uploadImage(registerEntity.photoPath, userId)) {
-//                            Log.i("MainRepositoryImpl", "upload user image success")
-//                            registerToFirestore(registerEntity, userId)
-//                        } else {
-//                            false
-//                        }
-//                    } else {
-//                        false
-//                    }
-//                    if (response) {
-//                        trySend(Resource.Success(true)).isSuccess
-//                    } else {
-//                        trySend(Resource.Error(it.exception?.message ?: "Gagal mendaftarkan akun")).isFailure
-//                    }
-//                }
-//            awaitClose { snapshotListener.isCanceled() }
-//
+            Log.i("MainRepositoryImpl", "login")
+            val snapshotListener = auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.i("MainRepositoryImpl", "sign in success")
+                        trySend(Resource.Success(true)).isSuccess
+                    } else {
+                        Log.i("MainRepositoryImpl", "login failed")
+                        trySend(
+                            Resource.Error(
+                                it.exception?.message ?: "Gagal login"
+                            )
+                        ).isSuccess
+                    }
+                }
+            awaitClose { snapshotListener.isCanceled() }
         }
 
+    override suspend fun passwordReset(email: String): Flow<Resource<Boolean>> =
+        callbackFlow {
+            val snapshotListener = auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.i("MainRepositoryImpl", "send email forgot passowrd success")
+                        trySend(Resource.Success(true)).isSuccess
+                    } else {
+                        trySend(
+                            Resource.Error(
+                                it.exception?.message ?: "Gagal mendaftarkan akun"
+                            )
+                        ).isSuccess
+                    }
+                }
+            awaitClose { snapshotListener.isCanceled() }
+        }
 }

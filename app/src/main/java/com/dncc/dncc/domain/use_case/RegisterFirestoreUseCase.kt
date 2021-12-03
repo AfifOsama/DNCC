@@ -12,6 +12,6 @@ class RegisterFirestoreUseCase @Inject constructor(
     suspend operator fun invoke(
         registerEntity: RegisterEntity,
         userId: String
-    ): Flow<Resource<String>> =
+    ): Flow<Resource<Boolean>> =
         mainRepository.registerFirestore(registerEntity, userId)
 }
