@@ -1,12 +1,11 @@
 package com.dncc.dncc.presentation.pelatihan
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentDetailPelatihanBinding
 
 class DetailPelatihanFragment : Fragment() {
@@ -27,6 +26,7 @@ class DetailPelatihanFragment : Fragment() {
     }
 
     private fun initiateUI() {
+        initiateToolbar()
         binding.anggota.setOnClickListener {
             if (binding.rvCardAnggota.visibility==View.GONE){
                 binding.rvCardAnggota.visibility=View.VISIBLE
@@ -34,10 +34,14 @@ class DetailPelatihanFragment : Fragment() {
                 binding.rvCardAnggota.visibility=View.GONE
             }
         }
+    }
+
+    private fun initiateToolbar() {
+        val title="Detail Pelatihan Divisi"
+        binding.actionBar.actionBarTitle.text=title
         binding.actionBar.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
-
     }
 
 }

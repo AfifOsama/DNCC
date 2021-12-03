@@ -16,13 +16,27 @@ class ProfilFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding= FragmentProfilBinding.inflate(inflater,container,false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initiateUI()
+    }
+
+    private fun initiateUI() {
+        initateToolbar()
+        binding.btnUbah.setOnClickListener {
+            findNavController().navigate(R.id.action_profilFragment_to_editProfilFragment)
+        }
+        binding.btnLogout.setOnClickListener {
+            findNavController().navigate(R.id.action_profilFragment_to_loginFragment)
+        }
+    }
+
+    private fun initateToolbar() {
         val title="Profil Anda"
         binding.actionBar.actionBarTitle.text=title
         binding.actionBar.btnBack.setOnClickListener {
