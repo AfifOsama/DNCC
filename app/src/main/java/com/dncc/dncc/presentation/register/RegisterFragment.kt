@@ -35,7 +35,10 @@ class RegisterFragment : Fragment() {
     private var imageReport: Uri? = null
     private lateinit var pathImage: String
 
-    private val viewModel by viewModels<RegisterViewModel>()
+    private val viewModel: RegisterViewModel by viewModels()
+
+    private var uploadStatus = false
+    private var storeUser = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,16 +62,80 @@ class RegisterFragment : Fragment() {
                     binding.progress.visibility = View.VISIBLE
                 }
                 is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
                     renderToast(it.message ?: "maaf harap coba lagi")
                 }
                 is Resource.Success -> {
-                    if (it.data == true) {
-                        renderToast("berhasil mendaftarkan akun")
-                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-                    }
+                    binding.progress.visibility = View.GONE
+                    uploadImageAndStoreData(it.data ?: "")
                 }
             }
         })
+
+        viewModel.uploadImageResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    uploadStatus = true
+                    checkAlreadyStored()
+                }
+            }
+        })
+
+        viewModel.uploadImageResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    storeUser = true
+                    checkAlreadyStored()
+                }
+            }
+        })
+    }
+
+    private fun checkAlreadyStored() {
+        if (uploadStatus && storeUser) {
+            renderToast("berhasil mendaftarkan akun")
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+    }
+
+    private fun uploadImageAndStoreData(userId: String) {
+        binding.run {
+            val email = edtEmail.text.toString()
+            val password = edtSandi.text.toString()
+            val fullName = edtNama.text.toString()
+            val major = edtProdi.text.toString()
+            val nim = edtNik.text.toString()
+            val noHp = edtNoHp.text.toString()
+
+            viewModel.uploadImage(pathImage, userId)
+            viewModel.registerFirestore(
+                RegisterEntity(
+                    pathImage,
+                    email,
+                    password,
+                    fullName,
+                    major,
+                    nim,
+                    noHp
+                ), userId
+            )
+        }
     }
 
     private fun initiateButton() {

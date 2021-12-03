@@ -6,11 +6,13 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @Module
 @InstallIn(ViewModelComponent::class)
 abstract class RepositoryModule {
 
+    @ExperimentalCoroutinesApi
     @Binds
     abstract fun bindMainRepository(mainRepositoryImpl: MainRepositoryImpl): MainRepository
 }
