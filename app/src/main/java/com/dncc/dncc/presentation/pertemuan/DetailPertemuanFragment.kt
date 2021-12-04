@@ -35,7 +35,7 @@ class DetailPertemuanFragment : Fragment() {
         val title="Detail Pertemuan"
         binding.actionBar.actionBarTitle.text=title
         binding.actionBar.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_detailPertemuanFragment_to_detailPelatihanFragment)
+            findNavController().popBackStack()
         }
     }
 

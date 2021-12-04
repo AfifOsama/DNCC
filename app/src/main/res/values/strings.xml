@@ -76,10 +76,12 @@
     <string name="simpan">Simpan</string>
     <string name="batal">Batal</string>
     <string name="admin">Admin</string>
-    <string name="daftar_anggota_ukm">Daftar Anggota UKM</string>
-    <string name="berisi_list_anggota_ukm_beserta_profilnya">berisi list anggota UKM beserta profilnya</string>
+    <string name="daftar_anggota_ukm">Daftar Anggota DNCC</string>
+    <string name="berisi_list_anggota_ukm_beserta_profilnya">berisi list anggota UKM DNCC beserta profilnya</string>
     <string name="tambah_pelatihan">Tambah Pelatihan</string>
-    <string name="menambah_pelatihan_divisi">Menambah Pelatihan Divisi</string>
+    <string name="menambah_pelatihan_divisi">menambah Pelatihan Divisi</string>
     <string name="list_pelatihan">List Pelatihan</string>
     <string name="berisi_list_pelatihan_divisi_beserta_detailnya">berisi list pelatihan divisi beserta detailnya</string>
+    <string name="divisi_mobile">Divisi Mobile</string>
+    <string name="daftar_anggota_dncc">Daftar Anggota UKM DNCC</string>
 </resources>

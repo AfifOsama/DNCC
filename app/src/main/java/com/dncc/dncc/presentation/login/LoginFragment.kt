@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
         textSpanDaftar()
         textSpanLupaSandi()
         binding.btnMasuk.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_homeAdminFragment)
         }
     }
 

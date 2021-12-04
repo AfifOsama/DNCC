@@ -24,7 +24,7 @@
         <action
             android:id="@+id/action_loginFragment_to_homeAdminFragment"
             app:destination="@id/homeAdminFragment"
-            app:popUpTo="@id/homeAdminFragment"
+            app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -73,13 +73,7 @@
         android:id="@+id/detailPertemuanFragment"
         android:name="com.dncc.dncc.presentation.pertemuan.DetailPertemuanFragment"
         android:label="fragment_detail_pertemuan"
-        tools:layout="@layout/fragment_detail_pertemuan" >
-        <action
-            android:id="@+id/action_detailPertemuanFragment_to_detailPelatihanFragment"
-            app:destination="@id/detailPelatihanFragment"
-            app:popUpTo="@id/detailPelatihanFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+        tools:layout="@layout/fragment_detail_pertemuan" />
     <fragment
         android:id="@+id/profilFragment"
         android:name="com.dncc.dncc.presentation.profil.ProfilFragment"
@@ -102,5 +96,14 @@
         android:id="@+id/homeAdminFragment"
         android:name="com.dncc.dncc.presentation.home.admin.HomeAdminFragment"
         android:label="fragment_home_admin"
-        tools:layout="@layout/fragment_home_admin" />
+        tools:layout="@layout/fragment_home_admin" >
+        <action
+            android:id="@+id/action_homeAdminFragment_to_listAnggotaFragment"
+            app:destination="@id/listAnggotaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listAnggotaFragment"
+        android:name="com.dncc.dncc.presentation.listanggota.ListAnggotaFragment"
+        android:label="fragment_list_anggota"
+        tools:layout="@layout/fragment_list_anggota" />
 </navigation>
