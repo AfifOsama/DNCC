@@ -21,6 +21,11 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_homeAdminFragment"
+            app:destination="@id/homeAdminFragment"
+            app:popUpTo="@id/homeAdminFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -93,4 +98,9 @@
         android:id="@+id/editProfilFragment"
         android:name="com.dncc.dncc.presentation.profil.EditProfilFragment"
         android:label="EditProfilFragment" />
+    <fragment
+        android:id="@+id/homeAdminFragment"
+        android:name="com.dncc.dncc.presentation.home.admin.HomeAdminFragment"
+        android:label="fragment_home_admin"
+        tools:layout="@layout/fragment_home_admin" />
 </navigation>

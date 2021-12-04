@@ -16,7 +16,6 @@
     <string name="pelatihan">Pelatihan</string>
     <string name="kamu_telah_hadir_4_dari_10_pertemuan">Kamu telah hadir 4 dari 10 pertemuan</string>
     <string name="pertemuan">Pertemuan</string>
-    <string name="list_pelatihan">List Pelatihan</string>
     <string name="header1">We’re Not Only Organization But Also Family</string>
     <string name="bodytext1">Dian Nuswantoro Computer Club adalah UKM kampus Universitas Dian Nuswantoro Semarang yang berpusat pada bidang Ilmu Komputer</string>
     <string name="sub_heading1">Foto-foto Kegiatan DNCC</string>
@@ -72,10 +71,15 @@
     <string name="download">Download</string>
     <string name="myfile_docx">myfile.docx</string>
     <string name="arrow_down">arrow down</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logout">Logout</string>
     <string name="ubah">Ubah</string>
     <string name="simpan">Simpan</string>
     <string name="batal">Batal</string>
+    <string name="admin">Admin</string>
+    <string name="daftar_anggota_ukm">Daftar Anggota UKM</string>
+    <string name="berisi_list_anggota_ukm_beserta_profilnya">berisi list anggota UKM beserta profilnya</string>
+    <string name="tambah_pelatihan">Tambah Pelatihan</string>
+    <string name="menambah_pelatihan_divisi">Menambah Pelatihan Divisi</string>
+    <string name="list_pelatihan">List Pelatihan</string>
+    <string name="berisi_list_pelatihan_divisi_beserta_detailnya">berisi list pelatihan divisi beserta detailnya</string>
 </resources>
