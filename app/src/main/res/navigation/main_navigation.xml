@@ -108,5 +108,14 @@
         android:id="@+id/listAnggotaFragment"
         android:name="com.dncc.dncc.presentation.listanggota.ListAnggotaFragment"
         android:label="fragment_list_anggota"
-        tools:layout="@layout/fragment_list_anggota" />
+        tools:layout="@layout/fragment_list_anggota" >
+        <action
+            android:id="@+id/action_listAnggotaFragment_to_profilAnggotaFragment"
+            app:destination="@id/profilAnggotaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilAnggotaFragment"
+        android:name="com.dncc.dncc.presentation.profil.admin.ProfilAnggotaFragment"
+        android:label="fragment_profil_anggota"
+        tools:layout="@layout/fragment_profil_anggota" />
 </navigation>

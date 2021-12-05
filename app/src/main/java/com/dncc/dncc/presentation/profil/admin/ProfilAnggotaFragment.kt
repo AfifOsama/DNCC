@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentProfilAnggotaBinding
 
@@ -14,12 +15,25 @@ class ProfilAnggotaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding= FragmentProfilAnggotaBinding.inflate(inflater,container,false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initateUI()
+    }
+
+    private fun initateUI() {
+        initateToolbar()
+    }
+
+    private fun initateToolbar() {
+        val title="Profil Anggota"
+        binding.actionBar.actionBarTitle.text=title
+        binding.actionBar.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

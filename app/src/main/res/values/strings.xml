@@ -58,7 +58,6 @@
     <string name="back_button">back button</string>
     <string name="upload_img_button">upload img button</string>
     <string name="divisi_illustration">divisi illustration</string>
-    <string name="anggota">Anggota</string>
     <string name="nama_mentor">Eko Prasetya</string>
     <string name="mentor">mentor</string>
     <string name="waktu">waktu</string>
@@ -84,8 +83,8 @@
     <string name="berisi_list_pelatihan_divisi_beserta_detailnya">berisi list pelatihan divisi beserta detailnya</string>
     <string name="divisi_mobile">Divisi Mobile</string>
     <string name="daftar_anggota_dncc">Daftar Anggota UKM DNCC</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="divisi">Divisi</string>
+    <string name="anggota">Anggota</string>
 
 
 </resources>
