@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentDetailPertemuanBinding
 
 class DetailPertemuanFragment : Fragment() {

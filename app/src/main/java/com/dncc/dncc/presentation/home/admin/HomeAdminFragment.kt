@@ -29,6 +29,9 @@ class HomeAdminFragment : Fragment() {
         binding.cardMenu1.setOnClickListener {
             findNavController().navigate(R.id.action_homeAdminFragment_to_listAnggotaFragment)
         }
+        binding.headerHome.setOnClickListener {
+            findNavController().navigate(R.id.action_homeAdminFragment_to_profilFragment)
+        }
     }
 
 }

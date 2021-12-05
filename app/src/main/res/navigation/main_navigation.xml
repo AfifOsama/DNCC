@@ -100,6 +100,9 @@
         <action
             android:id="@+id/action_homeAdminFragment_to_listAnggotaFragment"
             app:destination="@id/listAnggotaFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_profilFragment"
+            app:destination="@id/profilFragment" />
     </fragment>
     <fragment
         android:id="@+id/listAnggotaFragment"

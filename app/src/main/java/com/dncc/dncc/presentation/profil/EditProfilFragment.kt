@@ -1,9 +1,11 @@
 package com.dncc.dncc.presentation.profil
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.databinding.FragmentEditProfilBinding
@@ -26,7 +28,22 @@ class EditProfilFragment : Fragment() {
 
     private fun initiateUI() {
         initiateToolbar()
+        binding.btnSimpan.setOnClickListener {  dialogBuilder() }
     }
+
+    private fun dialogBuilder() {
+        val dialogBuilder=AlertDialog.Builder(activity)
+        with(dialogBuilder){
+            setTitle("Peringatan")
+            setMessage("Yakin ingin mengubah profil Anda?")
+            setPositiveButton("Iya"){_,_ ->
+                Toast.makeText(activity,"Profil Anda telah berhasil diubah",Toast.LENGTH_LONG).show()
+            }
+            setNegativeButton("Tidak"){_,_ ->
+
+            }
+            show()
+        }}
 
     private fun initiateToolbar() {
         val title="Edit Profil"
