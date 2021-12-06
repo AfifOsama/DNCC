@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,20 +42,20 @@
             android:hint="@string/email_edt"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
-            app:shapeAppearance="@style/TextInputRoundedContainer"
-            app:shapeAppearanceOverlay="@style/TextInputRoundedContainer"
-            app:layout_constraintVertical_bias="0.1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.1"
+            app:shapeAppearance="@style/TextInputRoundedContainer"
+            app:shapeAppearanceOverlay="@style/TextInputRoundedContainer">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,22 +64,22 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="@string/sandi_edt"
             app:boxStrokeColor="@color/primary_blue"
+            app:endIconMode="password_toggle"
             app:hintTextAppearance="@style/nunitoRegular_12"
-            app:shapeAppearance="@style/TextInputRoundedContainer"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
             app:layout_constraintTop_toBottomOf="@id/input_layout_email"
-            app:endIconMode="password_toggle">
+            app:shapeAppearance="@style/TextInputRoundedContainer">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_sandi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,11 +89,11 @@
             android:layout_height="wrap_content"
             android:text="@string/masuk"
             app:cornerRadius="10dp"
-            app:layout_constraintVertical_bias="0.10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_sandi" />
+            app:layout_constraintTop_toBottomOf="@id/input_layout_sandi"
+            app:layout_constraintVertical_bias="0.10" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_left"

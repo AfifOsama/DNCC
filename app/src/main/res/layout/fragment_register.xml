@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.register.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,19 +28,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/daftar"
-            app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
 
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            app:layout_constraintHorizontal_bias="0.51"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_daftar">
 
@@ -50,20 +50,18 @@
                 android:layout_height="100dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/perm_identity"
-                app:riv_corner_radius="10dip"
-                app:riv_border_width="2dip"
                 app:riv_border_color="@color/primary_blue"
-                />
+                app:riv_border_width="2dip"
+                app:riv_corner_radius="10dip" />
 
             <ImageButton
                 android:id="@+id/btn_upload_img"
-                android:contentDescription="@string/upload_img_button"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:background="@drawable/shape_circle"
-                android:src="@drawable/ic_baseline_edit_24"
                 android:layout_gravity="bottom|end"
-                />
+                android:background="@drawable/shape_circle"
+                android:contentDescription="@string/upload_img_button"
+                android:src="@drawable/ic_baseline_edit_24" />
         </FrameLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,8 +69,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/email_edt"
             android:layout_marginTop="24dp"
+            android:hint="@string/email_edt"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +82,7 @@
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,10 +115,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="@string/nama_lengkap"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout_sandi"
@@ -130,7 +128,7 @@
                 android:id="@+id/edt_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,10 +137,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="@string/prodi"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout_nama"
@@ -152,7 +150,7 @@
                 android:id="@+id/edt_prodi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -161,10 +159,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="@string/nomor_induk_mahasiswa"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout_prodi"
@@ -174,7 +172,7 @@
                 android:id="@+id/edt_nim"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,10 +181,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="@string/nomor_handphone"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout_nim"
@@ -196,7 +194,7 @@
                 android:id="@+id/edt_noHp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1"/>
+                android:lines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -204,27 +202,27 @@
             android:id="@+id/btn_daftar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/daftar"
             android:layout_marginTop="16dp"
+            android:text="@string/daftar"
             app:cornerRadius="10dp"
-            app:layout_constraintVertical_bias="0.10"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_noHp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_noHp"
+            app:layout_constraintVertical_bias="0.10" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateTint="@color/primary_blue"
             android:indeterminate="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:indeterminateTint="@color/primary_blue"
+            android:indeterminateTintMode="src_atop"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:indeterminateTintMode="src_atop" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

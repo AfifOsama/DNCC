@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -16,72 +15,72 @@
             android:id="@+id/header_home"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/shape_rectangle_actionbar"
             android:elevation="5dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="147dp"
-                    android:padding="16dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="147dp"
+                android:padding="16dp">
 
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        android:id="@+id/img_user"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        app:layout_constraintVertical_bias="0.1"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/perm_identity"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="w,1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:riv_border_color="@color/transparent"
-                        app:riv_border_width="2dp"
-                        app:riv_corner_radius="10dp" />
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_user"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/perm_identity"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="w,1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.1"
+                    app:riv_border_color="@color/transparent"
+                    app:riv_border_width="2dp"
+                    app:riv_corner_radius="10dp" />
 
 
-                    <TextView
-                        android:id="@+id/tv_user"
-                        style="@style/nunitoSemiBold_14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/user_name"
-                        android:textColor="@color/black_text"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/img_user"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.1" />
+                <TextView
+                    android:id="@+id/tv_user"
+                    style="@style/nunitoSemiBold_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/user_name"
+                    android:textColor="@color/black_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/img_user"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.1" />
 
-                    <TextView
-                        android:id="@+id/tv_nim"
-                        style="@style/nunitoRegular_12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/nim"
-                        android:textColor="@color/black_text"
-                        app:layout_constraintStart_toEndOf="@id/img_user"
-                        app:layout_constraintTop_toBottomOf="@id/tv_user" />
+                <TextView
+                    android:id="@+id/tv_nim"
+                    style="@style/nunitoRegular_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/nim"
+                    android:textColor="@color/black_text"
+                    app:layout_constraintStart_toEndOf="@id/img_user"
+                    app:layout_constraintTop_toBottomOf="@id/tv_user" />
 
-                    <TextView
-                        android:id="@+id/tv_role"
-                        style="@style/nunitoRegular_12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/pelatihan"
-                        android:textColor="@color/black_text"
-                        app:layout_constraintStart_toEndOf="@id/img_user"
-                        app:layout_constraintTop_toBottomOf="@id/tv_nim" />
+                <TextView
+                    android:id="@+id/tv_role"
+                    style="@style/nunitoRegular_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/pelatihan"
+                    android:textColor="@color/black_text"
+                    app:layout_constraintStart_toEndOf="@id/img_user"
+                    app:layout_constraintTop_toBottomOf="@id/tv_nim" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -114,9 +113,9 @@
                 android:id="@+id/static_img_pertemuan"
                 android:layout_width="55dp"
                 android:layout_height="45dp"
+                android:layout_marginEnd="36dp"
                 android:contentDescription="@string/pertemuan"
                 android:src="@drawable/pertemuan"
-                android:layout_marginEnd="36dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/static_img_pelatihan"
                 app:layout_constraintTop_toTopOf="parent"
@@ -130,27 +129,28 @@
                 app:layout_constraintEnd_toEndOf="@+id/static_img_pertemuan"
                 app:layout_constraintStart_toStartOf="@+id/static_img_pertemuan"
                 app:layout_constraintTop_toBottomOf="@+id/static_img_pertemuan">
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_rectangle_button"/>
-            <TextView
-                style="@style/robotoMedium_12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/pertemuan"
-                android:textColor="@color/white"
-                 />
+                    android:background="@drawable/shape_rectangle_button" />
+
+                <TextView
+                    style="@style/robotoMedium_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/pertemuan"
+                    android:textColor="@color/white" />
             </FrameLayout>
 
             <ImageView
                 android:id="@+id/static_img_pelatihan"
                 android:layout_width="55dp"
                 android:layout_height="45dp"
-                android:src="@drawable/pelatihan"
-                android:contentDescription="@string/pelatihan"
                 android:layout_marginEnd="24dp"
+                android:contentDescription="@string/pelatihan"
+                android:src="@drawable/pelatihan"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -168,7 +168,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_rectangle_button"/>
+                    android:background="@drawable/shape_rectangle_button" />
 
                 <TextView
                     style="@style/robotoMedium_10"
@@ -176,8 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/list_pelatihan"
-                    android:textColor="@color/white"
-                     />
+                    android:textColor="@color/white" />
 
             </FrameLayout>
 
@@ -221,57 +220,56 @@
             android:id="@+id/rv_img_kegiatan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/subheading1"
-            android:paddingVertical="16dp"
             android:layout_marginStart="16dp"
             android:orientation="horizontal"
-            />
+            android:paddingVertical="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subheading1" />
 
         <TextView
             android:id="@+id/subheading2"
+            style="@style/nunitoBold_16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/visi_dncc"
-            app:layout_constraintTop_toBottomOf="@id/rv_img_kegiatan"
             android:paddingHorizontal="16dp"
-            style="@style/nunitoBold_16"
-            android:textColor="@color/primary_blue"/>
+            android:text="@string/visi_dncc"
+            android:textColor="@color/primary_blue"
+            app:layout_constraintTop_toBottomOf="@id/rv_img_kegiatan" />
 
         <TextView
             android:id="@+id/body2"
+            style="@style/nunitoRegular_14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:paddingHorizontal="16dp"
             android:text="@string/body2"
             android:textColor="@color/black_text"
-            style="@style/nunitoRegular_14"
             app:layout_constraintTop_toBottomOf="@id/subheading2"
             tools:layout_editor_absoluteX="-32dp" />
 
         <TextView
             android:id="@+id/subheading3"
+            style="@style/nunitoBold_16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/misi_dncc"
-            app:layout_constraintTop_toBottomOf="@id/body2"
-            android:paddingHorizontal="16dp"
             android:layout_marginTop="16dp"
-            style="@style/nunitoBold_16"
-            android:textColor="@color/primary_blue" />
+            android:paddingHorizontal="16dp"
+            android:text="@string/misi_dncc"
+            android:textColor="@color/primary_blue"
+            app:layout_constraintTop_toBottomOf="@id/body2" />
 
         <TextView
             android:id="@+id/body3"
+            style="@style/nunitoRegular_14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="24dp"
             android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp"
             android:text="@string/body3"
             android:textColor="@color/black_text"
-            style="@style/nunitoRegular_14"
-            app:layout_constraintTop_toBottomOf="@id/subheading3"/>
+            app:layout_constraintTop_toBottomOf="@id/subheading3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

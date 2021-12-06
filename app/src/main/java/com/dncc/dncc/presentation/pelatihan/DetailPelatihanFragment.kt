@@ -9,14 +9,14 @@ import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.databinding.FragmentDetailPelatihanBinding
 
 class DetailPelatihanFragment : Fragment() {
-    private var _binding:FragmentDetailPelatihanBinding?=null
-    private val binding get()= _binding!!
+    private var _binding: FragmentDetailPelatihanBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding= FragmentDetailPelatihanBinding.inflate(inflater,container,false)
+        _binding = FragmentDetailPelatihanBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -28,17 +28,17 @@ class DetailPelatihanFragment : Fragment() {
     private fun initiateUI() {
         initiateToolbar()
         binding.anggota.setOnClickListener {
-            if (binding.rvCardAnggota.visibility==View.GONE){
-                binding.rvCardAnggota.visibility=View.VISIBLE
-            }else{
-                binding.rvCardAnggota.visibility=View.GONE
+            if (binding.rvCardAnggota.visibility == View.GONE) {
+                binding.rvCardAnggota.visibility = View.VISIBLE
+            } else {
+                binding.rvCardAnggota.visibility = View.GONE
             }
         }
     }
 
     private fun initiateToolbar() {
-        val title="Detail Pelatihan Divisi"
-        binding.actionBar.actionBarTitle.text=title
+        val title = "Detail Pelatihan Divisi"
+        binding.actionBar.actionBarTitle.text = title
         binding.actionBar.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }

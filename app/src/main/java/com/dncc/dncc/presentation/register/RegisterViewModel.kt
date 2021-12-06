@@ -77,7 +77,11 @@ class RegisterViewModel @Inject constructor(
                     _registerFirestoreResponse.postValue(Resource.Error(e.toString()))
                 }
                 .collect {
-                    _registerFirestoreResponse.postValue(Resource.Success(data = it.data ?: "Success"))
+                    _registerFirestoreResponse.postValue(
+                        Resource.Success(
+                            data = it.data ?: "Success"
+                        )
+                    )
                 }
         }
     }

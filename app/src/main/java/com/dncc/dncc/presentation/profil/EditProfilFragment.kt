@@ -11,13 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.databinding.FragmentEditProfilBinding
 
 class EditProfilFragment : Fragment() {
-    private var _binding:FragmentEditProfilBinding?=null
+    private var _binding: FragmentEditProfilBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding= FragmentEditProfilBinding.inflate(inflater,container,false)
+        _binding = FragmentEditProfilBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -28,26 +28,28 @@ class EditProfilFragment : Fragment() {
 
     private fun initiateUI() {
         initiateToolbar()
-        binding.btnSimpan.setOnClickListener {  dialogBuilder() }
+        binding.btnSimpan.setOnClickListener { dialogBuilder() }
     }
 
     private fun dialogBuilder() {
-        val dialogBuilder=AlertDialog.Builder(activity)
-        with(dialogBuilder){
+        val dialogBuilder = AlertDialog.Builder(activity)
+        with(dialogBuilder) {
             setTitle("Peringatan")
             setMessage("Yakin ingin mengubah profil Anda?")
-            setPositiveButton("Iya"){_,_ ->
-                Toast.makeText(activity,"Profil Anda telah berhasil diubah",Toast.LENGTH_LONG).show()
+            setPositiveButton("Iya") { _, _ ->
+                Toast.makeText(activity, "Profil Anda telah berhasil diubah", Toast.LENGTH_LONG)
+                    .show()
             }
-            setNegativeButton("Tidak"){_,_ ->
+            setNegativeButton("Tidak") { _, _ ->
 
             }
             show()
-        }}
+        }
+    }
 
     private fun initiateToolbar() {
-        val title="Edit Profil"
-        binding.actionBar.actionBarTitle.text=title
+        val title = "Edit Profil"
+        binding.actionBar.actionBarTitle.text = title
         binding.actionBar.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }

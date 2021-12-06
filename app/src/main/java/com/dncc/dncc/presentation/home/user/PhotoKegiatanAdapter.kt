@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dncc.dncc.R
 import com.dncc.dncc.data.source.local.DataPhotoKegiatan
 
-class PhotoKegiatanAdapter(private val list: ArrayList<DataPhotoKegiatan>):
+class PhotoKegiatanAdapter(private val list: ArrayList<DataPhotoKegiatan>) :
     RecyclerView.Adapter<PhotoKegiatanAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -28,7 +28,7 @@ class PhotoKegiatanAdapter(private val list: ArrayList<DataPhotoKegiatan>):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (photo)=list[position]
+        val (photo) = list[position]
 
         holder.imgView.setImageResource(photo)
 

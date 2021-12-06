@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_anggota"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:elevation="8dp"
-        app:cardMaxElevation="12dp"
-        app:cardCornerRadius="10dp"
         android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="8dp"
+        app:cardCornerRadius="10dp"
+        app:cardMaxElevation="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,58 +27,57 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:src="@drawable/perm_identity"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_nama_user"
+                style="@style/nunitoSemiBold_14"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:lines="1"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/nama_lengkap"
+                android:textColor="@color/black_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/img_anggota"
-                android:text="@string/nama_lengkap"
-                style="@style/nunitoSemiBold_14"
-                android:textColor="@color/black_text"
-                android:layout_marginStart="12dp"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0" />
 
             <TextView
                 android:id="@+id/tv_nim_user"
+                style="@style/nunitoRegular_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/tv_nama_user"
-                app:layout_constraintStart_toEndOf="@id/img_anggota"
-                android:text="@string/nim"
-                style="@style/nunitoRegular_14"
-                android:textColor="@color/black_text"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="4dp"
+                android:text="@string/nim"
+                android:textColor="@color/black_text"
+                app:layout_constraintStart_toEndOf="@id/img_anggota"
+                app:layout_constraintTop_toBottomOf="@id/tv_nama_user" />
 
             <TextView
                 android:id="@+id/tv_divisi"
+                style="@style/nunitoRegular_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/tv_nim_user"
-                app:layout_constraintStart_toEndOf="@id/img_anggota"
-                android:text="@string/divisi_mobile"
-                style="@style/nunitoRegular_14"
-                android:textColor="@color/black_text"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="4dp"
+                android:text="@string/divisi_mobile"
+                android:textColor="@color/black_text"
+                app:layout_constraintStart_toEndOf="@id/img_anggota"
+                app:layout_constraintTop_toBottomOf="@id/tv_nim_user" />
 
             <TextView
                 android:id="@+id/btn_ubah"
+                style="@style/nunitoBold_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ubah"
                 android:textColor="@color/primary_blue"
-                style="@style/nunitoBold_14"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,8 +86,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="16dp"
-        app:layout_constraintTop_toBottomOf="@id/card_anggota"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/card_anggota" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

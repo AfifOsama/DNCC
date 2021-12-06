@@ -9,15 +9,15 @@ import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.databinding.FragmentListPelatihanBinding
 
 class ListPelatihanFragment : Fragment() {
-    private var _binding:FragmentListPelatihanBinding?=null
-    private val binding get()=_binding!!
+    private var _binding: FragmentListPelatihanBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding= FragmentListPelatihanBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentListPelatihanBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -35,7 +35,7 @@ class ListPelatihanFragment : Fragment() {
         binding.actionBar.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.actionBar.actionBarTitle.text=title
+        binding.actionBar.actionBarTitle.text = title
     }
 
 }
