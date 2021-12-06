@@ -27,6 +27,9 @@ class ProfilAnggotaFragment : Fragment() {
 
     private fun initateUI() {
         initateToolbar()
+        binding.btnUbah.setOnClickListener {
+            findNavController().navigate(R.id.action_profilAnggotaFragment_to_editProfilAnggotaFragment)
+        }
     }
 
     private fun initateToolbar() {

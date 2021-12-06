@@ -171,7 +171,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/anggota"
+            android:hint="@string/role"
             android:layout_marginHorizontal="16dp"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"

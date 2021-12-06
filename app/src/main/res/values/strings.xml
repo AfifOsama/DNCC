@@ -45,7 +45,20 @@
         <item>@drawable/reor</item>
         <item>@drawable/ultah</item>
     </integer-array>
-
+    <string-array name="role">
+        <item>Visitor</item>
+        <item>Anggota</item>
+        <item>Mentor</item>
+        <item>Admin</item>
+    </string-array>
+    <string-array name="divisi">
+        <item>Divisi Web</item>
+        <item>Divisi Multimedia</item>
+        <item>Divisi Jaringan</item>
+        <item>Divisi Desktop</item>
+        <item>Divisi Mobile</item>
+        <item>Divisi Broadcast</item>>
+    </string-array>
     <string name="pelatihan_divisi">Pelatihan Divisi Mobile</string>
     <string name="divisi_description">Mobile developer ditujukan pada mereka yang punya spesialiasi dalam teknologi perangkat bergerak</string>
     <string name="daftar_divisi_description">DNCC mengadakan pelatihan rutin yang membahas tentang ilmu komputer </string>
@@ -85,6 +98,7 @@
     <string name="daftar_anggota_dncc">Daftar Anggota UKM DNCC</string>
     <string name="divisi">Divisi</string>
     <string name="anggota">Anggota</string>
+    <string name="role">Role</string>
 
 
 </resources>

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.profil.EditProfilFragment">
+    tools:context=".presentation.profil.admin.EditProfilAnggotaFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/email_edt"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="24dp"
             app:boxStrokeColor="@color/primary_blue"
             android:layout_marginHorizontal="16dp"
             app:hintTextAppearance="@style/nunitoRegular_12"
@@ -161,6 +161,57 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_divisi"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/divisi"
+            android:layout_marginHorizontal="16dp"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_noHp"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_divisi"
+                android:hint="@string/divisi"
+                android:labelFor="@id/input_layout_divisi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_role"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/role"
+            android:layout_marginHorizontal="16dp"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_divisi"
+            app:shapeAppearance="@style/TextInputRoundedContainer"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_roles"
+                android:hint="@string/role"
+                android:labelFor="@id/input_layout_role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_batal"
             android:layout_width="0dp"
@@ -172,7 +223,7 @@
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_simpan"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_noHp" />
+            app:layout_constraintTop_toBottomOf="@id/input_layout_role" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_simpan"
@@ -185,8 +236,9 @@
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_noHp" />
+            app:layout_constraintTop_toBottomOf="@id/input_layout_role" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>
