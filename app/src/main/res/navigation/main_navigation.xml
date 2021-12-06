@@ -103,6 +103,9 @@
         <action
             android:id="@+id/action_homeAdminFragment_to_profilFragment"
             app:destination="@id/profilFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_tambahPelatihanFragment"
+            app:destination="@id/tambahPelatihanFragment" />
     </fragment>
     <fragment
         android:id="@+id/listAnggotaFragment"
@@ -127,4 +130,9 @@
         android:name="com.dncc.dncc.presentation.profil.admin.EditProfilAnggotaFragment"
         android:label="fragment_edit_profil_anggota"
         tools:layout="@layout/fragment_edit_profil_anggota" />
+    <fragment
+        android:id="@+id/tambahPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.admin.TambahPelatihanFragment"
+        android:label="fragment_tambah_pelatihan"
+        tools:layout="@layout/fragment_tambah_pelatihan" />
 </navigation>

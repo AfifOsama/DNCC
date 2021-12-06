@@ -28,10 +28,10 @@ class EditProfilFragment : Fragment() {
 
     private fun initiateUI() {
         initiateToolbar()
-        binding.btnSimpan.setOnClickListener { dialogBuilder() }
+        binding.btnSimpan.setOnClickListener { alertDialog() }
     }
 
-    private fun dialogBuilder() {
+    private fun alertDialog() {
         val dialogBuilder = AlertDialog.Builder(activity)
         with(dialogBuilder) {
             setTitle("Peringatan")

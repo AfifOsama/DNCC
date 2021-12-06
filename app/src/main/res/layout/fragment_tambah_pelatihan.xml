@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.pelatihan.admin.TambahPelatihanFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/action_bar" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/header_tambah_pelatihan"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/shape_rectangle_actionbar"
+            android:elevation="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/action_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="117dp"
+                android:padding="16dp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_user"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/perm_identity"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="w,1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.1"
+                    app:riv_border_color="@color/transparent"
+                    app:riv_border_width="2dp"
+                    app:riv_corner_radius="10dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_user"
+                    style="@style/nunitoSemiBold_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/user_name"
+                    android:textColor="@color/black_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/img_user"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.1" />
+
+                <TextView
+                    android:id="@+id/tv_nim"
+                    style="@style/nunitoRegular_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/nim"
+                    android:textColor="@color/black_text"
+                    app:layout_constraintStart_toEndOf="@id/img_user"
+                    app:layout_constraintTop_toBottomOf="@id/tv_user" />
+
+                <TextView
+                    android:id="@+id/tv_role"
+                    style="@style/nunitoBold_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/admin"
+                    android:textColor="@color/black_text"
+                    app:layout_constraintStart_toEndOf="@id/img_user"
+                    app:layout_constraintTop_toBottomOf="@id/tv_nim" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_nama_pelatihan"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:hint="@string/nama_pelatihan"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_tambah_pelatihan"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_nama_pelatihan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_deskripsi_pelatihan"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/deskripsi_pelatihan"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_nama_pelatihan"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_deskripsi_pelatihan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_nama_mentor"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/nama_mentor_hint"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_deskripsi_pelatihan"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_nama_mentor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_link_wag"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/link_group_whatsapp_hint"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_nama_mentor"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_link_wag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/btn_date"
+            style="@style/Widget.MaterialComponents.TimePicker.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/tanggal_hari"
+            android:src="@drawable/ic_baseline_date_range_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_link_wag" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/nunitoRegular_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/tanggal_hari"
+            android:textColor="@color/black_text"
+            app:layout_constraintBottom_toBottomOf="@id/btn_date"
+            app:layout_constraintStart_toEndOf="@id/btn_date"
+            app:layout_constraintTop_toTopOf="@id/btn_date" />
+
+        <ImageButton
+            android:id="@+id/btn_time"
+            style="@style/Widget.MaterialComponents.TimePicker.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/jam"
+            android:src="@drawable/ic_baseline_access_time_24"
+            app:layout_constraintStart_toEndOf="@id/tv_date"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_link_wag" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/nunitoRegular_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/jam"
+            android:textColor="@color/black_text"
+            app:layout_constraintBottom_toBottomOf="@id/btn_time"
+            app:layout_constraintStart_toEndOf="@id/btn_time"
+            app:layout_constraintTop_toTopOf="@id/btn_time" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_batal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/error_red"
+            android:text="@string/batal"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_tambah"
+            app:layout_constraintTop_toBottomOf="@id/btn_date" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_tambah"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/success_green"
+            android:text="@string/tambah"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_time" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

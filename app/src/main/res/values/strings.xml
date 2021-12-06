@@ -62,7 +62,8 @@
     <string name="pelatihan_divisi">Pelatihan Divisi Mobile</string>
     <string name="divisi_description">Mobile developer ditujukan pada mereka yang punya spesialiasi dalam teknologi perangkat bergerak</string>
     <string name="daftar_divisi_description">DNCC mengadakan pelatihan rutin yang membahas tentang ilmu komputer </string>
-    <string name="link_group_whatsapp"><u>Link Group Whatsapp</u></string>
+    <string name="link_group_whatsapp"><u>Link Grub Whatsapp</u></string>
+    <string name="link_group_whatsapp_hint">Link Grub Whatsapp</string>
     <string name="daftar_pelatihan_divisi">Daftar Pelatihan Divisi</string>
     <string name="divisi_web">Divisi Web</string>
     <string name="number_of_anggota">4/10</string>
@@ -99,6 +100,14 @@
     <string name="divisi">Divisi</string>
     <string name="anggota">Anggota</string>
     <string name="role">Role</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nama_pelatihan">Nama Pelatihan</string>
+    <string name="deskripsi_pelatihan">Deskripsi Pelatihan</string>
+    <string name="nama_mentor_hint">Nama Mentor</string>
+    <string name="tanggal_hari">Tanggal, hari</string>
+    <string name="jam">Jam</string>
+    <string name="tambah">Tambah</string>
 
 
 </resources>
