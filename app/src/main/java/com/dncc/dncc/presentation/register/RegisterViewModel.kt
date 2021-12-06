@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.entity.register.RegisterEntity
-import com.dncc.dncc.domain.use_case.RegisterFirestoreUseCase
-import com.dncc.dncc.domain.use_case.RegisterUseCase
-import com.dncc.dncc.domain.use_case.UploadImageUseCase
+import com.dncc.dncc.domain.use_case.register.RegisterFirestoreUseCase
+import com.dncc.dncc.domain.use_case.register.RegisterUseCase
+import com.dncc.dncc.domain.use_case.common.UploadImageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch

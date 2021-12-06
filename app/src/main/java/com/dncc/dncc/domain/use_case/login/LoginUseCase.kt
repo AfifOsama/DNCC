@@ -1,4 +1,4 @@
-package com.dncc.dncc.domain.use_case
+package com.dncc.dncc.domain.use_case.login
 
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.MainRepository

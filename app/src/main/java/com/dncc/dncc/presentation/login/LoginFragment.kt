@@ -71,6 +71,12 @@ class LoginFragment : Fragment() {
                 }
             }
         })
+
+        viewModel.loginState.observe(viewLifecycleOwner, {
+            if(it) {
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            }
+        })
     }
 
     private val sColor = ForegroundColorSpan(Color.rgb(9, 121, 189))
