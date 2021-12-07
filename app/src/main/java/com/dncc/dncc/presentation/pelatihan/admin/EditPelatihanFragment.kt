@@ -11,12 +11,12 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.dncc.dncc.databinding.FragmentTambahPelatihanBinding
+import com.dncc.dncc.databinding.FragmentEditPelatihanBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TambahPelatihanFragment : Fragment() {
-    private var _binding: FragmentTambahPelatihanBinding? = null
+class EditPelatihanFragment : Fragment() {
+    private var _binding: FragmentEditPelatihanBinding? = null
     private val binding get() = _binding!!
     private val calendar = Calendar.getInstance()
 
@@ -24,7 +24,7 @@ class TambahPelatihanFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTambahPelatihanBinding.inflate(inflater, container, false)
+        _binding = FragmentEditPelatihanBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,7 +35,7 @@ class TambahPelatihanFragment : Fragment() {
 
     private fun initiateUI() {
         initateToolbar()
-        binding.btnTambah.setOnClickListener {
+        binding.btnSimpan.setOnClickListener {
             alertDialog()
         }
         timePicker()
@@ -116,9 +116,9 @@ class TambahPelatihanFragment : Fragment() {
         val dialogBuilder = AlertDialog.Builder(activity)
         with(dialogBuilder) {
             setTitle("Peringatan")
-            setMessage("Yakin ingin menambah pelatihan ini?")
+            setMessage("Yakin ingin merubah pelatihan ini?")
             setPositiveButton("Iya") { _, _ ->
-                Toast.makeText(activity, "Pelatihan berhasil ditambahkan", Toast.LENGTH_LONG)
+                Toast.makeText(activity, "Pelatihan berhasil diubah", Toast.LENGTH_LONG)
                     .show()
             }
             setNegativeButton("Tidak") { _, _ ->
@@ -135,4 +135,6 @@ class TambahPelatihanFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
+
+
 }

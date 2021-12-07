@@ -77,7 +77,20 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/terdaftar"
+                android:visibility="visible"
                 android:textColor="@color/success_green"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_ubah"
+                style="@style/nunitoBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/ubah"
+                android:visibility="gone"
+                android:textColor="@color/primary_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

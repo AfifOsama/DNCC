@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_listPelatihanFragment_to_detailPelatihanFragment"
             app:destination="@id/detailPelatihanFragment" />
+        <action
+            android:id="@+id/action_listPelatihanFragment_to_editPelatihanFragment"
+            app:destination="@id/editPelatihanFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailPelatihanFragment"
@@ -106,6 +109,9 @@
         <action
             android:id="@+id/action_homeAdminFragment_to_tambahPelatihanFragment"
             app:destination="@id/tambahPelatihanFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_listPelatihanFragment"
+            app:destination="@id/listPelatihanFragment" />
     </fragment>
     <fragment
         android:id="@+id/listAnggotaFragment"
@@ -135,4 +141,9 @@
         android:name="com.dncc.dncc.presentation.pelatihan.admin.TambahPelatihanFragment"
         android:label="fragment_tambah_pelatihan"
         tools:layout="@layout/fragment_tambah_pelatihan" />
+    <fragment
+        android:id="@+id/editPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.admin.EditPelatihanFragment"
+        android:label="fragment_edit_pelatihan"
+        tools:layout="@layout/fragment_edit_pelatihan" />
 </navigation>
