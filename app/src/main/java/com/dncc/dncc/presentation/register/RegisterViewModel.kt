@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.entity.register.RegisterEntity
-import com.dncc.dncc.domain.use_case.RegisterFirestoreUseCase
-import com.dncc.dncc.domain.use_case.RegisterUseCase
-import com.dncc.dncc.domain.use_case.UploadImageUseCase
+import com.dncc.dncc.domain.use_case.register.RegisterFirestoreUseCase
+import com.dncc.dncc.domain.use_case.register.RegisterUseCase
+import com.dncc.dncc.domain.use_case.common.UploadImageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -28,11 +28,11 @@ class RegisterViewModel @Inject constructor(
     private val _registerResponse = MutableLiveData<Resource<String>>()
     val registerResponse: LiveData<Resource<String>> get() = _registerResponse
 
-    private val _uploadImageResponse = MutableLiveData<Resource<String>>()
-    val uploadImageResponse: LiveData<Resource<String>> get() = _uploadImageResponse
+    private val _uploadImageResponse = MutableLiveData<Resource<Boolean>>()
+    val uploadImageResponse: LiveData<Resource<Boolean>> get() = _uploadImageResponse
 
-    private val _registerFirestoreResponse = MutableLiveData<Resource<String>>()
-    val registerFirestoreResponse: LiveData<Resource<String>> get() = _registerFirestoreResponse
+    private val _registerFirestoreResponse = MutableLiveData<Resource<Boolean>>()
+    val registerFirestoreResponse: LiveData<Resource<Boolean>> get() = _registerFirestoreResponse
 
     fun register(registerEntity: RegisterEntity) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -61,7 +61,7 @@ class RegisterViewModel @Inject constructor(
                     _uploadImageResponse.postValue(Resource.Error(e.toString()))
                 }
                 .collect {
-                    _uploadImageResponse.postValue(Resource.Success(data = it.data ?: "Success"))
+                    _uploadImageResponse.postValue(Resource.Success(data = it.data ?: false))
                 }
         }
     }
@@ -77,11 +77,7 @@ class RegisterViewModel @Inject constructor(
                     _registerFirestoreResponse.postValue(Resource.Error(e.toString()))
                 }
                 .collect {
-                    _registerFirestoreResponse.postValue(
-                        Resource.Success(
-                            data = it.data ?: "Success"
-                        )
-                    )
+                    _registerFirestoreResponse.postValue(Resource.Success(data = it.data ?: false))
                 }
         }
     }

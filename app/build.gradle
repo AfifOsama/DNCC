@@ -6,6 +6,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     id 'kotlin-parcelize'
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -54,7 +55,6 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation("io.coil-kt:coil:1.4.0")
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //navigation

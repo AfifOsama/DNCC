@@ -3,16 +3,15 @@ package com.dncc.dncc.data.source.remote.model
 import com.dncc.dncc.domain.entity.training.TrainingEntity
 
 data class TrainingDto(
+    val trainingId: String = "",
     val linkWa: String = "",
     val mentor: String = "",
     val schedule: String = "",
-    val trainingId: String = "",
-    val trainingName: String = "",
-    val meets: List<MeetDto> = mutableListOf()
+    val trainingName: String = ""
 )
 
 fun TrainingDto.toTrainingEntity(): TrainingEntity {
     return TrainingEntity(
-        linkWa, mentor, schedule, trainingId, trainingName
+        trainingId, linkWa, mentor, schedule, trainingName
     )
 }

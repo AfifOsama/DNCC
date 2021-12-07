@@ -1,4 +1,4 @@
-package com.dncc.dncc.domain.use_case
+package com.dncc.dncc.domain.use_case.register
 
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.MainRepository
@@ -12,6 +12,6 @@ class RegisterFirestoreUseCase @Inject constructor(
     suspend operator fun invoke(
         registerEntity: RegisterEntity,
         userId: String
-    ): Flow<Resource<String>> =
+    ): Flow<Resource<Boolean>> =
         mainRepository.registerFirestore(registerEntity, userId)
 }

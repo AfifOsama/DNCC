@@ -82,6 +82,11 @@
         android:name="com.dncc.dncc.presentation.profil.ProfilFragment"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profil" >
+        <argument
+            android:name="userId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue=""/>
         <action
             android:id="@+id/action_profilFragment_to_editProfilFragment"
             app:destination="@id/editProfilFragment" />

@@ -100,14 +100,10 @@
     <string name="divisi">Divisi</string>
     <string name="anggota">Anggota</string>
     <string name="role">Role</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nama_pelatihan">Nama Pelatihan</string>
     <string name="deskripsi_pelatihan">Deskripsi Pelatihan</string>
     <string name="nama_mentor_hint">Nama Mentor</string>
     <string name="tanggal_hari">Tanggal, hari</string>
     <string name="jam">Jam</string>
     <string name="tambah">Tambah</string>
-
-
 </resources>

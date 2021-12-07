@@ -65,7 +65,6 @@ class RegisterFragment : Fragment() {
                     renderToast(it.message ?: "maaf harap coba lagi")
                 }
                 is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
                     uploadImageAndStoreData(it.data ?: "")
                 }
             }
@@ -88,7 +87,7 @@ class RegisterFragment : Fragment() {
             }
         })
 
-        viewModel.uploadImageResponse.observe(viewLifecycleOwner, {
+        viewModel.registerFirestoreResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
                     binding.progress.visibility = View.VISIBLE
