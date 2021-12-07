@@ -15,6 +15,6 @@ data class UserDto(
 
 fun UserDto.toUserEntity(): UserEntity {
     return UserEntity(
-        userId, photoPath = "", email, fullName, major, nim, noHp, role, training
+        userId, email, fullName, major, nim, noHp, role, training
     )
 }
