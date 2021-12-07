@@ -36,7 +36,7 @@
                         android:id="@+id/img_user"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:scaleType="fitCenter"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/perm_identity"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="w,1:1"
@@ -74,7 +74,7 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_user" />
 
                     <TextView
-                        android:id="@+id/tv_role"
+                        android:id="@+id/tv_training"
                         style="@style/nunitoRegular_12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

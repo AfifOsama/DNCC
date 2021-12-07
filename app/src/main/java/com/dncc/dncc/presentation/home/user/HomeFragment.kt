@@ -2,22 +2,23 @@ package com.dncc.dncc.presentation.home.user
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
 import android.text.style.StyleSpan
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.text.set
 import androidx.core.text.toSpannable
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import coil.load
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
+import com.dncc.dncc.common.TrainingEnum
 import com.dncc.dncc.data.source.local.DataPhotoKegiatan
 import com.dncc.dncc.databinding.FragmentHomeBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
@@ -31,19 +32,19 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private var _binding:FragmentHomeBinding?=null
-    private val binding get()=_binding!!
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private val list = ArrayList<DataPhotoKegiatan>()
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
-    private val userId by lazy { auth.currentUser?.uid ?: ""}
+    private val userId by lazy { auth.currentUser?.uid ?: "" }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding= FragmentHomeBinding.inflate(inflater,container,false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -54,7 +55,6 @@ class HomeFragment : Fragment() {
         viewModel.getUser(userId)
 
         initiateObserver()
-        textSpanActionBarRole()
         textSpanTelahhadir()
         imgKegiatan()
 
@@ -70,7 +70,8 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_detailPelatihanFragment)
             }
             headerHome.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_profilFragment)
+                val action = HomeFragmentDirections.actionHomeFragmentToProfilFragment(userId)
+                findNavController().navigate(action)
             }
 
             refresh.run {
@@ -88,7 +89,7 @@ class HomeFragment : Fragment() {
 
     private fun initiateObserver() {
         viewModel.getUserResponse.observe(viewLifecycleOwner, {
-            when(it) {
+            when (it) {
                 is Resource.Loading -> {
                     binding.progress.visibility = View.VISIBLE
                 }
@@ -115,42 +116,48 @@ class HomeFragment : Fragment() {
             }.addOnFailureListener {
                 it.message?.let { error -> Log.i("HomeFragment", "error image $error") }
             }
+
+            tvUser.text = userEntity.fullName
+            tvNim.text = userEntity.nim
+
+            val trainingText: Spannable
+            if (userEntity.training == TrainingEnum.EMPTY.trainingName) {
+                trainingText = "Kamu belum mengikuti pelatihan apapun".toSpannable()
+            } else {
+                trainingText = "Pelatihan ${userEntity.role}".toSpannable()
+                val spanRole = 7 + userEntity.role.length
+                trainingText[7..spanRole] = bold
+            }
+
+            binding.tvTraining.text = trainingText
         }
     }
 
     private fun imgKegiatan() {
         binding.rvImgKegiatan.setHasFixedSize(true)
         list.addAll(listPhotos)
-        binding.rvImgKegiatan.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvImgKegiatan.adapter=PhotoKegiatanAdapter(list)
+        binding.rvImgKegiatan.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvImgKegiatan.adapter = PhotoKegiatanAdapter(list)
     }
+
+    private val bold = StyleSpan(Typeface.BOLD)
 
     private fun textSpanTelahhadir() {
-        var hadirDari="4"
-        var hadirSampai="10"
-        val text="Kamu telah hadir $hadirDari dari $hadirSampai pertemuan".toSpannable()
-        val spanHadirDari=17+hadirDari.length
+        val hadirDari = "-"
+        val hadirSampai = "10"
+        val text = "Kamu telah hadir $hadirDari dari $hadirSampai pertemuan".toSpannable()
+        val spanHadirDari = 17 + hadirDari.length
 
-        text[16..spanHadirDari]=bold
+        text[16..spanHadirDari] = bold
 
-        binding.tvTelahHadir.text=text
-    }
-
-    private val bold=StyleSpan(Typeface.BOLD)
-    private fun textSpanActionBarRole() {
-        var role="Mobile"
-        val text="Divisi $role".toSpannable()
-        val spanRole=7+role.length
-
-        text[7..spanRole]=bold
-
-        binding.tvRole.text=text
+        binding.tvTelahHadir.text = text
     }
 
     private val listPhotos: ArrayList<DataPhotoKegiatan>
-        get(){
-            val name=resources.getStringArray(R.array.data_name_kegiatan)
-            val photo=resources.obtainTypedArray(R.array.data_photo_kegiatan)
+        get() {
+            val name = resources.getStringArray(R.array.data_name_kegiatan)
+            val photo = resources.obtainTypedArray(R.array.data_photo_kegiatan)
             val listPhoto = ArrayList<DataPhotoKegiatan>()
             for (i in name.indices) {
                 val photos = DataPhotoKegiatan(photo.getResourceId(i, -1))

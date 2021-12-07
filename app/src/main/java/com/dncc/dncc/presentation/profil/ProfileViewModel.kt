@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.entity.user.UserEntity
+import com.dncc.dncc.domain.use_case.common.UploadImageUseCase
 import com.dncc.dncc.domain.use_case.login.LoginStateUseCase
 import com.dncc.dncc.domain.use_case.logout.LogoutUseCase
 import com.dncc.dncc.domain.use_case.user.EditUserUseCase
@@ -24,7 +25,8 @@ class ProfileViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
     private val editUserUseCase: EditUserUseCase,
     private val logoutUseCase: LogoutUseCase,
-    private val loginStateUseCase: LoginStateUseCase
+    private val loginStateUseCase: LoginStateUseCase,
+    private val uploadImageUseCase: UploadImageUseCase
 ) : ViewModel() {
 
     private val _getUserResponse = MutableLiveData<Resource<UserEntity>>()
