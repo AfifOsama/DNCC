@@ -39,6 +39,9 @@ class ForgetPasswordFragment : Fragment() {
             val email = binding.edtEmail.text.toString()
             viewModel.passwordReset(email)
         }
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun initiateObserver() {
