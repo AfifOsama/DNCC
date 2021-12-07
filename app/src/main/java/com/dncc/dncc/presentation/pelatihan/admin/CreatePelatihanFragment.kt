@@ -15,7 +15,7 @@ import com.dncc.dncc.databinding.FragmentTambahPelatihanBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TambahPelatihanFragment : Fragment() {
+class CreatePelatihanFragment : Fragment() {
     private var _binding: FragmentTambahPelatihanBinding? = null
     private val binding get() = _binding!!
     private val calendar = Calendar.getInstance()

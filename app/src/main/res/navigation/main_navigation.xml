@@ -138,7 +138,7 @@
         tools:layout="@layout/fragment_edit_profil_anggota" />
     <fragment
         android:id="@+id/tambahPelatihanFragment"
-        android:name="com.dncc.dncc.presentation.pelatihan.admin.TambahPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.admin.CreatePelatihanFragment"
         android:label="fragment_tambah_pelatihan"
         tools:layout="@layout/fragment_tambah_pelatihan" />
     <fragment
