@@ -171,10 +171,9 @@ class MainRepositoryImpl @Inject constructor() : MainRepository {
     }
 
     override suspend fun editUser(userEntity: UserEntity): Flow<Resource<Boolean>> = callbackFlow {
+        Log.i("MainRepositoryImpl", "editUser ${userEntity.userId}")
         val snapshotListener = dbUsers.document(userEntity.userId).update(
             mapOf(
-                "photoPath" to userEntity.photoPath,
-                "email" to userEntity.email,
                 "fullName" to userEntity.fullName,
                 "major" to userEntity.major,
                 "nim" to userEntity.nim,

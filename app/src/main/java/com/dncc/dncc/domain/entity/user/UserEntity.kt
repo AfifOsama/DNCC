@@ -1,5 +1,9 @@
 package com.dncc.dncc.domain.entity.user
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class UserEntity(
     val userId: String = "",
     val photoPath: String = "",
@@ -10,4 +14,4 @@ data class UserEntity(
     val noHp: String = "",
     val role: String = "",
     val training: String = "",
-)
+): Parcelable

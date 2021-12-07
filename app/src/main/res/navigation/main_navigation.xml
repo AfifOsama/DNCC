@@ -99,7 +99,12 @@
     <fragment
         android:id="@+id/editProfilFragment"
         android:name="com.dncc.dncc.presentation.profil.EditProfilFragment"
-        android:label="EditProfilFragment" />
+        android:label="EditProfilFragment"
+        tools:layout="@layout/fragment_edit_profil">
+        <argument
+            android:name="userEntity"
+            app:argType="com.dncc.dncc.domain.entity.user.UserEntity" />
+    </fragment>
     <fragment
         android:id="@+id/homeAdminFragment"
         android:name="com.dncc.dncc.presentation.home.admin.HomeAdminFragment"

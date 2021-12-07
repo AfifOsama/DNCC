@@ -4,7 +4,6 @@ import com.dncc.dncc.domain.entity.user.UserEntity
 
 data class UserDto(
     val userId: String = "",
-    val photoPath: String = "",
     val email: String = "",
     val fullName: String = "",
     val major: String = "",
@@ -16,6 +15,6 @@ data class UserDto(
 
 fun UserDto.toUserEntity(): UserEntity {
     return UserEntity(
-        userId, photoPath, email, fullName, major, nim, noHp, role, training
+        userId, photoPath = "", email, fullName, major, nim, noHp, role, training
     )
 }

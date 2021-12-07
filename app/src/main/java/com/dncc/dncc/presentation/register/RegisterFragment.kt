@@ -159,7 +159,6 @@ class RegisterFragment : Fragment() {
             viewModel.uploadImage(pathImage, userId)
             viewModel.registerFirestore(
                 RegisterEntity(
-                    pathImage,
                     email,
                     password,
                     fullName,
