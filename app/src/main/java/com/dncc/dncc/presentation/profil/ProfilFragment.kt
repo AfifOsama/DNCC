@@ -54,22 +54,11 @@ class ProfilFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
-            findNavController().navigate(R.id.action_profilFragment_to_loginFragment,null,
-                NavOptions.Builder().setPopUpTo(findNavController().graph.startDestination, true).build())
+            findNavController().navigate(ProfilFragmentDirections.actionProfilFragmentToLoginFragment())
         }
 
         binding.btnUbah.setOnClickListener {
-            binding.btnUbah.visibility = View.GONE
-            binding.btnSave.visibility = View.VISIBLE
-        }
 
-        binding.btnSave.setOnClickListener {
-//            viewModel.editUser(
-//                UserEntity(
-//                userId = userId,
-//                photoPath =
-//            )
-//            )
         }
     }
 

@@ -173,21 +173,6 @@
             app:layout_constraintVertical_bias="0.10" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_save"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/simpan"
-            app:cornerRadius="10dp"
-            android:visibility="gone"
-            android:backgroundTint="@color/green_500"
-            app:layout_constraintBottom_toTopOf="@id/btn_logout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_noHp"
-            app:layout_constraintVertical_bias="0.10" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_logout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
