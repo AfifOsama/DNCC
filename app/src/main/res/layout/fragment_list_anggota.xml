@@ -1,114 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.listanggota.ListAnggotaFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar" />
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/header_list_anggota"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/shape_rectangle_actionbar"
-            android:elevation="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <include
+                android:id="@+id/action_bar"
+                layout="@layout/action_bar" />
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/header_list_anggota"
                 android:layout_width="match_parent"
-                android:layout_height="117dp"
-                android:padding="16dp">
+                android:layout_height="120dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape_rectangle_actionbar"
+                android:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/action_bar">
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/img_user"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/perm_identity"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="w,1:1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1"
-                    app:riv_border_color="@color/transparent"
-                    app:riv_border_width="2dp"
-                    app:riv_corner_radius="10dp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="117dp"
+                    android:padding="16dp">
 
-
-                <TextView
-                    android:id="@+id/tv_user"
-                    style="@style/nunitoSemiBold_14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/user_name"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/img_user"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1" />
-
-                <TextView
-                    android:id="@+id/tv_nim"
-                    style="@style/nunitoRegular_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/nim"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintStart_toEndOf="@id/img_user"
-                    app:layout_constraintTop_toBottomOf="@id/tv_user" />
-
-                <TextView
-                    android:id="@+id/tv_role"
-                    style="@style/nunitoBold_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/admin"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintStart_toEndOf="@id/img_user"
-                    app:layout_constraintTop_toBottomOf="@id/tv_nim" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <TextView
-            android:id="@+id/daftar_anggota_dncc"
-            style="@style/nunitoBold_16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/daftar_anggota_dncc"
-            android:textColor="@color/black_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_list_anggota" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_card_admin_anggota"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/daftar_anggota_dncc"
-            tools:listitem="@layout/item_card_admin_anggota" />
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_user"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/perm_identity"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="w,1:1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.1"
+                        app:riv_border_color="@color/transparent"
+                        app:riv_border_width="2dp"
+                        app:riv_corner_radius="10dp" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/tv_user"
+                        style="@style/nunitoSemiBold_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/user_name"
+                        android:textColor="@color/black_text"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/img_user"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.1" />
 
-</ScrollView>
+                    <TextView
+                        android:id="@+id/tv_nim"
+                        style="@style/nunitoRegular_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/nim"
+                        android:textColor="@color/black_text"
+                        app:layout_constraintStart_toEndOf="@id/img_user"
+                        app:layout_constraintTop_toBottomOf="@id/tv_user" />
+
+                    <TextView
+                        android:id="@+id/tv_role"
+                        style="@style/nunitoBold_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/admin"
+                        android:textColor="@color/black_text"
+                        app:layout_constraintStart_toEndOf="@id/img_user"
+                        app:layout_constraintTop_toBottomOf="@id/tv_nim" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <TextView
+                android:id="@+id/daftar_anggota_dncc"
+                style="@style/nunitoBold_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/daftar_anggota_dncc"
+                android:textColor="@color/black_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_list_anggota" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_card_admin_anggota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/daftar_anggota_dncc"
+                tools:listitem="@layout/item_card_admin_anggota" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

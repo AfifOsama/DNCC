@@ -1,12 +1,17 @@
 package com.dncc.dncc.presentation.pertemuan
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.databinding.FragmentDetailPertemuanBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class DetailPertemuanFragment : Fragment() {
     private var _binding: FragmentDetailPertemuanBinding? = null
@@ -27,7 +32,18 @@ class DetailPertemuanFragment : Fragment() {
 
     private fun initateUi() {
         initateToolbar()
-
+        binding.run {
+            refresh.run {
+                setOnRefreshListener {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Log.i("DetailPertemuanFragment", "refresh: ")
+//                        viewModel.getUser(userId)
+                        delay(2000)
+                        isRefreshing = false
+                    }
+                }
+            }
+        }
     }
 
     private fun initateToolbar() {

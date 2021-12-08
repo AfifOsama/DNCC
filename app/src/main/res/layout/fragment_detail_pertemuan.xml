@@ -1,149 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.pertemuan.DetailPertemuanFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar" />
-
-        <Button
-            android:id="@+id/btn_ubah"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ubah"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="10dp"
-            android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@id/action_bar"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_pertemuan_ke"
-            style="@style/nunitoBold_16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/detail_pertemuan_ke"
-            android:textColor="@color/black_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_nama_pertemuan"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="18dp"
-            android:elevation="8dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardMaxElevation="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_pertemuan_ke">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <include
+                android:id="@+id/action_bar"
+                layout="@layout/action_bar" />
+
+            <Button
+                android:id="@+id/btn_ubah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/ubah"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/action_bar" />
+
+            <TextView
+                android:id="@+id/tv_pertemuan_ke"
+                style="@style/nunitoBold_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/detail_pertemuan_ke"
+                android:textColor="@color/black_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/action_bar" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_nama_pertemuan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="4dp">
+                android:layout_marginVertical="18dp"
+                android:elevation="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_pertemuan_ke">
 
-                <ImageView
-                    android:id="@+id/icon_book"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:contentDescription="@string/icon_book"
-                    android:src="@drawable/ic_baseline_menu_book"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="4dp">
 
-                <TextView
-                    style="@style/nunitoRegular_14"
-                    android:layout_width="280dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:lines="1"
-                    android:text="@string/judul_pertemuan"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_book"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/icon_book"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:contentDescription="@string/icon_book"
+                        android:src="@drawable/ic_baseline_menu_book"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_file"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="8dp"
-            android:elevation="8dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardMaxElevation="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_nama_pertemuan">
+                    <TextView
+                        style="@style/nunitoRegular_14"
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:lines="1"
+                        android:text="@string/judul_pertemuan"
+                        android:textColor="@color/black_text"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/icon_book"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_file"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="4dp">
+                android:layout_marginVertical="8dp"
+                android:elevation="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardMaxElevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_nama_pertemuan">
 
-                <ImageView
-                    android:id="@+id/icon_file"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="4dp"
-                    android:contentDescription="@string/icon_book"
-                    android:src="@drawable/ic_baseline_attach_file"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="4dp">
 
-                <TextView
-                    style="@style/nunitoRegular_14"
-                    android:layout_width="240dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:lines="1"
-                    android:text="@string/myfile_docx"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_file"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/icon_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:contentDescription="@string/icon_book"
+                        android:src="@drawable/ic_baseline_attach_file"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/btn_download"
-                    style="@style/nunitoBold_14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/download"
-                    android:textColor="@color/primary_blue"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        style="@style/nunitoRegular_14"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:lines="1"
+                        android:text="@string/myfile_docx"
+                        android:textColor="@color/black_text"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/icon_file"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:layout_constraintTop_toBottomOf="@id/card_file" />
+                    <TextView
+                        android:id="@+id/btn_download"
+                        style="@style/nunitoBold_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/download"
+                        android:textColor="@color/primary_blue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@id/card_file" />
 
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
