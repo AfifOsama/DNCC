@@ -113,80 +113,105 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageButton
-            android:id="@+id/btn_date"
-            style="@style/Widget.MaterialComponents.TimePicker.ImageButton"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_participant_max"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
-            android:contentDescription="@string/tanggal_hari"
-            android:src="@drawable/ic_baseline_date_range_24"
+            android:hint="@string/maksimal_anggota"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_link_wag" />
+            app:layout_constraintTop_toBottomOf="@id/input_layout_link_wag"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
 
-        <TextView
-            android:id="@+id/tv_date"
-            style="@style/nunitoRegular_14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/tanggal_hari"
-            android:textColor="@color/black_text"
-            app:layout_constraintBottom_toBottomOf="@id/btn_date"
-            app:layout_constraintStart_toEndOf="@id/btn_date"
-            app:layout_constraintTop_toTopOf="@id/btn_date" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_participant_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:textColor="@color/black_text"
+                android:lines="1" />
 
-        <ImageButton
-            android:id="@+id/btn_time"
-            style="@style/Widget.MaterialComponents.TimePicker.ImageButton"
-            android:layout_width="wrap_content"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_day"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
-            android:contentDescription="@string/jam"
-            android:src="@drawable/ic_baseline_access_time_24"
-            app:layout_constraintStart_toEndOf="@id/tv_date"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_link_wag" />
+            android:hint="@string/hari"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            app:startIconDrawable="@drawable/ic_baseline_date_range_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_participant_max"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
 
-        <TextView
-            android:id="@+id/tv_time"
-            style="@style/nunitoRegular_14"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:textColor="@color/black_text"
+                android:lines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_clock"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/jam"
-            android:textColor="@color/black_text"
-            app:layout_constraintBottom_toBottomOf="@id/btn_time"
-            app:layout_constraintStart_toEndOf="@id/btn_time"
-            app:layout_constraintTop_toTopOf="@id/btn_time" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/_08_00"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            app:startIconDrawable="@drawable/ic_baseline_access_time_24"
+            app:layout_constraintStart_toEndOf="@id/input_layout_day"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_participant_max"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_clock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:textColor="@color/black_text"
+                android:lines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_batal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/error_red"
             android:text="@string/batal"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_simpan"
-            app:layout_constraintTop_toBottomOf="@id/btn_date" />
+            app:layout_constraintEnd_toStartOf="@id/btn_simpan" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_simpan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/success_green"
             android:text="@string/simpan"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_time" />
+            app:layout_constraintTop_toBottomOf="@id/input_layout_clock" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

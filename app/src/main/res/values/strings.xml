@@ -104,8 +104,10 @@
     <string name="nama_pelatihan">Nama Pelatihan</string>
     <string name="deskripsi_pelatihan">Deskripsi Pelatihan</string>
     <string name="nama_mentor_hint">Nama Mentor</string>
-    <string name="tanggal_hari">Tanggal, hari</string>
+    <string name="hari">Hari</string>
     <string name="jam">Jam</string>
     <string name="tambah">Tambah</string>
     <string name="delete_button">delete button</string>
+    <string name="maksimal_anggota">Maksimal Anggota</string>
+    <string name="_08_00">08:00</string>
 </resources>

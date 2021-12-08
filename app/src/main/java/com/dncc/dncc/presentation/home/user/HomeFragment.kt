@@ -73,7 +73,6 @@ class HomeFragment : Fragment() {
                 val action = HomeFragmentDirections.actionHomeFragmentToProfilFragment(userId)
                 findNavController().navigate(action)
             }
-
             refresh.run {
                 setOnRefreshListener {
                     CoroutineScope(Dispatchers.Main).launch {
