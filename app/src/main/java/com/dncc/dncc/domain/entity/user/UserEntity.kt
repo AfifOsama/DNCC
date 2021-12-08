@@ -13,4 +13,5 @@ data class UserEntity(
     val noHp: String = "",
     val role: String = "",
     val training: String = "",
+    val trainingId: String = ""
 ): Parcelable

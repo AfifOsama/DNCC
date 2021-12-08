@@ -106,4 +106,9 @@
     <string name="tanggal_hari">Tanggal, hari</string>
     <string name="jam">Jam</string>
     <string name="tambah">Tambah</string>
+    <string name="rabu_20_00">Rabu, 20:00</string>
+    <string name="_4">4</string>
+    <string name="slash_barrier">/</string>
+    <string name="_15">15</string>
+    <string name="daftar_pelatihan">Daftar Pelatihan</string>
 </resources>

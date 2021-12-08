@@ -1,17 +1,18 @@
 package com.dncc.dncc.domain.use_case.register
 
 import com.dncc.dncc.common.Resource
-import com.dncc.dncc.domain.MainRepository
+import com.dncc.dncc.domain.TrainingRepository
+import com.dncc.dncc.domain.UserRepository
 import com.dncc.dncc.domain.entity.register.RegisterEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RegisterFirestoreUseCase @Inject constructor(
-    private val mainRepository: MainRepository
+    private val userRepository: UserRepository
 ) {
     suspend operator fun invoke(
         registerEntity: RegisterEntity,
         userId: String
     ): Flow<Resource<Boolean>> =
-        mainRepository.registerFirestore(registerEntity, userId)
+        userRepository.registerFirestore(registerEntity, userId)
 }
