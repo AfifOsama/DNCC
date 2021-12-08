@@ -14,83 +14,15 @@
             android:id="@+id/action_bar"
             layout="@layout/action_bar" />
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/header_detail_pertemuan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/shape_rectangle_actionbar"
-            android:elevation="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar">
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="147dp">
-
-                <TextView
-                    android:id="@+id/tv_pelatihan_title"
-                    style="@style/nunitoBold_16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="18dp"
-                    android:text="@string/pelatihan_divisi"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_pelatihan_description"
-                    style="@style/nunitoRegular_12"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="4dp"
-                    android:lines="3"
-                    android:text="@string/divisi_description"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_pelatihan_title" />
-
-                <TextView
-                    android:id="@+id/tv_link_wag"
-                    style="@style/robotoMedium_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/link_group_whatsapp"
-                    android:textColor="@color/dark_blue"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_pelatihan_description" />
-
-
-                <ImageView
-                    android:id="@+id/static_img_pelatihan"
-                    android:layout_width="112dp"
-                    android:layout_height="80dp"
-                    android:layout_marginEnd="24dp"
-                    android:contentDescription="@string/pelatihan"
-                    android:src="@drawable/divisi_mobile"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
         <Button
             android:id="@+id/btn_ubah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ubah"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/header_detail_pertemuan"
+            android:layout_marginTop="10dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/action_bar"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
@@ -103,14 +35,14 @@
             android:text="@string/detail_pertemuan_ke"
             android:textColor="@color/black_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_detail_pertemuan" />
+            app:layout_constraintTop_toBottomOf="@id/action_bar" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_nama_pertemuan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="16dp"
+            android:layout_marginVertical="18dp"
             android:elevation="8dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="10dp"

@@ -82,6 +82,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <ImageView
+                android:id="@+id/btn_delete"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/ic_baseline_remove_circle_outline_24"
+                android:layout_margin="14dp"
+                android:contentDescription="@string/delete_button"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.ActionButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

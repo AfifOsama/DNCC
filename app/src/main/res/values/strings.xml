@@ -107,4 +107,5 @@
     <string name="tanggal_hari">Tanggal, hari</string>
     <string name="jam">Jam</string>
     <string name="tambah">Tambah</string>
+    <string name="delete_button">delete button</string>
 </resources>

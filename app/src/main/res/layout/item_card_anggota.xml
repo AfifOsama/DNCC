@@ -12,7 +12,7 @@
         android:animateLayoutChanges="true"
         android:background="@color/white"
         android:elevation="8dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:cardCornerRadius="10dp"
         app:cardMaxElevation="12dp"
         app:layout_constraintEnd_toEndOf="parent"
