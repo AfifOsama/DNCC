@@ -76,7 +76,7 @@
     <string name="nama_mentor">Eko Prasetya</string>
     <string name="mentor">mentor</string>
     <string name="waktu">waktu</string>
-    <string name="dummy_time">12 Nov 2021, 07:00</string>
+    <string name="dummy_time">Rabu, 07:00</string>
     <string name="pertemuan_4">Pertemuan 4</string>
     <string name="judul_pertemuan">Membuat Aplikasi Note Sederhana </string>
     <string name="_20_anggota">20 Anggota</string>
@@ -110,4 +110,5 @@
     <string name="delete_button">delete button</string>
     <string name="maksimal_anggota">Maksimal Anggota</string>
     <string name="_08_00">08:00</string>
+    <string name="selamat_datang_mentor">Selamat datang, Mentor!</string>
 </resources>
