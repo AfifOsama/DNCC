@@ -16,12 +16,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_nama_pelatihan"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:hint="@string/nama_pelatihan"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,13 +28,13 @@
             app:layout_constraintTop_toBottomOf="@id/action_bar"
             app:shapeAppearance="@style/TextInputRoundedContainer">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_nama_pelatihan"
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_nama_pelatihan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:textColor="@color/black_text"
-                android:lines="1" />
+                android:hint="@string/divisi"
+                android:inputType="none"
+                android:labelFor="@id/input_layout_divisi" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

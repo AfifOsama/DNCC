@@ -62,7 +62,7 @@ class LoginFragment : Fragment() {
                 is Resource.Success -> {
                     Log.i("LoginFragment", "resource success: ${it.data}")
                     binding.progress.visibility = View.GONE
-                    if(it.data == true) {
+                    if (it.data == true) {
                         viewModel.saveLoginState(true)
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     } else {
@@ -73,7 +73,7 @@ class LoginFragment : Fragment() {
         })
 
         viewModel.loginState.observe(viewLifecycleOwner, {
-            if(it) {
+            if (it) {
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             }
         })

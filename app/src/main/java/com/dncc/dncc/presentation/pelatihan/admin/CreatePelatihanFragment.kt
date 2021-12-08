@@ -7,16 +7,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.dncc.dncc.databinding.FragmentTambahPelatihanBinding
+import com.dncc.dncc.R
+import com.dncc.dncc.databinding.FragmentCreatePelatihanBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class CreatePelatihanFragment : Fragment() {
-    private var _binding: FragmentTambahPelatihanBinding? = null
+    private var _binding: FragmentCreatePelatihanBinding? = null
     private val binding get() = _binding!!
     private val calendar = Calendar.getInstance()
 
@@ -24,7 +26,7 @@ class CreatePelatihanFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTambahPelatihanBinding.inflate(inflater, container, false)
+        _binding = FragmentCreatePelatihanBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,6 +42,13 @@ class CreatePelatihanFragment : Fragment() {
         }
         timePicker()
         datePicker()
+        dropdownDivisi()
+    }
+
+    private fun dropdownDivisi() {
+        val divisi = resources.getStringArray(R.array.divisi)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.list_item_dropdown, divisi)
+        binding.dropdownNamaPelatihan.setAdapter(arrayAdapter)
     }
 
     private fun timePicker() {

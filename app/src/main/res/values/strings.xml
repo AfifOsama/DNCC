@@ -52,12 +52,13 @@
         <item>Admin</item>
     </string-array>
     <string-array name="divisi">
+        <item>Empty</item>
         <item>Divisi Web</item>
         <item>Divisi Multimedia</item>
         <item>Divisi Jaringan</item>
         <item>Divisi Desktop</item>
-        <item>Divisi Mobile</item>
         <item>Divisi Broadcast</item>>
+        <item>Divisi Mobile</item>
     </string-array>
     <string name="pelatihan_divisi">Pelatihan Divisi Mobile</string>
     <string name="divisi_description">Mobile developer ditujukan pada mereka yang punya spesialiasi dalam teknologi perangkat bergerak</string>
