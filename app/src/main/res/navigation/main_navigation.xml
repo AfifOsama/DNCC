@@ -145,7 +145,7 @@
         android:id="@+id/tambahPelatihanFragment"
         android:name="com.dncc.dncc.presentation.pelatihan.admin.CreatePelatihanFragment"
         android:label="fragment_tambah_pelatihan"
-        tools:layout="@layout/fragment_tambah_pelatihan" />
+        tools:layout="@layout/fragment_create_pelatihan" />
     <fragment
         android:id="@+id/editPelatihanFragment"
         android:name="com.dncc.dncc.presentation.pelatihan.admin.EditPelatihanFragment"
