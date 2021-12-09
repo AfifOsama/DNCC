@@ -1,4 +1,4 @@
-package com.dncc.dncc.presentation.pelatihan
+package com.dncc.dncc.presentation.home.user
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.entity.user.UserEntity
-import com.dncc.dncc.domain.use_case.training.GetTrainingsUseCase
 import com.dncc.dncc.domain.use_case.user.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TrainingViewModel @Inject constructor(
-    private val getTrainingsUseCase: GetTrainingsUseCase,
+class HomeViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase
 ) : ViewModel() {
 
