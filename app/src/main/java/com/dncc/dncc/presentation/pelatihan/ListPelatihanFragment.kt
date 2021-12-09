@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentListPelatihanBinding
-import com.dncc.dncc.presentation.profil.ProfilFragmentArgs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,9 +16,7 @@ class ListPelatihanFragment : Fragment() {
     private var _binding: FragmentListPelatihanBinding? = null
     private val binding get() = _binding!!
 
-    private val args: ProfilFragmentArgs by navArgs()
     private val viewModel: TrainingViewModel by viewModels()
-    private var userId = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +29,6 @@ class ListPelatihanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userId = args.userId ?: ""
-        viewModel.getUser(userId)
 //        viewModel.getTraining
 
         initiateUI()

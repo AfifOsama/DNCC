@@ -17,6 +17,7 @@ import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentProfilBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.presentation.home.user.HomeFragmentDirections
+import com.dncc.dncc.presentation.viewmodel.UserViewModel
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +27,7 @@ class ProfilFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: ProfileViewModel by viewModels()
-    private val args: ProfilFragmentArgs by navArgs()
+    private val userViewModel: UserViewModel by viewModels()
 
     private var userEntity: UserEntity = UserEntity()
 
@@ -40,9 +41,6 @@ class ProfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val userId = args.userId ?: ""
-        viewModel.getUser(userId)
 
         initiateObserver()
 
@@ -64,7 +62,7 @@ class ProfilFragment : Fragment() {
     }
 
     private fun initiateObserver() {
-        viewModel.getUserResponse.observe(viewLifecycleOwner, {
+        userViewModel.getUserResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
                     binding.progress.visibility = View.VISIBLE

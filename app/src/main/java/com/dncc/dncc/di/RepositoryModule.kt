@@ -8,17 +8,21 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
     @ExperimentalCoroutinesApi
     @Binds
+    @Singleton
     abstract fun bindUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository
 
     @ExperimentalCoroutinesApi
     @Binds
+    @Singleton
     abstract fun bindTrainingRepository(trainingRepositoryImpl: TrainingRepositoryImpl): TrainingRepository
 }

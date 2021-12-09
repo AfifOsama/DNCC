@@ -1,11 +1,13 @@
 package com.dncc.dncc.domain
 
+import androidx.lifecycle.MutableLiveData
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.entity.register.RegisterEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
 import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
+    val getUserResponse: MutableLiveData<Resource<UserEntity>>
     suspend fun register(registerEntity: RegisterEntity): Flow<Resource<String>>
     suspend fun uploadImage(path: String, userId: String): Flow<Resource<Boolean>>
     suspend fun registerFirestore(
