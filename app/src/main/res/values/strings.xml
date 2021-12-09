@@ -103,7 +103,6 @@
     <string name="role">Role</string>
     <string name="nama_pelatihan">Nama Pelatihan</string>
     <string name="deskripsi_pelatihan">Deskripsi Pelatihan</string>
-    <string name="nama_mentor_hint">Nama Mentor</string>
     <string name="hari">Hari</string>
     <string name="jam">Jam</string>
     <string name="tambah">Tambah</string>
@@ -111,4 +110,7 @@
     <string name="maksimal_anggota">Maksimal Anggota</string>
     <string name="_08_00">08:00</string>
     <string name="selamat_datang_mentor">Selamat datang, Mentor!</string>
+    <string name="nama_pertemuan">Nama Pertemuan</string>
+    <string name="nama_mentor_hint">Nama Mentor</string>
+    <string name="upload_materi">Upload Materi</string>
 </resources>

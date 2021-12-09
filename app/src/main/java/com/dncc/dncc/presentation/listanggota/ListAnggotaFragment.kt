@@ -26,11 +26,11 @@ class ListAnggotaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initateUI()
+        initiateUI()
     }
 
-    private fun initateUI() {
-        initateToolbar()
+    private fun initiateUI() {
+        initiateToolbar()
         binding.run {
             refresh.run {
                 setOnRefreshListener {
@@ -45,7 +45,7 @@ class ListAnggotaFragment : Fragment() {
         }
     }
 
-    private fun initateToolbar() {
+    private fun initiateToolbar() {
         val title = "Daftar Anggota DNCC"
         binding.actionBar.actionBarTitle.text = title
         binding.actionBar.btnBack.setOnClickListener {

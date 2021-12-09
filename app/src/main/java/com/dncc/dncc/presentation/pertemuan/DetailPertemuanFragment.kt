@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentDetailPertemuanBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,12 +28,15 @@ class DetailPertemuanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initateUi()
+        initiateUi()
     }
 
-    private fun initateUi() {
+    private fun initiateUi() {
         initateToolbar()
         binding.run {
+            btnUbah.setOnClickListener {
+                findNavController().navigate(R.id.action_detailPertemuanFragment_to_editPertemuanFragment)
+            }
             refresh.run {
                 setOnRefreshListener {
                     CoroutineScope(Dispatchers.Main).launch {

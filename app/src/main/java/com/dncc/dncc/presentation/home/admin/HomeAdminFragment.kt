@@ -27,10 +27,10 @@ class HomeAdminFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initateUI()
+        initiateUI()
     }
 
-    private fun initateUI() {
+    private fun initiateUI() {
         binding.run {
             cardMenu1.setOnClickListener {
                 findNavController().navigate(R.id.action_homeAdminFragment_to_listAnggotaFragment)

@@ -1,5 +1,6 @@
 package com.dncc.dncc.presentation.profil
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -53,12 +54,11 @@ class ProfilFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            viewModel.logout()
-            findNavController().navigate(ProfilFragmentDirections.actionProfilFragmentToLoginFragment())
+            logoutWithAlertDialog()
         }
 
         binding.btnUbah.setOnClickListener {
-
+            findNavController().navigate(ProfilFragmentDirections.actionProfilFragmentToEditProfilFragment())
         }
     }
 
@@ -119,6 +119,21 @@ class ProfilFragment : Fragment() {
 
     private fun renderToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+    private fun logoutWithAlertDialog() {
+        val dialogBuilder = AlertDialog.Builder(activity)
+        with(dialogBuilder) {
+            setTitle("Peringatan")
+            setMessage("Yakin ingin mengubah pertemuan ini?")
+            setPositiveButton("Iya") { _, _ ->
+                viewModel.logout()
+                findNavController().navigate(ProfilFragmentDirections.actionProfilFragmentToLoginFragment())
+            }
+            setNegativeButton("Tidak") { dialog, _ ->
+                dialog.dismiss()
+            }
+            show()
+        }
     }
 
 }

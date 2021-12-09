@@ -22,17 +22,17 @@ class ProfilAnggotaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initateUI()
+        initiateUI()
     }
 
-    private fun initateUI() {
-        initateToolbar()
+    private fun initiateUI() {
+        initiateToolbar()
         binding.btnUbah.setOnClickListener {
             findNavController().navigate(R.id.action_profilAnggotaFragment_to_editProfilAnggotaFragment)
         }
     }
 
-    private fun initateToolbar() {
+    private fun initiateToolbar() {
         val title = "Profil Anggota"
         binding.actionBar.actionBarTitle.text = title
         binding.actionBar.btnBack.setOnClickListener {
