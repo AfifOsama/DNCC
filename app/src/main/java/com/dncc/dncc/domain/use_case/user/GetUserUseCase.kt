@@ -1,6 +1,5 @@
 package com.dncc.dncc.domain.use_case.user
 
-import androidx.lifecycle.MutableLiveData
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.TrainingRepository
 import com.dncc.dncc.domain.UserRepository
@@ -13,6 +12,4 @@ class GetUserUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(userId: String): Flow<Resource<UserEntity>> =
         userRepository.getUser(userId)
-
-    val observeUser: MutableLiveData<Resource<UserEntity>> = userRepository.getUserResponse
 }

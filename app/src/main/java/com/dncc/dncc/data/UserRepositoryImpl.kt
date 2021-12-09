@@ -2,8 +2,6 @@ package com.dncc.dncc.data
 
 import android.net.Uri
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.common.TrainingEnum
 import com.dncc.dncc.common.UserRoleEnum
@@ -12,7 +10,6 @@ import com.dncc.dncc.data.source.remote.model.toUserEntity
 import com.dncc.dncc.domain.UserRepository
 import com.dncc.dncc.domain.entity.register.RegisterEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
-import com.dncc.dncc.utils.checkFirebaseError
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -32,29 +29,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
     private val imagesRef: StorageReference =
         FirebaseStorage.getInstance().reference.child("images")
 
-    override val getUserResponse: MutableLiveData<Resource<UserEntity>> = MutableLiveData<Resource<UserEntity>>()
-
-    override suspend fun getUser(userId: String): Flow<Resource<UserEntity>> = callbackFlow {
-        Log.i("UserRepositoryImpl", "getUser $userId")
-        getUserResponse.postValue(Resource.Loading())
-        val snapshotListener = dbUsers.document(userId)
-            .addSnapshotListener { snapshot, _ ->
-                val response = if (snapshot != null) {
-                    val dataUser = snapshot.toObject(UserDto::class.java)
-                    Log.i("UserRepositoryImpl", "getUser ${dataUser?.fullName} success")
-                    if (dataUser != null) {
-                        getUserResponse.postValue(Resource.Success(dataUser.toUserEntity()))
-                    }
-                    Resource.Success(dataUser!!.toUserEntity())
-                } else {
-                    getUserResponse.postValue(Resource.Error("Gagal mendapatkan data user"))
-                    Resource.Error("")
-                }
-                trySend(response).isSuccess
-            }
-        awaitClose { snapshotListener.remove() }
-    }
-
     override suspend fun register(registerEntity: RegisterEntity): Flow<Resource<String>> =
         callbackFlow {
             val snapshotListener =
@@ -71,8 +45,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                                 )
                             ).isSuccess
                         }
-                    }.addOnFailureListener { error ->
-                        trySend(Resource.Error(error.checkFirebaseError()))
                     }
             awaitClose { snapshotListener.isCanceled() }
         }
@@ -93,8 +65,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                         )
                     ).isSuccess
                 }
-            }.addOnFailureListener { error ->
-                trySend(Resource.Error(error.checkFirebaseError()))
             }
             awaitClose { snapshotListener.isCanceled() }
         }
@@ -118,14 +88,13 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
         ).addOnSuccessListener {
             trySend(Resource.Success(true)).isSuccess
             Log.i("UserRepositoryImpl", "registerToFirestore user success")
-        }.addOnFailureListener { error ->
-            trySend(Resource.Error(error.checkFirebaseError()))
         }
         awaitClose { snapshotListener.isCanceled() }
     }
 
     override suspend fun login(email: String, password: String): Flow<Resource<Boolean>> =
         callbackFlow {
+            Log.i("UserRepositoryImpl", "login")
             val snapshotListener = auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -139,8 +108,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                             )
                         ).isSuccess
                     }
-                }.addOnFailureListener { error ->
-                    trySend(Resource.Error(error.checkFirebaseError()))
                 }
             awaitClose { snapshotListener.isCanceled() }
         }
@@ -158,15 +125,29 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                         )
                     ).isSuccess
                 }
-            }.addOnFailureListener { error ->
-                trySend(Resource.Error(error.checkFirebaseError()))
             }
         awaitClose { snapshotListener.isCanceled() }
+    }
+
+    override suspend fun getUser(userId: String): Flow<Resource<UserEntity>> = callbackFlow {
+        val snapshotListener = dbUsers.document(userId)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) throw e
+                val response = if (snapshot != null) {
+                    val dataUser = snapshot.toObject(UserDto::class.java)
+                    Resource.Success(dataUser!!.toUserEntity())
+                } else {
+                    Resource.Error("")
+                }
+                trySend(response).isSuccess
+            }
+        awaitClose { snapshotListener.remove() }
     }
 
     override suspend fun getUsers(): Flow<Resource<List<UserEntity>>> = callbackFlow {
         val snapshotListener = dbUsers
             .addSnapshotListener { snapshot, e ->
+                if (e != null) throw e
                 val response = if (snapshot != null) {
                     val dataUsers = mutableListOf<UserDto>()
                     snapshot.forEach {
@@ -196,8 +177,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
         ).addOnSuccessListener {
             trySend(Resource.Success(true)).isSuccess
             Log.i("UserRepositoryImpl", "editUser ${userEntity.fullName} success")
-        }.addOnFailureListener { error ->
-            trySend(Resource.Error(error.checkFirebaseError()))
         }
         awaitClose { snapshotListener.isCanceled() }
     }

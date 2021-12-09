@@ -22,7 +22,6 @@ import com.dncc.dncc.common.TrainingEnum
 import com.dncc.dncc.data.source.local.DataPhotoKegiatan
 import com.dncc.dncc.databinding.FragmentHomeBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
-import com.dncc.dncc.presentation.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,7 +36,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val list = ArrayList<DataPhotoKegiatan>()
 
-    private val userViewModel: UserViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
     private val userId by lazy { auth.currentUser?.uid ?: "" }
 
@@ -53,12 +52,43 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
+        viewModel.getUser(userId)
+
         initiateObserver()
+        textSpanTelahhadir()
+        imgKegiatan()
+
         initiateUI()
     }
 
+    private fun initiateUI() {
+        binding.run {
+            btnPelatihan.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToListPelatihanFragment(userId))
+            }
+            btnPertemuan.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_detailPelatihanFragment)
+            }
+            headerHome.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToProfilFragment(userId)
+                findNavController().navigate(action)
+            }
+
+            refresh.run {
+                setOnRefreshListener {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Log.i("HomeFragment", "refresh: ")
+                        viewModel.getUser(userId)
+                        delay(2000)
+                        isRefreshing = false
+                    }
+                }
+            }
+        }
+    }
+
     private fun initiateObserver() {
-        userViewModel.getUserResponse.observe(viewLifecycleOwner, {
+        viewModel.getUserResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
                     binding.progress.visibility = View.VISIBLE
@@ -73,34 +103,6 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-    }
-
-    private fun initiateUI() {
-        binding.run {
-            btnPelatihan.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToListPelatihanFragment())
-            }
-            btnPertemuan.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_detailPelatihanFragment)
-            }
-            headerHome.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProfilFragment())
-            }
-
-            refresh.run {
-                setOnRefreshListener {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        Log.i("HomeFragment", "refresh: ")
-                        userViewModel.getUser(userId)
-                        delay(2000)
-                        isRefreshing = false
-                    }
-                }
-            }
-
-            textSpanTelahhadir()
-            imgKegiatan()
-        }
     }
 
     private fun setUserView(userEntity: UserEntity) {

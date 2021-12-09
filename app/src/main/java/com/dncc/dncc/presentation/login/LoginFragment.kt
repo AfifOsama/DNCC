@@ -18,11 +18,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
-import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentLoginBinding
-import com.dncc.dncc.domain.entity.user.UserEntity
-import com.dncc.dncc.presentation.viewmodel.UserViewModel
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,10 +28,6 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: LoginViewModel by viewModels()
-    private val userViewModel: UserViewModel by viewModels()
-
-    private lateinit var auth: FirebaseAuth
-    private val userId by lazy { auth.currentUser?.uid ?: "" }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +39,6 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        auth = FirebaseAuth.getInstance()
 
         textSpanDaftar()
         textSpanLupaSandi()
@@ -67,50 +57,24 @@ class LoginFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     binding.progress.visibility = View.GONE
-                    renderToast(it.message ?: "Maaf coba lagi")
+                    renderToast("email atau password salah")
                 }
                 is Resource.Success -> {
+                    Log.i("LoginFragment", "resource success: ${it.data}")
                     binding.progress.visibility = View.GONE
-                    viewModel.saveLoginState(true)
+                    if(it.data == true) {
+                        viewModel.saveLoginState(true)
+                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    } else {
+                        renderToast(it.message ?: "maaf harap coba lagi")
+                    }
                 }
             }
         })
 
         viewModel.loginState.observe(viewLifecycleOwner, {
             if(it) {
-                Log.i("LoginFragment", "initiateObserver: uid $userId")
-                userViewModel.getUser(userId)
-            }
-        })
-
-        userViewModel.getUserResponse.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    binding.progress.visibility = View.GONE
-                    renderToast(it.message ?: "Maaf coba lagi")
-                }
-                is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
-                    val user = it.data ?: UserEntity()
-                    Log.i("LoginFragment", "getUserResponse: user ${user.fullName}")
-                    when (user.role) {
-                        UserRoleEnum.MEMBER.role -> {
-                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-                        }
-                        UserRoleEnum.MENTOR.role -> {
-                //                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                        }
-                        UserRoleEnum.ADMIN.role -> {
-                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeAdminFragment())
-                        }
-                        else -> {
-                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-                        }
-                    }
-                }
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             }
         })
     }
