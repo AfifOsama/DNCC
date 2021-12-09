@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".presentation.profil.admin.ProfilAnggotaFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,6 +37,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
             android:hint="@string/email_edt"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,9 +50,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:lines="1"
                 android:textColor="@color/black_text"
-                android:textColorHint="@color/black_text"
-                android:lines="1" />
+                android:textColorHint="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,6 +65,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/nama_lengkap"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,9 +78,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:lines="1"
                 android:textColor="@color/black_text"
-                android:textColorHint="@color/black_text"
-                android:lines="1" />
+                android:textColorHint="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,6 +92,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/prodi"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -101,9 +105,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:lines="1"
                 android:textColor="@color/black_text"
-                android:textColorHint="@color/black_text"
-                android:lines="1" />
+                android:textColorHint="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,6 +119,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/nomor_induk_mahasiswa"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,9 +132,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:lines="1"
                 android:textColor="@color/black_text"
-                android:textColorHint="@color/black_text"
-                android:lines="1" />
+                android:textColorHint="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,6 +146,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/nomor_handphone"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -153,9 +159,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:lines="1"
                 android:textColor="@color/black_text"
-                android:textColorHint="@color/black_text"
-                android:lines="1" />
+                android:textColorHint="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -167,6 +173,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/divisi"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -179,9 +186,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:lines="1"
                 android:textColor="@color/black_text"
-                android:textColorHint="@color/black_text"
-                android:lines="1" />
+                android:textColorHint="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -193,6 +200,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/role"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -205,9 +213,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:lines="1"
                 android:textColor="@color/black_text"
-                android:textColorHint="@color/black_text"
-                android:lines="1" />
+                android:textColorHint="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

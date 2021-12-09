@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -120,11 +119,12 @@ class ProfilFragment : Fragment() {
     private fun renderToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
+
     private fun logoutWithAlertDialog() {
         val dialogBuilder = AlertDialog.Builder(activity)
         with(dialogBuilder) {
             setTitle("Peringatan")
-            setMessage("Yakin ingin mengubah pertemuan ini?")
+            setMessage("Yakin ingin logout?")
             setPositiveButton("Iya") { _, _ ->
                 viewModel.logout()
                 findNavController().navigate(ProfilFragmentDirections.actionProfilFragmentToLoginFragment())

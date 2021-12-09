@@ -3,6 +3,7 @@
     style="@style/nunitoRegular_12"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:ellipsize="end"
     android:maxLines="1"
     android:padding="16dp"

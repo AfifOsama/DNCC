@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -40,6 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/email_edt"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:lines="1" />
+                android:lines="1"
+                android:textColor="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,8 +69,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="@string/sandi_edt"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
-            app:endIconMode="password_toggle"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/black"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"
@@ -79,7 +84,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:lines="1" />
+                android:lines="1"
+                android:textColor="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,6 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:textColor="@color/black_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintTop_toBottomOf="@+id/btn_masuk" />
 
@@ -126,6 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColor="@color/black_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintTop_toBottomOf="@id/tv_daftar" />
 
@@ -133,14 +141,14 @@
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateTint="@color/primary_blue"
             android:indeterminate="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:indeterminateTint="@color/primary_blue"
+            android:indeterminateTintMode="src_atop"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:indeterminateTintMode="src_atop" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

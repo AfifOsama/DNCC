@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".presentation.profil.EditProfilFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,6 +53,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="22dp"
             android:hint="@string/email_edt"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +65,8 @@
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1" />
+                android:lines="1"
+                android:textColor="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,6 +79,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/nama_lengkap"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +91,8 @@
                 android:id="@+id/edt_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1" />
+                android:lines="1"
+                android:textColor="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,6 +104,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/prodi"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +116,8 @@
                 android:id="@+id/edt_prodi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1" />
+                android:lines="1"
+                android:textColor="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,6 +129,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/nomor_induk_mahasiswa"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +141,8 @@
                 android:id="@+id/edt_nim"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1" />
+                android:lines="1"
+                android:textColor="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,6 +154,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:hint="@string/nomor_handphone"
+            android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
             app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -156,7 +166,8 @@
                 android:id="@+id/edt_noHp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1" />
+                android:lines="1"
+                android:textColor="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

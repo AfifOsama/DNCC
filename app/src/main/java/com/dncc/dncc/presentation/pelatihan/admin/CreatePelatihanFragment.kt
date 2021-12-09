@@ -31,8 +31,10 @@ class CreatePelatihanFragment : Fragment() {
 
     private fun initiateUI() {
         initateToolbar()
-        binding.btnTambah.setOnClickListener {
-            alertDialog()
+        binding.run {
+            btnTambah.setOnClickListener {
+                alertDialog()
+            }
         }
         timeText()
         dropdownDivisi()

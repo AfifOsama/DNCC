@@ -38,6 +38,9 @@ class HomeAdminFragment : Fragment() {
             cardMenu2.setOnClickListener {
                 findNavController().navigate(R.id.action_homeAdminFragment_to_tambahPelatihanFragment)
             }
+            cardMenu3.setOnClickListener {
+                findNavController().navigate(R.id.action_homeAdminFragment_to_listPelatihanFragment)
+            }
             headerHome.setOnClickListener {
                 findNavController().navigate(R.id.action_homeAdminFragment_to_profilFragment)
             }
