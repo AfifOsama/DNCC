@@ -46,8 +46,8 @@ class EditProfilAnggotaFragment : Fragment() {
                 Toast.makeText(activity, "Profil anggota telah berhasil diubah", Toast.LENGTH_LONG)
                     .show()
             }
-            setNegativeButton("Tidak") { _, _ ->
-
+            setNegativeButton("Tidak") { dialog, _ ->
+                dialog.dismiss()
             }
             show()
         }

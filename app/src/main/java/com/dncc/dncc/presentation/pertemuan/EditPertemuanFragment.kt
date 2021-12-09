@@ -44,8 +44,8 @@ class EditPertemuanFragment : Fragment() {
                 Toast.makeText(activity, "Data pertemuan telah berhasil diubah", Toast.LENGTH_LONG)
                     .show()
             }
-            setNegativeButton("Tidak") { _, _ ->
-
+            setNegativeButton("Tidak") { dialog, _ ->
+                dialog.dismiss()
             }
             show()
         }

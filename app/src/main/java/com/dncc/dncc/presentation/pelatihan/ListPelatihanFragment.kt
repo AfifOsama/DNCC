@@ -58,8 +58,8 @@ class ListPelatihanFragment : Fragment() {
                 Toast.makeText(activity, "Pelatihan divisi berhasil dihapus", Toast.LENGTH_LONG)
                     .show()
             }
-            setNegativeButton("Tidak") { _, _ ->
-
+            setNegativeButton("Tidak") { dialog, _ ->
+                dialog.dismiss()
             }
             show()
         }
