@@ -82,7 +82,7 @@ class EditProfilFragment : Fragment() {
             actionBar.btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
-            frameLayout.setOnClickListener{
+            frameLayout.setOnClickListener {
                 getPictures()
             }
         }

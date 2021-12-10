@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class TrainingsAdapter: RecyclerView.Adapter<TrainingsAdapter.ViewHolder>() {
+class TrainingsAdapter : RecyclerView.Adapter<TrainingsAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }

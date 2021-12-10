@@ -10,6 +10,7 @@ import com.dncc.dncc.data.source.remote.model.toUserEntity
 import com.dncc.dncc.domain.UserRepository
 import com.dncc.dncc.domain.entity.register.RegisterEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
+import com.dncc.dncc.utils.checkFirebaseError
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -39,11 +40,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                             val userId = auth.currentUser?.uid ?: ""
                             trySend(Resource.Success(userId)).isSuccess
                         } else {
-                            trySend(
-                                Resource.Error(
-                                    it.exception?.message ?: "Gagal mendaftarkan akun"
-                                )
-                            ).isSuccess
+                            trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
                         }
                     }
             awaitClose { snapshotListener.isCanceled() }
@@ -59,11 +56,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                     Log.i("UserRepositoryImpl", "uploadImage: success")
                     trySend(Resource.Success(true)).isSuccess
                 } else {
-                    trySend(
-                        Resource.Error(
-                            it.exception?.message ?: "Gagal upload gambar"
-                        )
-                    ).isSuccess
+                    trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
                 }
             }
             awaitClose { snapshotListener.isCanceled() }
@@ -88,6 +81,8 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
         ).addOnSuccessListener {
             trySend(Resource.Success(true)).isSuccess
             Log.i("UserRepositoryImpl", "registerToFirestore user success")
+        }.addOnFailureListener { error ->
+            trySend(Resource.Error(error.checkFirebaseError()))
         }
         awaitClose { snapshotListener.isCanceled() }
     }
@@ -102,11 +97,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                         trySend(Resource.Success(true)).isSuccess
                     } else {
                         Log.i("UserRepositoryImpl", "login failed")
-                        trySend(
-                            Resource.Error(
-                                it.exception?.message ?: "Gagal login"
-                            )
-                        ).isSuccess
+                        trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
                     }
                 }
             awaitClose { snapshotListener.isCanceled() }
@@ -119,11 +110,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                     Log.i("UserRepositoryImpl", "send email forgot passowrd success")
                     trySend(Resource.Success(true)).isSuccess
                 } else {
-                    trySend(
-                        Resource.Error(
-                            it.exception?.message ?: "Gagal mendaftarkan akun"
-                        )
-                    ).isSuccess
+                    trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
                 }
             }
         awaitClose { snapshotListener.isCanceled() }
@@ -132,12 +119,11 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
     override suspend fun getUser(userId: String): Flow<Resource<UserEntity>> = callbackFlow {
         val snapshotListener = dbUsers.document(userId)
             .addSnapshotListener { snapshot, e ->
-                if (e != null) throw e
                 val response = if (snapshot != null) {
                     val dataUser = snapshot.toObject(UserDto::class.java)
-                    Resource.Success(dataUser!!.toUserEntity())
+                    Resource.Success(dataUser?.toUserEntity() ?: UserEntity())
                 } else {
-                    Resource.Error("")
+                    Resource.Error(e.checkFirebaseError())
                 }
                 trySend(response).isSuccess
             }
@@ -147,7 +133,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
     override suspend fun getUsers(): Flow<Resource<List<UserEntity>>> = callbackFlow {
         val snapshotListener = dbUsers
             .addSnapshotListener { snapshot, e ->
-                if (e != null) throw e
                 val response = if (snapshot != null) {
                     val dataUsers = mutableListOf<UserDto>()
                     snapshot.forEach {
@@ -156,7 +141,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                     }
                     Resource.Success(dataUsers.map { it.toUserEntity() })
                 } else {
-                    Resource.Error("")
+                    Resource.Error(e.checkFirebaseError())
                 }
                 trySend(response).isSuccess
             }
@@ -177,6 +162,8 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
         ).addOnSuccessListener {
             trySend(Resource.Success(true)).isSuccess
             Log.i("UserRepositoryImpl", "editUser ${userEntity.fullName} success")
+        }.addOnFailureListener { error ->
+            trySend(Resource.Error(error.checkFirebaseError()))
         }
         awaitClose { snapshotListener.isCanceled() }
     }

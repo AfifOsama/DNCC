@@ -1,7 +1,6 @@
 package com.dncc.dncc.domain.use_case.login
 
 import com.dncc.dncc.common.Resource
-import com.dncc.dncc.domain.TrainingRepository
 import com.dncc.dncc.domain.UserRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

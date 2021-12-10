@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 class AddTrainingUseCase @Inject constructor(
     private val trainingRepository: TrainingRepository
-){
-    suspend operator fun invoke(trainingEntity: TrainingEntity): Flow<Resource<Boolean>> = trainingRepository.addTraining(trainingEntity)
+) {
+    suspend operator fun invoke(trainingEntity: TrainingEntity): Flow<Resource<Boolean>> =
+        trainingRepository.addTraining(trainingEntity)
 }

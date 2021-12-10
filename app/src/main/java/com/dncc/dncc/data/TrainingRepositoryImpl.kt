@@ -8,6 +8,7 @@ import com.dncc.dncc.data.source.remote.model.toTrainingEntity
 import com.dncc.dncc.domain.TrainingRepository
 import com.dncc.dncc.domain.entity.training.MeetEntity
 import com.dncc.dncc.domain.entity.training.TrainingEntity
+import com.dncc.dncc.utils.checkFirebaseError
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -40,6 +41,8 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
             val snapshotListener = dbTraining.document(randomId).set(data).addOnSuccessListener {
                 trySend(Resource.Success(true)).isSuccess
                 Log.i("TrainingRepositoryImpl", "addTraining with id $randomId success")
+            }.addOnFailureListener { error ->
+                trySend(Resource.Error(error.checkFirebaseError()))
             }
             awaitClose { snapshotListener.isCanceled() }
         }
@@ -59,6 +62,8 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                         "TrainingRepositoryImpl",
                         "editTraining with id ${trainingEntity.trainingId} success"
                     )
+                }.addOnFailureListener { error ->
+                    trySend(Resource.Error(error.checkFirebaseError()))
                 }
             awaitClose { snapshotListener.isCanceled() }
         }
@@ -67,7 +72,6 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         callbackFlow {
             val snapshotListener = dbTraining
                 .addSnapshotListener { snapshot, e ->
-                    if (e != null) throw e
                     val response = if (snapshot != null) {
                         val dataUsers = mutableListOf<TrainingDto>()
                         snapshot.forEach {
@@ -76,7 +80,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                         }
                         Resource.Success(dataUsers.map { it.toTrainingEntity() })
                     } else {
-                        Resource.Error("")
+                        Resource.Error(e.checkFirebaseError())
                     }
                     trySend(response).isSuccess
                 }
@@ -87,27 +91,32 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         callbackFlow {
             val snapshotListener = dbTraining.document(trainingId)
                 .addSnapshotListener { snapshot, e ->
-                    if (e != null) throw e
                     val response = if (snapshot != null) {
                         val dataUser = snapshot.toObject(TrainingDto::class.java)
                         Resource.Success(dataUser!!.toTrainingEntity())
                     } else {
-                        Resource.Error("")
+                        Resource.Error(e.checkFirebaseError())
                     }
                     trySend(response).isSuccess
                 }
             awaitClose { snapshotListener.remove() }
         }
 
-    override suspend fun deleteTraining(trainingId: String): Flow<Resource<Boolean>> = callbackFlow{
-        val snapshotListener =
-            dbTraining.document(trainingId).delete()
-                .addOnSuccessListener {
-                    trySend(Resource.Success(true)).isSuccess
-                    Log.i("TrainingRepositoryImpl", "deleteTraining with id $trainingId success")
-                }
-        awaitClose { snapshotListener.isCanceled() }
-    }
+    override suspend fun deleteTraining(trainingId: String): Flow<Resource<Boolean>> =
+        callbackFlow {
+            val snapshotListener =
+                dbTraining.document(trainingId).delete()
+                    .addOnSuccessListener {
+                        trySend(Resource.Success(true)).isSuccess
+                        Log.i(
+                            "TrainingRepositoryImpl",
+                            "deleteTraining with id $trainingId success"
+                        )
+                    }.addOnFailureListener { error ->
+                        trySend(Resource.Error(error.checkFirebaseError()))
+                    }
+            awaitClose { snapshotListener.isCanceled() }
+        }
 
     override suspend fun addMeets(trainingId: String): Flow<Resource<Boolean>> = callbackFlow {
         for (i in 0..9) {
@@ -122,7 +131,12 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                 dbTraining.document(trainingId).collection("meets").document(randomId).set(data)
                     .addOnSuccessListener {
                         trySend(Resource.Success(true)).isSuccess
-                        Log.i("TrainingRepositoryImpl", "addMeet with name Pertemuan ${i + 1} success")
+                        Log.i(
+                            "TrainingRepositoryImpl",
+                            "addMeet with name Pertemuan ${i + 1} success"
+                        )
+                    }.addOnFailureListener { error ->
+                        trySend(Resource.Error(error.checkFirebaseError()))
                     }
             awaitClose { snapshotListener.isCanceled() }
         }
@@ -152,11 +166,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                 Log.i("TrainingRepositoryImpl", "uploadImage: success")
                 trySend(Resource.Success(true)).isSuccess
             } else {
-                trySend(
-                    Resource.Error(
-                        it.exception?.message ?: "Gagal upload gambar"
-                    )
-                ).isSuccess
+                trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
             }
         }
         awaitClose { snapshotListener.isCanceled() }

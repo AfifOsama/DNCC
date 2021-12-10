@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -16,7 +15,6 @@ import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentProfilBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
-import com.dncc.dncc.presentation.home.user.HomeFragmentDirections
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -59,7 +57,11 @@ class ProfilFragment : Fragment() {
         }
 
         binding.btnUbah.setOnClickListener {
-            findNavController().navigate(ProfilFragmentDirections.actionProfilFragmentToEditProfilFragment(userEntity))
+            findNavController().navigate(
+                ProfilFragmentDirections.actionProfilFragmentToEditProfilFragment(
+                    userEntity
+                )
+            )
         }
     }
 
