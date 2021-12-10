@@ -112,22 +112,22 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/terdaftar"
-                android:visibility="visible"
                 android:textColor="@color/success_green"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
                 android:id="@+id/btn_delete"
+                style="@style/Widget.AppCompat.ActionButton"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:src="@drawable/ic_baseline_remove_circle_outline_24"
                 android:layout_margin="14dp"
                 android:contentDescription="@string/delete_button"
+                android:src="@drawable/ic_baseline_remove_circle_outline_24"
                 android:visibility="gone"
-                style="@style/Widget.AppCompat.ActionButton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -20,7 +20,6 @@ import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentLoginBinding
-import com.dncc.dncc.domain.entity.user.UserEntity
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -90,12 +89,18 @@ class LoginFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
                     val userRole = it.data?.role ?: UserRoleEnum.VISITOR.role
-                    Log.i("LoginFragment", "initiateObserver: role $userRole")
-                    when(userRole) {
-                        UserRoleEnum.VISITOR.role -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-                        UserRoleEnum.MEMBER.role -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                    Log.i("LoginFragment", "initiateObserver: ${it.data?.fullName} $userRole")
+                    when (userRole) {
+                        UserRoleEnum.VISITOR.role -> findNavController().navigate(
+                            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                        )
+                        UserRoleEnum.MEMBER.role -> findNavController().navigate(
+                            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                        )
 //                        UserRoleEnum.MENTOR.role -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-                        UserRoleEnum.ADMIN.role -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeAdminFragment())
+                        UserRoleEnum.ADMIN.role -> findNavController().navigate(
+                            LoginFragmentDirections.actionLoginFragmentToHomeAdminFragment()
+                        )
                     }
 
                 }

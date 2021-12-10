@@ -13,12 +13,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentListPelatihanBinding
+import com.dncc.dncc.presentation.profil.ProfilFragmentArgs
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import com.dncc.dncc.presentation.profil.ProfilFragmentArgs
-import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListPelatihanFragment : Fragment() {

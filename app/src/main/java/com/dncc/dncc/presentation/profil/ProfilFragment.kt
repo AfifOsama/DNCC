@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -46,8 +45,7 @@ class ProfilFragment : Fragment() {
 
         initiateObserver()
 
-        val title = "Profil Anda"
-        binding.actionBar.actionBarTitle.text = title
+        binding.actionBar.actionBarTitle.text = getString(R.string.profil_anda)
 
         binding.actionBar.btnBack.setOnClickListener {
             findNavController().popBackStack()

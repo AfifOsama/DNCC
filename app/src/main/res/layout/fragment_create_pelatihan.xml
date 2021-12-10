@@ -96,8 +96,8 @@
             android:layout_marginTop="24dp"
             android:textColorHint="@color/hint_color"
             app:boxStrokeColor="@color/primary_blue"
-            app:hintTextAppearance="@style/nunitoRegular_12"
             app:endIconTint="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header_tambah_pelatihan"
@@ -107,8 +107,8 @@
                 android:id="@+id/dropdown_nama_pelatihan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"
                 android:hint="@string/divisi"
+                android:inputType="none"
                 android:labelFor="@id/input_layout_divisi"
                 android:textColor="@color/black_text" />
 
@@ -229,8 +229,7 @@
             app:layout_constraintTop_toBottomOf="@id/input_layout_participant_max"
             app:shapeAppearance="@style/TextInputRoundedContainer"
             app:startIconDrawable="@drawable/ic_baseline_date_range_24"
-            app:startIconTint="@color/secondary_red"
-            >
+            app:startIconTint="@color/secondary_red">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_day"

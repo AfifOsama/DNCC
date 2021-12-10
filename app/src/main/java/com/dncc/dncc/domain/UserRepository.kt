@@ -12,6 +12,7 @@ interface UserRepository {
         registerEntity: RegisterEntity,
         userId: String
     ): Flow<Resource<Boolean>>
+
     suspend fun login(email: String, password: String): Flow<Resource<Boolean>>
     suspend fun passwordReset(email: String): Flow<Resource<Boolean>>
     suspend fun getUser(userId: String): Flow<Resource<UserEntity>>

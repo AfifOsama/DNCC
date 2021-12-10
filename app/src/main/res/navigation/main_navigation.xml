@@ -69,9 +69,9 @@
             app:destination="@id/editPelatihanFragment" />
         <argument
             android:name="userId"
+            android:defaultValue=""
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue="" />
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/detailPelatihanFragment"
@@ -86,7 +86,7 @@
         android:id="@+id/detailPertemuanFragment"
         android:name="com.dncc.dncc.presentation.pertemuan.DetailPertemuanFragment"
         android:label="fragment_detail_pertemuan"
-        tools:layout="@layout/fragment_detail_pertemuan" >
+        tools:layout="@layout/fragment_detail_pertemuan">
         <action
             android:id="@+id/action_detailPertemuanFragment_to_editPertemuanFragment"
             app:destination="@id/editPertemuanFragment" />
@@ -174,7 +174,7 @@
         android:id="@+id/homeMentorFragment"
         android:name="com.dncc.dncc.presentation.home.mentor.HomeMentorFragment"
         android:label="fragment_home_mentor"
-        tools:layout="@layout/fragment_home_mentor" >
+        tools:layout="@layout/fragment_home_mentor">
         <action
             android:id="@+id/action_homeMentorFragment_to_detailPertemuanFragment"
             app:destination="@id/detailPertemuanFragment" />
