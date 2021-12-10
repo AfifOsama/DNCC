@@ -5,5 +5,7 @@ data class TrainingEntity(
     val linkWa: String = "",
     val mentor: String = "",
     val schedule: String = "",
-    val trainingName: String = ""
+    val trainingName: String = "",
+    val participantMax: Int = 100,
+    val participantNow: Int = 0
 )

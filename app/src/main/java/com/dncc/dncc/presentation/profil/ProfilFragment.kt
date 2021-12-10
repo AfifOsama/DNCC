@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -57,7 +58,11 @@ class ProfilFragment : Fragment() {
         }
 
         binding.btnUbah.setOnClickListener {
-            findNavController().navigate(ProfilFragmentDirections.actionProfilFragmentToEditProfilFragment())
+            findNavController().navigate(
+                ProfilFragmentDirections.actionProfilFragmentToEditProfilFragment(
+                    userEntity
+                )
+            )
         }
     }
 

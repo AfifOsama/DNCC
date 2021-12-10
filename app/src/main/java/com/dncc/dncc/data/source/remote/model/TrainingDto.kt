@@ -7,11 +7,13 @@ data class TrainingDto(
     val linkWa: String = "",
     val mentor: String = "",
     val schedule: String = "",
-    val trainingName: String = ""
+    val trainingName: String = "",
+    val participantMax: Int = 100,
+    val participantNow: Int = 0
 )
 
 fun TrainingDto.toTrainingEntity(): TrainingEntity {
     return TrainingEntity(
-        trainingId, linkWa, mentor, schedule, trainingName
+        trainingId, linkWa, mentor, schedule, trainingName, participantMax, participantNow
     )
 }

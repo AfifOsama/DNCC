@@ -57,18 +57,53 @@
                 app:layout_constraintStart_toEndOf="@id/img_divisi_web"
                 app:layout_constraintTop_toBottomOf="@id/tv_divisi_web" />
 
-
             <TextView
-                android:id="@+id/tv_number_anggota"
+                android:id="@+id/tv_participant_now"
                 style="@style/nunitoSemiBold_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
-                android:text="@string/number_of_anggota"
+                android:text="@string/_4"
                 android:textColor="@color/black_text"
                 app:layout_constraintStart_toEndOf="@id/icon_group"
                 app:layout_constraintTop_toBottomOf="@id/tv_divisi_web" />
+
+            <TextView
+                android:id="@+id/tv_slash_barrier"
+                style="@style/nunitoSemiBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/slash_barrier"
+                android:textColor="@color/black_text"
+                app:layout_constraintStart_toEndOf="@id/tv_participant_now"
+                app:layout_constraintTop_toBottomOf="@id/tv_divisi_web" />
+
+            <TextView
+                android:id="@+id/tv_participant_max"
+                style="@style/nunitoSemiBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/_15"
+                android:textColor="@color/black_text"
+                app:layout_constraintStart_toEndOf="@id/tv_slash_barrier"
+                app:layout_constraintTop_toBottomOf="@id/tv_divisi_web" />
+
+            <TextView
+                android:id="@+id/tv_schedule"
+                style="@style/nunitoSemiBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/rabu_20_00"
+                android:textColor="@color/black_text"
+                app:layout_constraintStart_toEndOf="@id/img_divisi_web"
+                app:layout_constraintTop_toBottomOf="@id/icon_group" />
 
             <TextView
                 android:id="@+id/tv_status"

@@ -1,14 +1,14 @@
 package com.dncc.dncc.domain.use_case.register
 
 import com.dncc.dncc.common.Resource
-import com.dncc.dncc.domain.MainRepository
+import com.dncc.dncc.domain.UserRepository
 import com.dncc.dncc.domain.entity.register.RegisterEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RegisterUseCase @Inject constructor(
-    private val mainRepository: MainRepository
+    private val userRepository: UserRepository
 ) {
     suspend operator fun invoke(registerEntity: RegisterEntity): Flow<Resource<String>> =
-        mainRepository.register(registerEntity)
+        userRepository.register(registerEntity)
 }

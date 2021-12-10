@@ -64,7 +64,11 @@ class HomeFragment : Fragment() {
     private fun initiateUI() {
         binding.run {
             btnPelatihan.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_listPelatihanFragment)
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToListPelatihanFragment(
+                        userId
+                    )
+                )
             }
             btnPertemuan.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_detailPelatihanFragment)

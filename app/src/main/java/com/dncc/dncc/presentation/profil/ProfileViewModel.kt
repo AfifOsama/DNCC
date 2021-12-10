@@ -35,6 +35,9 @@ class ProfileViewModel @Inject constructor(
     private val _editUserResponse = MutableLiveData<Resource<Boolean>>()
     val editUserResponse: LiveData<Resource<Boolean>> = _editUserResponse
 
+    private val _uploadImageResponse = MutableLiveData<Resource<Boolean>>()
+    val uploadImageResponse: LiveData<Resource<Boolean>> = _uploadImageResponse
+
     fun logout() {
         viewModelScope.launch(Dispatchers.IO) {
             Log.i("ProfileViewModel", "logout")
@@ -79,6 +82,22 @@ class ProfileViewModel @Inject constructor(
                     } else {
                         _editUserResponse.postValue(Resource.Success(data = it.data))
                     }
+                }
+        }
+    }
+
+    fun uploadImage(path: String, userId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            uploadImageUseCase(path, userId)
+                .onStart {
+                    _uploadImageResponse.postValue(Resource.Loading())
+                }
+                .catch { e ->
+                    Log.i("ProfileViewModel", e.toString())
+                    _uploadImageResponse.postValue(Resource.Error(e.toString()))
+                }
+                .collect {
+                    _uploadImageResponse.postValue(Resource.Success(data = it.data ?: false))
                 }
         }
     }
