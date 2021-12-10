@@ -132,7 +132,7 @@ class HomeFragment : Fragment() {
                 trainingText[7..spanRole] = bold
             }
 
-            binding.tvTraining.text = trainingText
+            tvTraining.text = trainingText
         }
     }
 
