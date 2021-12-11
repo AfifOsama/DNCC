@@ -55,7 +55,7 @@ class HomeAdminFragment : Fragment() {
     private fun initiateUI() {
         binding.run {
             cardMenu1.setOnClickListener {
-                findNavController().navigate(R.id.action_homeAdminFragment_to_listAnggotaFragment)
+                findNavController().navigate(HomeAdminFragmentDirections.actionHomeAdminFragmentToListAnggotaFragment())
             }
             cardMenu2.setOnClickListener {
                 findNavController().navigate(R.id.action_homeAdminFragment_to_tambahPelatihanFragment)

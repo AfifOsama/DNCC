@@ -137,7 +137,9 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                     val dataUsers = mutableListOf<UserDto>()
                     snapshot.forEach {
                         val field = it.toObject(UserDto::class.java)
-                        dataUsers.add(field)
+                        if (field.role != UserRoleEnum.ADMIN.role || field.role != UserRoleEnum.MENTOR.role) {
+                            dataUsers.add(field)
+                        }
                     }
                     Resource.Success(dataUsers.map { it.toUserEntity() })
                 } else {
