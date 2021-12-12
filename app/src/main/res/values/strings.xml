@@ -46,19 +46,19 @@
         <item>@drawable/ultah</item>
     </integer-array>
     <string-array name="role">
-        <item>Visitor</item>
-        <item>Anggota</item>
-        <item>Mentor</item>
-        <item>Admin</item>
+        <item>visitor</item>
+        <item>member</item>
+        <item>mentor</item>
+        <item>admin</item>
     </string-array>
     <string-array name="divisi">
-        <item>Empty</item>
-        <item>Divisi Web</item>
-        <item>Divisi Multimedia</item>
-        <item>Divisi Jaringan</item>
-        <item>Divisi Desktop</item>
-        <item>Divisi Broadcast</item>>
-        <item>Divisi Mobile</item>
+        <item>belum mengikuti pelatihan</item>
+        <item>divisi web</item>
+        <item>divisi multimedia</item>
+        <item>divisi jaringan</item>
+        <item>divisi desktop</item>
+        <item>divisi broadcast</item>>
+        <item>divisi mobile</item>
     </string-array>
     <string name="pelatihan_divisi">Pelatihan Divisi Mobile</string>
     <string name="divisi_description">Mobile developer ditujukan pada mereka yang punya spesialiasi dalam teknologi perangkat bergerak</string>
@@ -120,4 +120,5 @@
     <string name="upload_materi">Upload Materi</string>
     <string name="profil_anda">Profil Anda</string>
     <string name="profil_anggota">Profil Anggota</string>
+    <string name="edit_profil_anggota">Edit Profil Anggota</string>
 </resources>
