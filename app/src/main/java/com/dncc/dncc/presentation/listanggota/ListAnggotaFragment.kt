@@ -29,10 +29,10 @@ class ListAnggotaFragment : Fragment() {
     private val adapter by lazy {
         UserListAdapter(
             onClick = {
-                renderToast("on click ${it.fullName}")
+                findNavController().navigate(ListAnggotaFragmentDirections.actionListAnggotaFragmentToProfilAnggotaFragment(it.userId))
             },
             onEditClick = {
-                renderToast("on edit click ${it.fullName}")
+                findNavController().navigate(ListAnggotaFragmentDirections.actionListAnggotaFragmentToEditProfilAnggotaFragment(it))
             }
         )
     }

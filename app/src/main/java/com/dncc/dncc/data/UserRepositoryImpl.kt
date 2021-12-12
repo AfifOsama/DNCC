@@ -142,7 +142,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                     snapshot.forEach {
                         val field = it.toObject(UserDto::class.java)
                         if (field.role != UserRoleEnum.ADMIN.role && field.role != UserRoleEnum.MENTOR.role) {
-                            Log.i("UserRepositoryImpl", "getUsers: role ${field.role}")
                             dataUsers.add(field)
                         }
                     }

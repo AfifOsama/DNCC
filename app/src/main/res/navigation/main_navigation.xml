@@ -145,6 +145,9 @@
         <action
             android:id="@+id/action_listAnggotaFragment_to_profilAnggotaFragment"
             app:destination="@id/profilAnggotaFragment" />
+        <action
+            android:id="@+id/action_listAnggotaFragment_to_editProfilAnggotaFragment"
+            app:destination="@id/editProfilAnggotaFragment" />
     </fragment>
     <fragment
         android:id="@+id/profilAnggotaFragment"
