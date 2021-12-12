@@ -1,7 +1,7 @@
 package com.dncc.dncc.common
 
 enum class TrainingEnum(val trainingName: String) {
-    EMPTY("empty"),
+    EMPTY("belum mengikuti pelatihan"),
     WEB("divisi web"),
     MULTIMEDIA("divisi multimedia"),
     JARINGAN("divisi jaringan"),

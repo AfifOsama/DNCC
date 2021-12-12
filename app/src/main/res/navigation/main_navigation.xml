@@ -151,6 +151,11 @@
         android:name="com.dncc.dncc.presentation.profil.admin.ProfilAnggotaFragment"
         android:label="fragment_profil_anggota"
         tools:layout="@layout/fragment_profil_anggota">
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
         <action
             android:id="@+id/action_profilAnggotaFragment_to_editProfilAnggotaFragment"
             app:destination="@id/editProfilAnggotaFragment" />
@@ -159,7 +164,11 @@
         android:id="@+id/editProfilAnggotaFragment"
         android:name="com.dncc.dncc.presentation.profil.admin.EditProfilAnggotaFragment"
         android:label="fragment_edit_profil_anggota"
-        tools:layout="@layout/fragment_edit_profil_anggota" />
+        tools:layout="@layout/fragment_edit_profil_anggota" >
+        <argument
+            android:name="userEntity"
+            app:argType="com.dncc.dncc.domain.entity.user.UserEntity" />
+    </fragment>
     <fragment
         android:id="@+id/tambahPelatihanFragment"
         android:name="com.dncc.dncc.presentation.pelatihan.admin.CreatePelatihanFragment"

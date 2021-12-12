@@ -50,10 +50,10 @@ class ListPelatihanFragment : Fragment() {
 
     private fun initiateUI() {
         binding.run {
-            actionBar.btnBack.setOnClickListener {
+            toolbar.btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
-            actionBar.actionBarTitle.text = getString(R.string.daftar_pelatihan)
+            toolbar.actionBarTitle.text = getString(R.string.daftar_pelatihan)
 
             binding.run {
                 refresh.run {

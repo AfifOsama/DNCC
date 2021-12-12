@@ -30,16 +30,18 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
     private val imagesRef: StorageReference =
         FirebaseStorage.getInstance().reference.child("images")
 
-    override suspend fun register(registerEntity: RegisterEntity): Flow<Resource<String>> =
+    override suspend fun register(email: String, password: String): Flow<Resource<String>> =
         callbackFlow {
+            Log.i("UserRepositoryImpl", "register user $email $password")
             val snapshotListener =
-                auth.createUserWithEmailAndPassword(registerEntity.email, registerEntity.password)
+                auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             Log.i("UserRepositoryImpl", "create user success")
                             val userId = auth.currentUser?.uid ?: ""
                             trySend(Resource.Success(userId)).isSuccess
                         } else {
+                            Log.i("UserRepositoryImpl", "create user failed ${it.exception.checkFirebaseError()}")
                             trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
                         }
                     }
@@ -48,6 +50,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
 
     override suspend fun uploadImage(path: String, userId: String): Flow<Resource<Boolean>> =
         callbackFlow {
+            Log.i("UserRepositoryImpl", "upload image $userId")
             val file = Uri.fromFile(File(path))
             val storageRef = imagesRef.child(userId)
             val uploadTask = storageRef.putFile(file)
@@ -66,6 +69,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
         registerEntity: RegisterEntity,
         userId: String
     ): Flow<Resource<Boolean>> = callbackFlow {
+        Log.i("UserRepositoryImpl", "registerFirestore $registerEntity")
         val snapshotListener = dbUsers.document(userId).set(
             mapOf(
                 "email" to registerEntity.email,
@@ -80,7 +84,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
             )
         ).addOnSuccessListener {
             trySend(Resource.Success(true)).isSuccess
-            Log.i("UserRepositoryImpl", "registerToFirestore user success")
+            Log.i("UserRepositoryImpl", "registerToFirestore user ${registerEntity.fullName} success")
         }.addOnFailureListener { error ->
             trySend(Resource.Error(error.checkFirebaseError()))
         }
@@ -137,7 +141,8 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                     val dataUsers = mutableListOf<UserDto>()
                     snapshot.forEach {
                         val field = it.toObject(UserDto::class.java)
-                        if (field.role != UserRoleEnum.ADMIN.role || field.role != UserRoleEnum.MENTOR.role) {
+                        if (field.role != UserRoleEnum.ADMIN.role && field.role != UserRoleEnum.MENTOR.role) {
+                            Log.i("UserRepositoryImpl", "getUsers: role ${field.role}")
                             dataUsers.add(field)
                         }
                     }

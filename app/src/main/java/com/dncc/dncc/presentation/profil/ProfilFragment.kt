@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfilFragment : Fragment() {
+
     private var _binding: FragmentProfilBinding? = null
     private val binding get() = _binding!!
 
@@ -45,9 +46,9 @@ class ProfilFragment : Fragment() {
 
         initiateObserver()
 
-        binding.actionBar.actionBarTitle.text = getString(R.string.profil_anda)
+        binding.toolbar.actionBarTitle.text = getString(R.string.profil_anda)
 
-        binding.actionBar.btnBack.setOnClickListener {
+        binding.toolbar.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
@@ -78,21 +79,6 @@ class ProfilFragment : Fragment() {
                     binding.progress.visibility = View.GONE
                     setUserContent(it.data ?: UserEntity())
                     userEntity = it.data ?: UserEntity()
-                }
-            }
-        })
-
-        viewModel.editUserResponse.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    binding.progress.visibility = View.GONE
-                    renderToast(it.message ?: "maaf harap coba lagi")
-                }
-                is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
                 }
             }
         })

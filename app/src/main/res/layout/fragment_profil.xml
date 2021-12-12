@@ -12,8 +12,8 @@
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar" />
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/img_user"
@@ -24,7 +24,7 @@
             android:src="@drawable/perm_identity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:riv_border_color="@color/primary_blue"
             app:riv_border_width="2dip"
             app:riv_corner_radius="10dip" />

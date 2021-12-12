@@ -12,19 +12,19 @@
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/action_bar"
-            layout="@layout/action_bar" />
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/img_user"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="24dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/perm_identity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:riv_border_color="@color/primary_blue"
             app:riv_border_width="2dip"
             app:riv_corner_radius="10dip" />
@@ -55,7 +55,6 @@
                 android:textColorHint="@color/black_text" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_nama"
@@ -232,6 +231,18 @@
             app:layout_constraintTop_toBottomOf="@id/input_layout_role"
             app:layout_constraintVertical_bias="0.10" />
 
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary_blue"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

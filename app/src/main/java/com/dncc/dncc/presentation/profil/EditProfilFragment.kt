@@ -78,8 +78,8 @@ class EditProfilFragment : Fragment() {
                 }
             }
             val title = "Edit Profil"
-            actionBar.actionBarTitle.text = title
-            actionBar.btnBack.setOnClickListener {
+            toolbar.actionBarTitle.text = title
+            toolbar.btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
             frameLayout.setOnClickListener {

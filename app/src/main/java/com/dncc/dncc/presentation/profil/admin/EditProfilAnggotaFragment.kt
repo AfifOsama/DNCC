@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentEditProfilAnggotaBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditProfilAnggotaFragment : Fragment() {
     private var _binding: FragmentEditProfilAnggotaBinding? = null
     private val binding get() = _binding!!
@@ -67,8 +69,8 @@ class EditProfilAnggotaFragment : Fragment() {
 
     private fun initiateToolbar() {
         val title = "Edit Profil Anggota"
-        binding.actionBar.actionBarTitle.text = title
-        binding.actionBar.btnBack.setOnClickListener {
+        binding.toolbar.actionBarTitle.text = title
+        binding.toolbar.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
     }

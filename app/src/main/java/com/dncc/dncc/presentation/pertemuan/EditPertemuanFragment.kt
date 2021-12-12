@@ -53,8 +53,8 @@ class EditPertemuanFragment : Fragment() {
 
     private fun initiateToolbar() {
         val title = "Ubah Pertemuan"
-        binding.actionBar.actionBarTitle.text = title
-        binding.actionBar.btnBack.setOnClickListener {
+        binding.toolbar.actionBarTitle.text = title
+        binding.toolbar.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
     }

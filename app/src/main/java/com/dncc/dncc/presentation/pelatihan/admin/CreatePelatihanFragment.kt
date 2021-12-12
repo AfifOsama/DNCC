@@ -70,8 +70,8 @@ class CreatePelatihanFragment : Fragment() {
 
     private fun initateToolbar() {
         val title = "Tambar Pelatihan"
-        binding.actionBar.actionBarTitle.text = title
-        binding.actionBar.btnBack.setOnClickListener {
+        binding.toolbar.actionBarTitle.text = title
+        binding.toolbar.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
     }

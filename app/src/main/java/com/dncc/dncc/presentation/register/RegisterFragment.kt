@@ -80,7 +80,6 @@ class RegisterFragment : Fragment() {
                     renderToast(it.message ?: "maaf harap coba lagi")
                 }
                 is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
                     uploadStatus = true
                     checkAlreadyStored()
                 }
@@ -97,7 +96,6 @@ class RegisterFragment : Fragment() {
                     renderToast(it.message ?: "maaf harap coba lagi")
                 }
                 is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
                     storeUser = true
                     checkAlreadyStored()
                 }
@@ -120,17 +118,7 @@ class RegisterFragment : Fragment() {
                 val noHp = edtNoHp.text.toString()
 
                 if (validation(imageReport, email, password, fullName, major, nim, noHp)) {
-                    viewModel.register(
-                        RegisterEntity(
-                            pathImage,
-                            email,
-                            password,
-                            fullName,
-                            major,
-                            nim,
-                            noHp
-                        )
-                    )
+                    viewModel.register(email, password)
                 }
             }
         }
@@ -142,6 +130,7 @@ class RegisterFragment : Fragment() {
 
     private fun checkAlreadyStored() {
         if (uploadStatus && storeUser) {
+            binding.progress.visibility = View.GONE
             renderToast("berhasil mendaftarkan akun")
             findNavController().popBackStack()
         }
@@ -150,7 +139,6 @@ class RegisterFragment : Fragment() {
     private fun uploadImageAndStoreData(userId: String) {
         binding.run {
             val email = edtEmail.text.toString()
-            val password = edtSandi.text.toString()
             val fullName = edtNama.text.toString()
             val major = edtProdi.text.toString()
             val nim = edtNim.text.toString()
@@ -159,12 +147,11 @@ class RegisterFragment : Fragment() {
             viewModel.uploadImage(pathImage, userId)
             viewModel.registerFirestore(
                 RegisterEntity(
-                    email,
-                    password,
-                    fullName,
-                    major,
-                    nim,
-                    noHp
+                    email = email,
+                    fullName = fullName,
+                    major = major,
+                    nim = nim,
+                    noHp = noHp
                 ), userId
             )
         }

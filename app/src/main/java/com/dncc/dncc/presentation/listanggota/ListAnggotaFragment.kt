@@ -54,8 +54,8 @@ class ListAnggotaFragment : Fragment() {
 
     private fun initiateUI() {
         binding.run {
-            actionBar.actionBarTitle.text = getString(R.string.daftar_anggota_dncc)
-            actionBar.btnBack.setOnClickListener {
+            toolbar.actionBarTitle.text = getString(R.string.daftar_anggota_dncc)
+            toolbar.btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
 

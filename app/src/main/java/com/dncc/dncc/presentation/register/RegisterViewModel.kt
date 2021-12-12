@@ -34,9 +34,9 @@ class RegisterViewModel @Inject constructor(
     private val _registerFirestoreResponse = MutableLiveData<Resource<Boolean>>()
     val registerFirestoreResponse: LiveData<Resource<Boolean>> get() = _registerFirestoreResponse
 
-    fun register(registerEntity: RegisterEntity) {
+    fun register(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            registerUseCase(registerEntity)
+            registerUseCase(email, password)
                 .onStart {
                     _registerResponse.postValue(Resource.Loading())
                 }
@@ -68,6 +68,7 @@ class RegisterViewModel @Inject constructor(
 
     fun registerFirestore(registerEntity: RegisterEntity, userId: String) {
         viewModelScope.launch(Dispatchers.IO) {
+            Log.i("RegisterViewModel", "registerFirestore $registerEntity")
             registerFirestoreUseCase(registerEntity, userId)
                 .onStart {
                     _registerFirestoreResponse.postValue(Resource.Loading())

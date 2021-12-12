@@ -18,8 +18,8 @@
             android:layout_height="wrap_content">
 
             <include
-                android:id="@+id/action_bar"
-                layout="@layout/action_bar" />
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
 
             <Button
                 android:id="@+id/btn_ubah"
@@ -30,7 +30,7 @@
                 android:text="@string/ubah"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/action_bar" />
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             <TextView
                 android:id="@+id/tv_pertemuan_ke"
@@ -42,7 +42,7 @@
                 android:text="@string/detail_pertemuan_ke"
                 android:textColor="@color/black_text"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/action_bar" />
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_nama_pertemuan"
