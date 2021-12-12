@@ -35,8 +35,8 @@ class ListUserViewModel @Inject constructor(
                     _getUsersResponse.postValue(Resource.Loading())
                 }
                 .catch { e ->
-                    Log.i("HomeViewModel", e.toString())
-                    _getUsersResponse.postValue(Resource.Error(e.toString()))
+                    Log.i("ListUserViewModel", e.toString())
+                    _getUsersResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     _getUsersResponse.postValue(Resource.Success(data = it.data ?: mutableListOf()))

@@ -31,7 +31,7 @@ class ForgetPasswordViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("ForgetPasswordViewModel", e.toString())
-                    _forgetPasswordResponse.postValue(Resource.Error(e.toString()))
+                    _forgetPasswordResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     _forgetPasswordResponse.postValue(Resource.Success(data = it.data ?: false))

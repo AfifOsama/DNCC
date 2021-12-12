@@ -42,7 +42,7 @@ class RegisterViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("RegisterViewModel", e.toString())
-                    _registerResponse.postValue(Resource.Error(e.toString()))
+                    _registerResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     _registerResponse.postValue(Resource.Success(data = it.data ?: ""))
@@ -58,7 +58,7 @@ class RegisterViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("RegisterViewModel", e.toString())
-                    _uploadImageResponse.postValue(Resource.Error(e.toString()))
+                    _uploadImageResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     _uploadImageResponse.postValue(Resource.Success(data = it.data ?: false))
@@ -75,7 +75,7 @@ class RegisterViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("RegisterViewModel", e.toString())
-                    _registerFirestoreResponse.postValue(Resource.Error(e.toString()))
+                    _registerFirestoreResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     _registerFirestoreResponse.postValue(Resource.Success(data = it.data ?: false))

@@ -14,7 +14,7 @@ import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentHomeAdminBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
-import com.dncc.dncc.presentation.home.user.HomeViewModel
+import com.dncc.dncc.presentation.home.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint

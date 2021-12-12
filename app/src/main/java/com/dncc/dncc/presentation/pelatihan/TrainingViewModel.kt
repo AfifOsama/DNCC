@@ -34,7 +34,7 @@ class TrainingViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("HomeViewModel", e.toString())
-                    _getUserResponse.postValue(Resource.Error(e.toString()))
+                    _getUserResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     if (it.data == null) {

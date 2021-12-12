@@ -1,4 +1,4 @@
-package com.dncc.dncc.presentation.home.user
+package com.dncc.dncc.presentation.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("HomeViewModel", e.toString())
-                    _getUserResponse.postValue(Resource.Error(e.toString()))
+                    _getUserResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     if (it.data == null) {

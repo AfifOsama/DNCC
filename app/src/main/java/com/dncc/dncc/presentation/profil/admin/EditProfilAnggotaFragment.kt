@@ -81,7 +81,9 @@ class EditProfilAnggotaFragment : Fragment() {
                 val major = binding.edtProdi.text.toString()
                 val nim = binding.edtNim.text.toString()
                 val noHp = binding.edtNoHp.text.toString()
-                if (validation(fullName, major, nim, noHp)) {
+                val training = binding.dropdownDivisi.text.toString()
+                val role = binding.dropdownRoles.text.toString()
+                if (validation(fullName, major, nim, noHp, training, role)) {
                     alertDialog()
                 }
             }
@@ -91,10 +93,22 @@ class EditProfilAnggotaFragment : Fragment() {
             }
 
             val roles = resources.getStringArray(R.array.role)
-            binding.dropdownRoles.setAdapter(ArrayAdapter(requireContext(), R.layout.list_item_dropdown, roles))
+            binding.dropdownRoles.setAdapter(
+                ArrayAdapter(
+                    requireContext(),
+                    R.layout.list_item_dropdown,
+                    roles
+                )
+            )
 
             val divisi = resources.getStringArray(R.array.divisi)
-            binding.dropdownDivisi.setAdapter(ArrayAdapter(requireContext(), R.layout.list_item_dropdown, divisi))
+            binding.dropdownDivisi.setAdapter(
+                ArrayAdapter(
+                    requireContext(),
+                    R.layout.list_item_dropdown,
+                    divisi
+                )
+            )
         }
     }
 
@@ -260,6 +274,8 @@ class EditProfilAnggotaFragment : Fragment() {
         major: String,
         nim: String,
         noHp: String,
+        training: String,
+        role: String,
     ): Boolean = when {
         TextUtils.isEmpty(fullName) -> {
             binding.edtNama.error = "harap isi nama lengkap anda"
@@ -279,6 +295,16 @@ class EditProfilAnggotaFragment : Fragment() {
         TextUtils.isEmpty(noHp) -> {
             binding.edtNoHp.error = "harap isi no HP anda"
             Toast.makeText(context, "harap isi no HP anda", Toast.LENGTH_SHORT).show()
+            false
+        }
+        TextUtils.isEmpty(training) -> {
+            binding.dropdownDivisi.error = "harap isi pelatihan"
+            Toast.makeText(context, "harap isi pelatihan", Toast.LENGTH_SHORT).show()
+            false
+        }
+        TextUtils.isEmpty(role) -> {
+            binding.dropdownRoles.error = "harap isi role"
+            Toast.makeText(context, "harap isi role", Toast.LENGTH_SHORT).show()
             false
         }
         else -> true

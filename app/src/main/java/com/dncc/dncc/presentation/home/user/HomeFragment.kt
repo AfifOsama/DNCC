@@ -22,6 +22,7 @@ import com.dncc.dncc.common.TrainingEnum
 import com.dncc.dncc.data.source.local.DataPhotoKegiatan
 import com.dncc.dncc.databinding.FragmentHomeBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
+import com.dncc.dncc.presentation.home.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint

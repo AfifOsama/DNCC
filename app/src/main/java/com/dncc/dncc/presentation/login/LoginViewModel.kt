@@ -57,7 +57,7 @@ class LoginViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("LoginViewModel", e.toString())
-                    _loginResponse.postValue(Resource.Error(e.toString()))
+                    _loginResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     _loginResponse.postValue(Resource.Success(data = it.data ?: false))
@@ -73,7 +73,7 @@ class LoginViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("LoginViewModel", e.toString())
-                    _getUserResponse.postValue(Resource.Error(e.toString()))
+                    _getUserResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     if (it.data == null) {

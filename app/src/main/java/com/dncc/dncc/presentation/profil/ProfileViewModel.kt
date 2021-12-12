@@ -54,7 +54,7 @@ class ProfileViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("ProfileViewModel", e.toString())
-                    _getUserResponse.postValue(Resource.Error(e.toString()))
+                    _getUserResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     if (it.data == null) {
@@ -74,7 +74,7 @@ class ProfileViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("ProfileViewModel", e.toString())
-                    _editUserResponse.postValue(Resource.Error(e.toString()))
+                    _editUserResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     if (it.data == null) {
@@ -94,7 +94,7 @@ class ProfileViewModel @Inject constructor(
                 }
                 .catch { e ->
                     Log.i("ProfileViewModel", e.toString())
-                    _uploadImageResponse.postValue(Resource.Error(e.toString()))
+                    _uploadImageResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     _uploadImageResponse.postValue(Resource.Success(data = it.data ?: false))
