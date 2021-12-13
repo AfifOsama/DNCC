@@ -212,7 +212,7 @@
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/primary_blue"
             android:indeterminateTintMode="src_atop"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/img_user"
             app:layout_constraintEnd_toEndOf="@id/img_user"
             app:layout_constraintStart_toStartOf="@id/img_user"
