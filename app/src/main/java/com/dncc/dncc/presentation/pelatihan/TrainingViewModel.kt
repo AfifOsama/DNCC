@@ -10,7 +10,6 @@ import com.dncc.dncc.domain.entity.training.TrainingEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.domain.use_case.training.AddTrainingUseCase
 import com.dncc.dncc.domain.use_case.training.GetTrainingsUseCase
-import com.dncc.dncc.domain.use_case.training.meets.AddMeetsUseCase
 import com.dncc.dncc.domain.use_case.user.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,16 +22,12 @@ import javax.inject.Inject
 @HiltViewModel
 class TrainingViewModel @Inject constructor(
     private val addTrainingUseCase: AddTrainingUseCase,
-    private val addMeetsUseCase: AddMeetsUseCase,
     private val getTrainingsUseCase: GetTrainingsUseCase,
     private val getUserUseCase: GetUserUseCase
 ) : ViewModel() {
 
-    private val _addTrainingResponse = MutableLiveData<Resource<String>>()
-    val addTrainingResponse: LiveData<Resource<String>> = _addTrainingResponse
-
-    private val _addMeetsResponse = MutableLiveData<Resource<Boolean>>()
-    val addMeetsResponse: LiveData<Resource<Boolean>> = _addMeetsResponse
+    private val _addTrainingResponse = MutableLiveData<Resource<Boolean>>()
+    val addTrainingResponse: LiveData<Resource<Boolean>> = _addTrainingResponse
 
     private val _getUserResponse = MutableLiveData<Resource<UserEntity>>()
     val getUserResponse: LiveData<Resource<UserEntity>> = _getUserResponse
@@ -48,23 +43,7 @@ class TrainingViewModel @Inject constructor(
                     _addTrainingResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
-                    _addTrainingResponse.postValue(Resource.Success(data = it.data ?: ""))
-                }
-        }
-    }
-
-    fun addMeets(trainingId: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            addMeetsUseCase(trainingId)
-                .onStart {
-                    _addMeetsResponse.postValue(Resource.Loading())
-                }
-                .catch { e ->
-                    Log.i("TrainingViewModel", e.toString())
-                    _addMeetsResponse.postValue(Resource.Error("${e.message}"))
-                }
-                .collect {
-                    _addMeetsResponse.postValue(Resource.Success(data = it.data ?: false))
+                    _addTrainingResponse.postValue(Resource.Success(data = it.data ?: false))
                 }
         }
     }

@@ -29,23 +29,49 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
     private val storageRef: StorageReference =
         FirebaseStorage.getInstance().reference
 
-    override suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<String>> =
+    override suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<Boolean>> =
         callbackFlow {
             val randomId = UUID.randomUUID().toString()
-            val data = hashMapOf(
-                "trainingId" to randomId,
-                "desc" to trainingEntity.desc,
-                "linkWa" to trainingEntity.linkWa,
-                "mentor" to trainingEntity.mentor,
-                "schedule" to trainingEntity.schedule,
-                "trainingName" to trainingEntity.trainingName,
-                "participantMax" to trainingEntity.participantMax,
-                "participantNow" to 0
-            )
-            val snapshotListener = dbTraining.document(randomId).set(data).addOnSuccessListener {
-                trySend(Resource.Success(randomId)).isSuccess
-                Log.i("TrainingRepositoryImpl", "addTraining with id $randomId success")
+            val snapshotListener = db.runBatch {
+                //add training
+                val data = hashMapOf(
+                    "trainingId" to randomId,
+                    "desc" to trainingEntity.desc,
+                    "linkWa" to trainingEntity.linkWa,
+                    "mentor" to trainingEntity.mentor,
+                    "schedule" to trainingEntity.schedule,
+                    "trainingName" to trainingEntity.trainingName,
+                    "participantMax" to trainingEntity.participantMax,
+                    "participantNow" to 0
+                )
+                dbTraining.document(randomId).set(data)
+
+                //add meets inside training
+                for (i in 0..9) {
+                    Log.i(
+                        "TrainingRepositoryImpl",
+                        "addMeet with pertemuan ${i+1}"
+                    )
+                    val randomMeetId = UUID.randomUUID().toString()
+                    val meet = hashMapOf(
+                        "description" to "deskripsi pelatihan",
+                        "fileUrl" to "",
+                        "meetId" to randomMeetId,
+                        "meetName" to "Pertemuan ${i + 1}"
+                    )
+                    dbTraining.document(randomId).collection("meets").document(randomMeetId).set(meet)
+                }
+            }.addOnSuccessListener {
+                trySend(Resource.Success(true)).isSuccess
+                Log.i(
+                    "TrainingRepositoryImpl",
+                    "addTraining with trainingId $randomId success"
+                )
             }.addOnFailureListener { error ->
+                Log.i(
+                    "TrainingRepositoryImpl",
+                    "addTraining with trainingId $randomId failed"
+                )
                 trySend(Resource.Error(error.checkFirebaseError()))
             }
             awaitClose { snapshotListener.isCanceled() }
@@ -121,34 +147,6 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                     }
             awaitClose { snapshotListener.isCanceled() }
         }
-
-    override suspend fun addMeets(trainingId: String): Flow<Resource<Boolean>> = callbackFlow {
-        val snapshotListener = db.runBatch {
-            for (i in 0..9) {
-                val randomId = UUID.randomUUID().toString()
-                val data = hashMapOf(
-                    "description" to "deskripsi pelatihan",
-                    "fileUrl" to "",
-                    "meetId" to randomId,
-                    "meetName" to "Pertemuan ${i + 1}"
-                )
-                dbTraining.document(trainingId).collection("meets").document(randomId).set(data)
-            }
-        }.addOnSuccessListener {
-            trySend(Resource.Success(true)).isSuccess
-            Log.i(
-                "TrainingRepositoryImpl",
-                "addMeets with trainingId $trainingId success"
-            )
-        }.addOnFailureListener { error ->
-            Log.i(
-                "TrainingRepositoryImpl",
-                "addMeets with trainingId $trainingId failed"
-            )
-            trySend(Resource.Error(error.checkFirebaseError()))
-        }
-        awaitClose { snapshotListener.isCanceled() }
-    }
 
     override suspend fun getMeets(trainingId: String): Flow<Resource<List<MeetEntity>>> {
         TODO("Not yet implemented")

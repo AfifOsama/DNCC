@@ -83,26 +83,9 @@ class AddTrainingFragment : Fragment() {
                     renderToast("maaf harap coba lagi")
                 }
                 is Resource.Success -> {
-                        viewModel.addMeets(it.data ?: "")
-
-                }
-            }
-        })
-
-        viewModel.addMeetsResponse.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
                     binding.progress.visibility = View.GONE
-                    renderToast("maaf harap coba lagi")
-                }
-                is Resource.Success -> {
-                        binding.progress.visibility = View.GONE
-                        renderToast("berhasil menambahkan pelatihan")
-                        findNavController().popBackStack()
-
+                    renderToast("berhasil menambahkan pelatihan")
+                    findNavController().popBackStack()
                 }
             }
         })
