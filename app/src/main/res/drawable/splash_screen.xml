@@ -2,17 +2,19 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/white" />
     <item>
-        <bitmap android:src="@drawable/vector_top"
-            android:gravity="top" />
+        <bitmap
+            android:gravity="top"
+            android:src="@drawable/vector_top" />
     </item>
     <item>
-        <bitmap android:src="@drawable/logodncc"
-            android:gravity="center" />
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/logodncc" />
     </item>
 
     <item>
-        <bitmap android:src="@drawable/vector_bottom"
+        <bitmap
             android:gravity="bottom"
-            />
+            android:src="@drawable/vector_bottom" />
     </item>
 </layer-list>

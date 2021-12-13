@@ -106,6 +106,11 @@
     <string name="hari">Hari</string>
     <string name="jam">Jam</string>
     <string name="tambah">Tambah</string>
+    <string name="rabu_20_00">Rabu, 20:00</string>
+    <string name="_4">4</string>
+    <string name="slash_barrier">/</string>
+    <string name="_15">15</string>
+    <string name="daftar_pelatihan">Daftar Pelatihan</string>
     <string name="delete_button">delete button</string>
     <string name="maksimal_anggota">Maksimal Anggota</string>
     <string name="_08_00">08:00</string>
@@ -113,5 +118,5 @@
     <string name="nama_pertemuan">Nama Pertemuan</string>
     <string name="nama_mentor_hint">Nama Mentor</string>
     <string name="upload_materi">Upload Materi</string>
-    <string name="tutup">TUTUP</string>
+    <string name="profil_anda">Profil Anda</string>
 </resources>

@@ -69,7 +69,11 @@ class HomeFragment : Fragment() {
     private fun initiateUI() {
         binding.run {
             btnPelatihan.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_listPelatihanFragment)
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToListPelatihanFragment(
+                        userId
+                    )
+                )
             }
             btnPertemuan.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_detailPelatihanFragment)
@@ -163,7 +167,7 @@ class HomeFragment : Fragment() {
             val imgPreview=findViewById<ImageView>(R.id.img_preview)
             imgPreview.setBackgroundResource(data)
             show()
-            window?.setLayout(Constraints.LayoutParams.MATCH_PARENT,680)
+            window?.setLayout(1080,680)
         }
 
     }

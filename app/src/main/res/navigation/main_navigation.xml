@@ -67,6 +67,11 @@
         <action
             android:id="@+id/action_listPelatihanFragment_to_editPelatihanFragment"
             app:destination="@id/editPelatihanFragment" />
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/detailPelatihanFragment"
@@ -81,7 +86,7 @@
         android:id="@+id/detailPertemuanFragment"
         android:name="com.dncc.dncc.presentation.pertemuan.DetailPertemuanFragment"
         android:label="fragment_detail_pertemuan"
-        tools:layout="@layout/fragment_detail_pertemuan" >
+        tools:layout="@layout/fragment_detail_pertemuan">
         <action
             android:id="@+id/action_detailPertemuanFragment_to_editPertemuanFragment"
             app:destination="@id/editPertemuanFragment" />
@@ -108,7 +113,12 @@
     <fragment
         android:id="@+id/editProfilFragment"
         android:name="com.dncc.dncc.presentation.profil.EditProfilFragment"
-        android:label="EditProfilFragment" />
+        android:label="EditProfilFragment"
+        tools:layout="@layout/fragment_edit_profil">
+        <argument
+            android:name="userEntity"
+            app:argType="com.dncc.dncc.domain.entity.user.UserEntity" />
+    </fragment>
     <fragment
         android:id="@+id/homeAdminFragment"
         android:name="com.dncc.dncc.presentation.home.admin.HomeAdminFragment"
@@ -164,7 +174,7 @@
         android:id="@+id/homeMentorFragment"
         android:name="com.dncc.dncc.presentation.home.mentor.HomeMentorFragment"
         android:label="fragment_home_mentor"
-        tools:layout="@layout/fragment_home_mentor" >
+        tools:layout="@layout/fragment_home_mentor">
         <action
             android:id="@+id/action_homeMentorFragment_to_detailPertemuanFragment"
             app:destination="@id/detailPertemuanFragment" />

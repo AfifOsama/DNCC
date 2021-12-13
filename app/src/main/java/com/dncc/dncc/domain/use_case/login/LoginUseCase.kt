@@ -1,13 +1,13 @@
 package com.dncc.dncc.domain.use_case.login
 
 import com.dncc.dncc.common.Resource
-import com.dncc.dncc.domain.MainRepository
+import com.dncc.dncc.domain.UserRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
-    private val mainRepository: MainRepository
+    private val userRepository: UserRepository
 ) {
     suspend operator fun invoke(email: String, password: String): Flow<Resource<Boolean>> =
-        mainRepository.login(email, password)
+        userRepository.login(email, password)
 }

@@ -18,7 +18,7 @@
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
-    
+
     <style name="nunitoSemiBold_24">
         <item name="android:fontFamily">@font/nunito_semibold</item>
         <item name="android:textSize">24sp</item>
