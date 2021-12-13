@@ -25,6 +25,7 @@ import coil.load
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentEditProfilBinding
+import com.dncc.dncc.domain.entity.user.EditUserEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.utils.getRealPathFromURI
 import com.google.firebase.storage.FirebaseStorage
@@ -42,10 +43,7 @@ class EditProfilFragment : Fragment() {
     private val viewModel: ProfileViewModel by viewModels()
 
     private var imageReport: Uri? = null
-    private lateinit var pathImage: String
-
-    private var uploadStatus = false
-    private var storeUser = false
+    private var pathImage: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,25 +98,8 @@ class EditProfilFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    storeUser = true
-                    checkAlreadyStored()
-                }
-            }
-        })
-
-        viewModel.uploadImageResponse.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    binding.progress.visibility = View.GONE
-                    renderToast("maaf harap coba lagi")
-                }
-                is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
-                    uploadStatus = true
-                    checkAlreadyStored()
+                    renderToast("Berhasil mengubah data")
+                    findNavController().popBackStack()
                 }
             }
         })
@@ -169,21 +150,20 @@ class EditProfilFragment : Fragment() {
             val noHp = edtNoHp.text.toString()
 
             viewModel.editUser(
-                UserEntity(
-                    userId = userEntity.userId,
-                    email = email,
-                    fullName = fullName,
-                    major = major,
-                    nim = nim,
-                    noHp = noHp,
-                    training = userEntity.training,
-                    role = userEntity.role
+                EditUserEntity(
+                    userEntity = UserEntity(
+                        userId = userEntity.userId,
+                        email = email,
+                        fullName = fullName,
+                        major = major,
+                        nim = nim,
+                        noHp = noHp,
+                        training = userEntity.training,
+                        role = userEntity.role
+                    ),
+                    pathImage = pathImage
                 )
             )
-
-            if (imageReport != null) {
-                viewModel.uploadImage(pathImage, userEntity.userId)
-            }
         }
     }
 
@@ -226,20 +206,6 @@ class EditProfilFragment : Fragment() {
                 renderToast("Terjadi kesalahan mohon pilih gambar lagi")
             }
         }
-
-    private fun checkAlreadyStored() {
-        if (imageReport != null) {
-            if (uploadStatus && storeUser) {
-                renderToast("Berhasil mengubah data")
-                findNavController().popBackStack()
-            }
-        } else {
-            if (storeUser) {
-                renderToast("Berhasil mengubah data")
-                findNavController().popBackStack()
-            }
-        }
-    }
 
     private fun validation(
         fullName: String,

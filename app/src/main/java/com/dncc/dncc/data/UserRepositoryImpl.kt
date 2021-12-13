@@ -9,6 +9,7 @@ import com.dncc.dncc.data.source.remote.model.UserDto
 import com.dncc.dncc.data.source.remote.model.toUserEntity
 import com.dncc.dncc.domain.UserRepository
 import com.dncc.dncc.domain.entity.register.RegisterEntity
+import com.dncc.dncc.domain.entity.user.EditUserEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.utils.checkFirebaseError
 import com.google.firebase.auth.FirebaseAuth
@@ -74,23 +75,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
             awaitClose { snapshotListener.isCanceled() }
         }
 
-    override suspend fun uploadImage(path: String, userId: String): Flow<Resource<Boolean>> =
-        callbackFlow {
-            Log.i("UserRepositoryImpl", "upload image $userId")
-            val file = Uri.fromFile(File(path))
-            val storageRef = imagesRef.child(userId)
-            val uploadTask = storageRef.putFile(file)
-            val snapshotListener = uploadTask.addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Log.i("UserRepositoryImpl", "uploadImage: success")
-                    trySend(Resource.Success(true)).isSuccess
-                } else {
-                    trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
-                }
-            }
-            awaitClose { snapshotListener.isCanceled() }
-        }
-
     override suspend fun login(email: String, password: String): Flow<Resource<Boolean>> =
         callbackFlow {
             Log.i("UserRepositoryImpl", "login")
@@ -152,25 +136,42 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
         awaitClose { snapshotListener.remove() }
     }
 
-    override suspend fun editUser(userEntity: UserEntity): Flow<Resource<Boolean>> = callbackFlow {
-        Log.i("UserRepositoryImpl", "editUser ${userEntity.userId}")
-        val snapshotListener = dbUsers.document(userEntity.userId).update(
-            mapOf(
-                "fullName" to userEntity.fullName,
-                "major" to userEntity.major,
-                "nim" to userEntity.nim,
-                "noHp" to userEntity.noHp,
-                "training" to userEntity.training,
-                "role" to userEntity.role
-            )
-        ).addOnSuccessListener {
-            trySend(Resource.Success(true)).isSuccess
-            Log.i("UserRepositoryImpl", "editUser ${userEntity.fullName} success")
-        }.addOnFailureListener { error ->
-            trySend(Resource.Error(error.checkFirebaseError()))
+    override suspend fun editUser(editUserEntity: EditUserEntity): Flow<Resource<Boolean>> =
+        callbackFlow {
+            val snapshotListener = db.runBatch {
+                val userEntity = editUserEntity.userEntity
+                dbUsers.document(userEntity.userId).update(
+                    mapOf(
+                        "fullName" to userEntity.fullName,
+                        "major" to userEntity.major,
+                        "nim" to userEntity.nim,
+                        "noHp" to userEntity.noHp,
+                        "training" to userEntity.training,
+                        "role" to userEntity.role
+                    )
+                )
+
+                //upload photo
+                if (editUserEntity.pathImage != "") {
+                    val file = Uri.fromFile(File(editUserEntity.pathImage))
+                    val storageRef = imagesRef.child(userEntity.userId)
+                    storageRef.putFile(file)
+                }
+            }.addOnSuccessListener {
+                Log.i(
+                    "UserRepositoryImpl",
+                    "editUser success"
+                )
+                trySend(Resource.Success(true)).isSuccess
+            }.addOnFailureListener { error ->
+                Log.i(
+                    "UserRepositoryImpl",
+                    "editUser failed"
+                )
+                trySend(Resource.Error(error.checkFirebaseError()))
+            }
+            awaitClose { snapshotListener.isCanceled() }
         }
-        awaitClose { snapshotListener.isCanceled() }
-    }
 
     override suspend fun registerTraining(trainingId: String): Flow<Resource<Boolean>> {
         TODO("Not yet implemented")

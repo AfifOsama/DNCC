@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dncc.dncc.common.Resource
+import com.dncc.dncc.domain.entity.user.EditUserEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
-import com.dncc.dncc.domain.use_case.common.UploadImageUseCase
 import com.dncc.dncc.domain.use_case.login.LoginStateUseCase
 import com.dncc.dncc.domain.use_case.logout.LogoutUseCase
 import com.dncc.dncc.domain.use_case.user.EditUserUseCase
@@ -25,8 +25,7 @@ class ProfileViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
     private val editUserUseCase: EditUserUseCase,
     private val logoutUseCase: LogoutUseCase,
-    private val loginStateUseCase: LoginStateUseCase,
-    private val uploadImageUseCase: UploadImageUseCase
+    private val loginStateUseCase: LoginStateUseCase
 ) : ViewModel() {
 
     private val _getUserResponse = MutableLiveData<Resource<UserEntity>>()
@@ -34,9 +33,6 @@ class ProfileViewModel @Inject constructor(
 
     private val _editUserResponse = MutableLiveData<Resource<Boolean>>()
     val editUserResponse: LiveData<Resource<Boolean>> = _editUserResponse
-
-    private val _uploadImageResponse = MutableLiveData<Resource<Boolean>>()
-    val uploadImageResponse: LiveData<Resource<Boolean>> = _uploadImageResponse
 
     fun logout() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -66,9 +62,9 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun editUser(userEntity: UserEntity) {
+    fun editUser(editUserEntity: EditUserEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            editUserUseCase(userEntity)
+            editUserUseCase(editUserEntity)
                 .onStart {
                     _editUserResponse.postValue(Resource.Loading())
                 }
@@ -82,22 +78,6 @@ class ProfileViewModel @Inject constructor(
                     } else {
                         _editUserResponse.postValue(Resource.Success(data = it.data))
                     }
-                }
-        }
-    }
-
-    fun uploadImage(path: String, userId: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            uploadImageUseCase(path, userId)
-                .onStart {
-                    _uploadImageResponse.postValue(Resource.Loading())
-                }
-                .catch { e ->
-                    Log.i("ProfileViewModel", e.toString())
-                    _uploadImageResponse.postValue(Resource.Error("${e.message}"))
-                }
-                .collect {
-                    _uploadImageResponse.postValue(Resource.Success(data = it.data ?: false))
                 }
         }
     }
