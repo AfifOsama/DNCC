@@ -1,298 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".presentation.pelatihan.admin.CreatePelatihanFragment">
+    tools:context=".presentation.pelatihan.admin.AddTrainingFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/header_tambah_pelatihan"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/shape_rectangle_actionbar"
-            android:elevation="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="117dp"
-                android:padding="16dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_nama_pelatihan"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_blue"
+                app:endIconTint="@color/primary_blue"
+                app:hintTextAppearance="@style/nunitoRegular_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/TextInputRoundedContainer">
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/img_user"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/perm_identity"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="w,1:1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1"
-                    app:riv_border_color="@color/transparent"
-                    app:riv_border_width="2dp"
-                    app:riv_corner_radius="10dp" />
-
-
-                <TextView
-                    android:id="@+id/tv_user"
-                    style="@style/nunitoSemiBold_14"
-                    android:layout_width="wrap_content"
+                <AutoCompleteTextView
+                    android:id="@+id/dropdown_nama_pelatihan"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/user_name"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/img_user"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1" />
+                    android:hint="@string/divisi"
+                    android:inputType="none"
+                    android:labelFor="@id/input_layout_divisi"
+                    android:textColor="@color/black_text" />
 
-                <TextView
-                    android:id="@+id/tv_nim"
-                    style="@style/nunitoRegular_12"
-                    android:layout_width="wrap_content"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_deskripsi_pelatihan"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/deskripsi_pelatihan"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextAppearance="@style/nunitoRegular_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_nama_pelatihan"
+                app:shapeAppearance="@style/TextInputRoundedContainer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_deskripsi_pelatihan"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/nim"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintStart_toEndOf="@id/img_user"
-                    app:layout_constraintTop_toBottomOf="@id/tv_user" />
+                    android:lines="1"
+                    android:textColor="@color/black_text" />
 
-                <TextView
-                    android:id="@+id/tv_role"
-                    style="@style/nunitoBold_12"
-                    android:layout_width="wrap_content"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_nama_mentor"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/nama_mentor_hint"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextAppearance="@style/nunitoRegular_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_deskripsi_pelatihan"
+                app:shapeAppearance="@style/TextInputRoundedContainer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_nama_mentor"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/admin"
-                    android:textColor="@color/black_text"
-                    app:layout_constraintStart_toEndOf="@id/img_user"
-                    app:layout_constraintTop_toBottomOf="@id/tv_nim" />
+                    android:lines="1"
+                    android:textColor="@color/black_text" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_nama_pelatihan"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="24dp"
-            android:textColorHint="@color/hint_color"
-            app:boxStrokeColor="@color/primary_blue"
-            app:endIconTint="@color/primary_blue"
-            app:hintTextAppearance="@style/nunitoRegular_12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_tambah_pelatihan"
-            app:shapeAppearance="@style/TextInputRoundedContainer">
-
-            <AutoCompleteTextView
-                android:id="@+id/dropdown_nama_pelatihan"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_link_wag"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/divisi"
-                android:inputType="none"
-                android:labelFor="@id/input_layout_divisi"
-                android:textColor="@color/black_text" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/link_group_whatsapp_hint"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextAppearance="@style/nunitoRegular_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_nama_mentor"
+                app:shapeAppearance="@style/TextInputRoundedContainer">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_link_wag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/black_text" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_deskripsi_pelatihan"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/deskripsi_pelatihan"
-            android:textColorHint="@color/hint_color"
-            app:boxStrokeColor="@color/primary_blue"
-            app:hintTextAppearance="@style/nunitoRegular_12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_nama_pelatihan"
-            app:shapeAppearance="@style/TextInputRoundedContainer">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_deskripsi_pelatihan"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_participant_max"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textColor="@color/black_text" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/maksimal_anggota"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextAppearance="@style/nunitoRegular_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_link_wag"
+                app:shapeAppearance="@style/TextInputRoundedContainer">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_participant_max"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:inputType="number"
+                    android:textColor="@color/black_text" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_nama_mentor"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/nama_mentor_hint"
-            android:textColorHint="@color/hint_color"
-            app:boxStrokeColor="@color/primary_blue"
-            app:hintTextAppearance="@style/nunitoRegular_12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_deskripsi_pelatihan"
-            app:shapeAppearance="@style/TextInputRoundedContainer">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_nama_mentor"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_day"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textColor="@color/black_text" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/hari"
+                app:layout_constraintEnd_toStartOf="@id/input_layout_clock"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextAppearance="@style/nunitoRegular_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_participant_max"
+                app:shapeAppearance="@style/TextInputRoundedContainer"
+                app:startIconDrawable="@drawable/ic_baseline_date_range_24"
+                app:startIconTint="@color/secondary_red">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/black_text" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_link_wag"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/link_group_whatsapp_hint"
-            android:textColorHint="@color/hint_color"
-            app:boxStrokeColor="@color/primary_blue"
-            app:hintTextAppearance="@style/nunitoRegular_12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_nama_mentor"
-            app:shapeAppearance="@style/TextInputRoundedContainer">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_link_wag"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_clock"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textColor="@color/black_text" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/_08_00"
+                android:textColorHint="@color/hint_color"
+                app:boxStrokeColor="@color/primary_blue"
+                app:hintTextAppearance="@style/nunitoRegular_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/input_layout_day"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_participant_max"
+                app:shapeAppearance="@style/TextInputRoundedContainer"
+                app:startIconDrawable="@drawable/ic_baseline_access_time_24"
+                app:startIconTint="@color/secondary_red">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_clock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:textColor="@color/black_text" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_participant_max"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/maksimal_anggota"
-            android:textColorHint="@color/hint_color"
-            app:boxStrokeColor="@color/primary_blue"
-            app:hintTextAppearance="@style/nunitoRegular_12"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_link_wag"
-            app:shapeAppearance="@style/TextInputRoundedContainer">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_participant_max"
-                android:layout_width="match_parent"
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_batal"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textColor="@color/black_text" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/error_red"
+                android:text="@string/batal"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_tambah"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_clock" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_day"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/hari"
-            android:textColorHint="@color/hint_color"
-            app:boxStrokeColor="@color/primary_blue"
-            app:hintTextAppearance="@style/nunitoRegular_12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_participant_max"
-            app:shapeAppearance="@style/TextInputRoundedContainer"
-            app:startIconDrawable="@drawable/ic_baseline_date_range_24"
-            app:startIconTint="@color/secondary_red">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_day"
-                android:layout_width="match_parent"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_tambah"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textColor="@color/black_text" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/success_green"
+                android:text="@string/tambah"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout_clock" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_clock"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:hint="@string/_08_00"
-            android:textColorHint="@color/hint_color"
-            app:boxStrokeColor="@color/primary_blue"
-            app:hintTextAppearance="@style/nunitoRegular_12"
-            app:layout_constraintStart_toEndOf="@id/input_layout_day"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_participant_max"
-            app:shapeAppearance="@style/TextInputRoundedContainer"
-            app:startIconDrawable="@drawable/ic_baseline_access_time_24"
-            app:startIconTint="@color/secondary_red">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_clock"
-                android:layout_width="match_parent"
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:lines="1"
-                android:textColor="@color/black_text" />
+                android:indeterminate="true"
+                android:indeterminateTint="@color/primary_blue"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_batal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/error_red"
-            android:text="@string/batal"
-            app:cornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_tambah"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_clock" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_tambah"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/success_green"
-            android:text="@string/tambah"
-            app:cornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_clock" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

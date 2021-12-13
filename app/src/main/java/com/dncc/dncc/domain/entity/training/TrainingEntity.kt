@@ -2,6 +2,7 @@ package com.dncc.dncc.domain.entity.training
 
 data class TrainingEntity(
     val trainingId: String = "",
+    val desc: String = "",
     val linkWa: String = "",
     val mentor: String = "",
     val schedule: String = "",

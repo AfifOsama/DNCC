@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dncc.dncc.common.Resource
+import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.domain.use_case.user.GetUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,13 +23,13 @@ class ListUserViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        getUsers()
+        getUsers(UserRoleEnum.MEMBER)
     }
 
     private val _getUsersResponse = MutableLiveData<Resource<List<UserEntity>>>()
     val getUsersResponse: LiveData<Resource<List<UserEntity>>> = _getUsersResponse
 
-    fun getUsers() {
+    fun getUsers(filter: UserRoleEnum) {
         viewModelScope.launch(Dispatchers.IO) {
             getUsersUseCase()
                 .onStart {
@@ -39,8 +40,10 @@ class ListUserViewModel @Inject constructor(
                     _getUsersResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
-                    _getUsersResponse.postValue(Resource.Success(data = it.data ?: mutableListOf()))
-
+                    val list: List<UserEntity> = it.data?.filter { user ->
+                        user.role == filter.role
+                    } ?: mutableListOf()
+                    _getUsersResponse.postValue(Resource.Success(data = list))
                 }
         }
     }

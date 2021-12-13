@@ -4,6 +4,7 @@ import com.dncc.dncc.domain.entity.training.TrainingEntity
 
 data class TrainingDto(
     val trainingId: String = "",
+    val desc: String = "",
     val linkWa: String = "",
     val mentor: String = "",
     val schedule: String = "",
@@ -14,6 +15,13 @@ data class TrainingDto(
 
 fun TrainingDto.toTrainingEntity(): TrainingEntity {
     return TrainingEntity(
-        trainingId, linkWa, mentor, schedule, trainingName, participantMax, participantNow
+        trainingId = trainingId,
+        desc = desc,
+        linkWa = linkWa,
+        mentor = mentor,
+        schedule = schedule,
+        trainingName = trainingName,
+        participantMax = participantMax,
+        participantNow = participantNow
     )
 }

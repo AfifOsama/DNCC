@@ -6,7 +6,7 @@ import com.dncc.dncc.domain.entity.training.TrainingEntity
 import kotlinx.coroutines.flow.Flow
 
 interface TrainingRepository {
-    suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<Boolean>>
+    suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<String>>
     suspend fun editTraining(trainingEntity: TrainingEntity): Flow<Resource<Boolean>>
     suspend fun getTrainings(): Flow<Resource<List<TrainingEntity>>>
     suspend fun getTraining(trainingId: String): Flow<Resource<TrainingEntity>>

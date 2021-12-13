@@ -27,19 +27,23 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
     private val dbTraining = Firebase.firestore.collection("trainings")
     private val storageRef: StorageReference =
         FirebaseStorage.getInstance().reference
+    private val db = Firebase.firestore
 
-    override suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<Boolean>> =
+    override suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<String>> =
         callbackFlow {
             val randomId = UUID.randomUUID().toString()
             val data = hashMapOf(
                 "trainingId" to randomId,
+                "desc" to trainingEntity.desc,
                 "linkWa" to trainingEntity.linkWa,
                 "mentor" to trainingEntity.mentor,
                 "schedule" to trainingEntity.schedule,
-                "trainingName" to trainingEntity.trainingName
+                "trainingName" to trainingEntity.trainingName,
+                "participantMax" to trainingEntity.participantMax,
+                "participantNow" to 0
             )
             val snapshotListener = dbTraining.document(randomId).set(data).addOnSuccessListener {
-                trySend(Resource.Success(true)).isSuccess
+                trySend(Resource.Success(randomId)).isSuccess
                 Log.i("TrainingRepositoryImpl", "addTraining with id $randomId success")
             }.addOnFailureListener { error ->
                 trySend(Resource.Error(error.checkFirebaseError()))
@@ -119,26 +123,29 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         }
 
     override suspend fun addMeets(trainingId: String): Flow<Resource<Boolean>> = callbackFlow {
-        for (i in 0..9) {
-            val randomId = UUID.randomUUID().toString()
-            val data = hashMapOf(
-                "description" to "deskripsi pelatihan",
-                "fileUrl" to "",
-                "meetId" to randomId,
-                "meetName" to "Pertemuan ${i + 1}"
-            )
-            val snapshotListener =
+        db.runBatch {
+            for (i in 0..9) {
+                val randomId = UUID.randomUUID().toString()
+                val data = hashMapOf(
+                    "description" to "deskripsi pelatihan",
+                    "fileUrl" to "",
+                    "meetId" to randomId,
+                    "meetName" to "Pertemuan ${i + 1}"
+                )
                 dbTraining.document(trainingId).collection("meets").document(randomId).set(data)
-                    .addOnSuccessListener {
-                        trySend(Resource.Success(true)).isSuccess
-                        Log.i(
-                            "TrainingRepositoryImpl",
-                            "addMeet with name Pertemuan ${i + 1} success"
-                        )
-                    }.addOnFailureListener { error ->
-                        trySend(Resource.Error(error.checkFirebaseError()))
-                    }
-            awaitClose { snapshotListener.isCanceled() }
+            }
+        }.addOnSuccessListener {
+            trySend(Resource.Success(true)).isSuccess
+            Log.i(
+                "TrainingRepositoryImpl",
+                "addMeets with trainingId $trainingId success"
+            )
+        }.addOnFailureListener { error ->
+            Log.i(
+                "TrainingRepositoryImpl",
+                "addMeets with trainingId $trainingId failed"
+            )
+            trySend(Resource.Error(error.checkFirebaseError()))
         }
     }
 

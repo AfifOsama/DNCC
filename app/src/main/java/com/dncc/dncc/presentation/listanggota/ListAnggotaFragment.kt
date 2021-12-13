@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
+import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentListAnggotaBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -63,7 +64,7 @@ class ListAnggotaFragment : Fragment() {
                 setOnRefreshListener {
                     CoroutineScope(Dispatchers.Main).launch {
                         Log.i("ListAnggotaFragment", "refresh: ")
-                        viewModel.getUsers()
+                        viewModel.getUsers(UserRoleEnum.MEMBER)
                         delay(2000)
                         isRefreshing = false
                     }

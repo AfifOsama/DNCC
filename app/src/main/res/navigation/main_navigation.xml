@@ -60,7 +60,8 @@
     <fragment
         android:id="@+id/listPelatihanFragment"
         android:name="com.dncc.dncc.presentation.pelatihan.ListPelatihanFragment"
-        android:label="ListPelatihanFragment">
+        android:label="ListPelatihanFragment"
+        tools:layout="@layout/fragment_list_pelatihan">
         <action
             android:id="@+id/action_listPelatihanFragment_to_detailPelatihanFragment"
             app:destination="@id/detailPelatihanFragment" />
@@ -174,7 +175,7 @@
     </fragment>
     <fragment
         android:id="@+id/tambahPelatihanFragment"
-        android:name="com.dncc.dncc.presentation.pelatihan.admin.CreatePelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.admin.AddTrainingFragment"
         android:label="fragment_tambah_pelatihan"
         tools:layout="@layout/fragment_create_pelatihan" />
     <fragment

@@ -60,6 +60,14 @@
         <item>divisi broadcast</item>>
         <item>divisi mobile</item>
     </string-array>
+    <string-array name="add_training">
+        <item>divisi web</item>
+        <item>divisi multimedia</item>
+        <item>divisi jaringan</item>
+        <item>divisi desktop</item>
+        <item>divisi broadcast</item>>
+        <item>divisi mobile</item>
+    </string-array>
     <string name="pelatihan_divisi">Pelatihan Divisi Mobile</string>
     <string name="divisi_description">Mobile developer ditujukan pada mereka yang punya spesialiasi dalam teknologi perangkat bergerak</string>
     <string name="daftar_divisi_description">DNCC mengadakan pelatihan rutin yang membahas tentang ilmu komputer </string>

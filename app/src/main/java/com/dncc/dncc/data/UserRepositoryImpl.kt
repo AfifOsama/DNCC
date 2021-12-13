@@ -77,7 +77,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                 "major" to registerEntity.major,
                 "nim" to registerEntity.nim,
                 "noHp" to registerEntity.noHp,
-                "role" to UserRoleEnum.MEMBER.role,
+                "role" to UserRoleEnum.VISITOR.role,
                 "userId" to userId,
                 "training" to TrainingEnum.EMPTY.trainingName,
                 "trainingId" to ""
@@ -141,9 +141,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                     val dataUsers = mutableListOf<UserDto>()
                     snapshot.forEach {
                         val field = it.toObject(UserDto::class.java)
-                        if (field.role != UserRoleEnum.ADMIN.role && field.role != UserRoleEnum.MENTOR.role) {
-                            dataUsers.add(field)
-                        }
+                        dataUsers.add(field)
                     }
                     Resource.Success(dataUsers.map { it.toUserEntity() })
                 } else {
