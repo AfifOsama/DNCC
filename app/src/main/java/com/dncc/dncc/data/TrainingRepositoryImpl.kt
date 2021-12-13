@@ -123,7 +123,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         }
 
     override suspend fun addMeets(trainingId: String): Flow<Resource<Boolean>> = callbackFlow {
-        db.runBatch {
+        val snapshotListener = db.runBatch {
             for (i in 0..9) {
                 val randomId = UUID.randomUUID().toString()
                 val data = hashMapOf(
@@ -147,6 +147,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
             )
             trySend(Resource.Error(error.checkFirebaseError()))
         }
+        awaitClose { snapshotListener.isCanceled() }
     }
 
     override suspend fun getMeets(trainingId: String): Flow<Resource<List<MeetEntity>>> {
