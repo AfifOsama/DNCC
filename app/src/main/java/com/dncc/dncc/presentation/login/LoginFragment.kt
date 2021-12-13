@@ -99,7 +99,7 @@ class LoginFragment : Fragment() {
                         )
 //                        UserRoleEnum.MENTOR.role -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
                         UserRoleEnum.ADMIN.role -> findNavController().navigate(
-                            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                            LoginFragmentDirections.actionLoginFragmentToHomeAdminFragment()
                         )
                     }
 

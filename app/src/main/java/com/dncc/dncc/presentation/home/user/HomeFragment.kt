@@ -10,17 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.constraintlayout.widget.Constraints
 import androidx.core.text.set
 import androidx.core.text.toSpannable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.load
+import com.bumptech.glide.Glide
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.common.TrainingEnum
@@ -115,12 +113,14 @@ class HomeFragment : Fragment() {
 
     private fun setUserView(userEntity: UserEntity) {
         binding.run {
+            progressImg.visibility = View.VISIBLE
             val imagePath = FirebaseStorage.getInstance().reference.child("images").child(userId)
             imagePath.downloadUrl.addOnSuccessListener {
-                imgUser.load(it.toString()) {
-                    placeholder(R.drawable.logodncc)
-                    error(R.drawable.logodncc)
-                }
+                progressImg.visibility = View.GONE
+                Glide.with(requireContext())
+                    .load(it)
+                    .error(R.drawable.logodncc)
+                    .into(imgUser)
             }.addOnFailureListener {
                 it.message?.let { error -> Log.i("HomeFragment", "error image $error") }
             }
@@ -149,7 +149,8 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             val photoKegiatanAdapter = PhotoKegiatanAdapter(list)
             rvImgKegiatan.adapter = photoKegiatanAdapter
-            photoKegiatanAdapter.setOnItemClickCallback(object : PhotoKegiatanAdapter.OnItemClickCallBack{
+            photoKegiatanAdapter.setOnItemClickCallback(object :
+                PhotoKegiatanAdapter.OnItemClickCallBack {
                 override fun onItemClicked(data: DataPhotoKegiatan) {
                     showImgFullscreen(data.photo)
                 }
@@ -158,16 +159,16 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun showImgFullscreen(data:Int) {
+    private fun showImgFullscreen(data: Int) {
         val dialog = Dialog(requireContext())
-        with(dialog){
+        with(dialog) {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setCancelable(true)
             setContentView(R.layout.preview_img)
-            val imgPreview=findViewById<ImageView>(R.id.img_preview)
+            val imgPreview = findViewById<ImageView>(R.id.img_preview)
             imgPreview.setBackgroundResource(data)
             show()
-            window?.setLayout(1080,680)
+            window?.setLayout(1080, 680)
         }
 
     }

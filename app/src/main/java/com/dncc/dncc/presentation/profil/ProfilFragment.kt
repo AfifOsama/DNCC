@@ -7,13 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import coil.load
 import com.bumptech.glide.Glide
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
@@ -103,18 +100,13 @@ class ProfilFragment : Fragment() {
 
     private fun setUserContent(userEntity: UserEntity) {
         binding.run {
-            progressImg.visibility=View.VISIBLE
+            progressImg.visibility = View.VISIBLE
             val imagePath =
                 FirebaseStorage.getInstance().reference.child("images").child(userEntity.userId)
             imagePath.downloadUrl.addOnSuccessListener {
-                progressImg.visibility=View.GONE
+                progressImg.visibility = View.GONE
                 Glide.with(requireContext())
                     .load(it)
-//                    .placeholder(CircularProgressDrawable(requireContext()).apply {
-//                        strokeWidth = 5f
-//                        centerRadius = 25f
-//                        start()
-//                    })
                     .error(R.drawable.logodncc)
                     .into(imgUser)
             }.addOnFailureListener {
