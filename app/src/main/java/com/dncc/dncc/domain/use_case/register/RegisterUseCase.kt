@@ -9,6 +9,6 @@ import javax.inject.Inject
 class RegisterUseCase @Inject constructor(
     private val userRepository: UserRepository
 ) {
-    suspend operator fun invoke(email: String, password: String): Flow<Resource<String>> =
-        userRepository.register(email, password)
+    suspend operator fun invoke(registerEntity: RegisterEntity): Flow<Resource<Boolean>> =
+        userRepository.register(registerEntity)
 }

@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.domain.entity.register.RegisterEntity
 import com.dncc.dncc.domain.use_case.common.UploadImageUseCase
-import com.dncc.dncc.domain.use_case.register.RegisterFirestoreUseCase
 import com.dncc.dncc.domain.use_case.register.RegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,22 +20,14 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase,
-    private val uploadImageUseCase: UploadImageUseCase,
-    private val registerFirestoreUseCase: RegisterFirestoreUseCase
 ) : ViewModel() {
 
-    private val _registerResponse = MutableLiveData<Resource<String>>()
-    val registerResponse: LiveData<Resource<String>> get() = _registerResponse
+    private val _registerResponse = MutableLiveData<Resource<Boolean>>()
+    val registerResponse: LiveData<Resource<Boolean>> get() = _registerResponse
 
-    private val _uploadImageResponse = MutableLiveData<Resource<Boolean>>()
-    val uploadImageResponse: LiveData<Resource<Boolean>> get() = _uploadImageResponse
-
-    private val _registerFirestoreResponse = MutableLiveData<Resource<Boolean>>()
-    val registerFirestoreResponse: LiveData<Resource<Boolean>> get() = _registerFirestoreResponse
-
-    fun register(email: String, password: String) {
+    fun register(registerEntity: RegisterEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            registerUseCase(email, password)
+            registerUseCase(registerEntity)
                 .onStart {
                     _registerResponse.postValue(Resource.Loading())
                 }
@@ -45,40 +36,7 @@ class RegisterViewModel @Inject constructor(
                     _registerResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
-                    _registerResponse.postValue(Resource.Success(data = it.data ?: ""))
-                }
-        }
-    }
-
-    fun uploadImage(path: String, userId: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            uploadImageUseCase(path, userId)
-                .onStart {
-                    _uploadImageResponse.postValue(Resource.Loading())
-                }
-                .catch { e ->
-                    Log.i("RegisterViewModel", e.toString())
-                    _uploadImageResponse.postValue(Resource.Error("${e.message}"))
-                }
-                .collect {
-                    _uploadImageResponse.postValue(Resource.Success(data = it.data ?: false))
-                }
-        }
-    }
-
-    fun registerFirestore(registerEntity: RegisterEntity, userId: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            Log.i("RegisterViewModel", "registerFirestore $registerEntity")
-            registerFirestoreUseCase(registerEntity, userId)
-                .onStart {
-                    _registerFirestoreResponse.postValue(Resource.Loading())
-                }
-                .catch { e ->
-                    Log.i("RegisterViewModel", e.toString())
-                    _registerFirestoreResponse.postValue(Resource.Error("${e.message}"))
-                }
-                .collect {
-                    _registerFirestoreResponse.postValue(Resource.Success(data = it.data ?: false))
+                    _registerResponse.postValue(Resource.Success(data = it.data ?: false))
                 }
         }
     }

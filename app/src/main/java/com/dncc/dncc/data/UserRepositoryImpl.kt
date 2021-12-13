@@ -25,26 +25,52 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class UserRepositoryImpl @Inject constructor() : UserRepository {
+    private val db = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
     private val dbUsers = Firebase.firestore.collection("users")
     private val imagesRef: StorageReference =
         FirebaseStorage.getInstance().reference.child("images")
 
-    override suspend fun register(email: String, password: String): Flow<Resource<String>> =
+    override suspend fun register(registerEntity: RegisterEntity): Flow<Resource<Boolean>> =
         callbackFlow {
-            Log.i("UserRepositoryImpl", "register user $email $password")
-            val snapshotListener =
-                auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            Log.i("UserRepositoryImpl", "create user success")
-                            val userId = auth.currentUser?.uid ?: ""
-                            trySend(Resource.Success(userId)).isSuccess
-                        } else {
-                            Log.i("UserRepositoryImpl", "create user failed ${it.exception.checkFirebaseError()}")
-                            trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
-                        }
-                    }
+            val snapshotListener = db.runBatch {
+                //create user
+                auth.createUserWithEmailAndPassword(registerEntity.email, registerEntity.password)
+
+                val userId = auth.currentUser?.uid ?: ""
+
+                //upload photo
+                val file = Uri.fromFile(File(registerEntity.photoPath))
+                val storageRef = imagesRef.child(userId)
+                storageRef.putFile(file)
+
+                //put in firestore
+                dbUsers.document(userId).set(
+                    mapOf(
+                        "email" to registerEntity.email,
+                        "fullName" to registerEntity.fullName,
+                        "major" to registerEntity.major,
+                        "nim" to registerEntity.nim,
+                        "noHp" to registerEntity.noHp,
+                        "role" to UserRoleEnum.VISITOR.role,
+                        "userId" to userId,
+                        "training" to TrainingEnum.EMPTY.trainingName,
+                        "trainingId" to ""
+                    )
+                )
+            }.addOnSuccessListener {
+                Log.i(
+                    "UserRepositoryImpl",
+                    "register success"
+                )
+                trySend(Resource.Success(true)).isSuccess
+            }.addOnFailureListener { error ->
+                Log.i(
+                    "UserRepositoryImpl",
+                    "register failed"
+                )
+                trySend(Resource.Error(error.checkFirebaseError()))
+            }
             awaitClose { snapshotListener.isCanceled() }
         }
 
@@ -64,32 +90,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
             }
             awaitClose { snapshotListener.isCanceled() }
         }
-
-    override suspend fun registerFirestore(
-        registerEntity: RegisterEntity,
-        userId: String
-    ): Flow<Resource<Boolean>> = callbackFlow {
-        Log.i("UserRepositoryImpl", "registerFirestore $registerEntity")
-        val snapshotListener = dbUsers.document(userId).set(
-            mapOf(
-                "email" to registerEntity.email,
-                "fullName" to registerEntity.fullName,
-                "major" to registerEntity.major,
-                "nim" to registerEntity.nim,
-                "noHp" to registerEntity.noHp,
-                "role" to UserRoleEnum.VISITOR.role,
-                "userId" to userId,
-                "training" to TrainingEnum.EMPTY.trainingName,
-                "trainingId" to ""
-            )
-        ).addOnSuccessListener {
-            trySend(Resource.Success(true)).isSuccess
-            Log.i("UserRepositoryImpl", "registerToFirestore user ${registerEntity.fullName} success")
-        }.addOnFailureListener { error ->
-            trySend(Resource.Error(error.checkFirebaseError()))
-        }
-        awaitClose { snapshotListener.isCanceled() }
-    }
 
     override suspend fun login(email: String, password: String): Flow<Resource<Boolean>> =
         callbackFlow {

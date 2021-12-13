@@ -23,11 +23,11 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
+    private val db = Firebase.firestore
     private val dbTrainingParticipants = Firebase.firestore.collection("trainingParticipants")
     private val dbTraining = Firebase.firestore.collection("trainings")
     private val storageRef: StorageReference =
         FirebaseStorage.getInstance().reference
-    private val db = Firebase.firestore
 
     override suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<String>> =
         callbackFlow {
