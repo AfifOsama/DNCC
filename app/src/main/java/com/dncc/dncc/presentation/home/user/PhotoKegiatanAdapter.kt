@@ -10,6 +10,15 @@ import com.dncc.dncc.data.source.local.DataPhotoKegiatan
 
 class PhotoKegiatanAdapter(private val list: ArrayList<DataPhotoKegiatan>) :
     RecyclerView.Adapter<PhotoKegiatanAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallBack
+
+    interface OnItemClickCallBack {
+        fun onItemClicked(data:DataPhotoKegiatan)
+    }
+
+    fun setOnItemClickCallback(onItemClickCallBack: OnItemClickCallBack){
+        this.onItemClickCallback=onItemClickCallBack
+    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var imgView: ImageView = view
@@ -29,9 +38,8 @@ class PhotoKegiatanAdapter(private val list: ArrayList<DataPhotoKegiatan>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val (photo) = list[position]
-
         holder.imgView.setImageResource(photo)
-
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(list[holder.bindingAdapterPosition]) }
     }
 
     override fun getItemCount(): Int {

@@ -1,5 +1,6 @@
 package com.dncc.dncc.presentation.home.user
 
+import android.app.Dialog
 import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Spannable
@@ -8,7 +9,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.constraintlayout.widget.Constraints
 import androidx.core.text.set
 import androidx.core.text.toSpannable
 import androidx.fragment.app.Fragment
@@ -133,11 +138,34 @@ class HomeFragment : Fragment() {
     }
 
     private fun imgKegiatan() {
-        binding.rvImgKegiatan.setHasFixedSize(true)
-        list.addAll(listPhotos)
-        binding.rvImgKegiatan.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvImgKegiatan.adapter = PhotoKegiatanAdapter(list)
+        binding.run {
+            rvImgKegiatan.setHasFixedSize(true)
+            list.addAll(listPhotos)
+            rvImgKegiatan.layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            val photoKegiatanAdapter = PhotoKegiatanAdapter(list)
+            rvImgKegiatan.adapter = photoKegiatanAdapter
+            photoKegiatanAdapter.setOnItemClickCallback(object : PhotoKegiatanAdapter.OnItemClickCallBack{
+                override fun onItemClicked(data: DataPhotoKegiatan) {
+                    showImgFullscreen(data.photo)
+                }
+            })
+        }
+
+    }
+
+    private fun showImgFullscreen(data:Int) {
+        val dialog = Dialog(requireContext())
+        with(dialog){
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setCancelable(true)
+            setContentView(R.layout.preview_img)
+            val imgPreview=findViewById<ImageView>(R.id.img_preview)
+            imgPreview.setBackgroundResource(data)
+            show()
+            window?.setLayout(Constraints.LayoutParams.MATCH_PARENT,680)
+        }
+
     }
 
     private val bold = StyleSpan(Typeface.BOLD)
