@@ -107,6 +107,10 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                         snapshot.forEach {
                             val field = it.toObject(TrainingDto::class.java)
                             dataUsers.add(field)
+                            Log.i(
+                                "TrainingRepositoryImpl",
+                                "getTraining with id ${field.trainingId} success"
+                            )
                         }
                         Resource.Success(dataUsers.map { it.toTrainingEntity() })
                     } else {
@@ -160,7 +164,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         TODO("Not yet implemented")
     }
 
-    override suspend fun uploadFile(
+    suspend fun uploadFile(
         filePath: String,
         trainingName: String
     ): Flow<Resource<Boolean>> = callbackFlow {

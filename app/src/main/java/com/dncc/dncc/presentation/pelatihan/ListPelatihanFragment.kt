@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dncc.dncc.R
+import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentListPelatihanBinding
-import com.dncc.dncc.presentation.profil.ProfilFragmentArgs
+import com.dncc.dncc.domain.entity.user.UserEntity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,9 +27,50 @@ class ListPelatihanFragment : Fragment() {
     private var _binding: FragmentListPelatihanBinding? = null
     private val binding get() = _binding!!
 
-    private val args: ProfilFragmentArgs by navArgs()
+    private val args: ListPelatihanFragmentArgs by navArgs()
     private val viewModel: TrainingViewModel by viewModels()
     private var userId = ""
+
+    private val adapter by lazy {
+        TrainingsAdapter(
+            onClick = {
+                findNavController().navigate(
+                    ListPelatihanFragmentDirections.actionListPelatihanFragmentToDetailPelatihanFragment(
+                        it.trainingId
+                    )
+                )
+            },
+            onDelete = {
+                with(AlertDialog.Builder(activity)) {
+                    setTitle("Peringatan")
+                    setMessage("Yakin ingin menghapus pelatihan divisi ini?")
+                    setPositiveButton("Iya") { _, _ ->
+                        viewModel.deleteTraining(it.trainingId)
+                    }
+                    setNegativeButton("Tidak") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    show()
+                }
+            },
+            onRegister = { trainingEntity, userEntity ->
+                with(AlertDialog.Builder(activity)) {
+                    setTitle("Peringatan")
+                    setMessage("Yakin ingin mendaftar pelatihan ${trainingEntity.trainingName}?")
+                    setPositiveButton("Iya") { _, _ ->
+
+                    }
+                    setNegativeButton("Tidak") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    show()
+                }
+            },
+            toast = {
+                renderToast(it)
+            }
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +85,7 @@ class ListPelatihanFragment : Fragment() {
 
         userId = args.userId ?: ""
         viewModel.getUser(userId)
-//        viewModel.getTraining
+        viewModel.getTrainings()
 
         initiateUI()
         initiateObserver()
@@ -60,34 +103,62 @@ class ListPelatihanFragment : Fragment() {
                     setOnRefreshListener {
                         CoroutineScope(Dispatchers.Main).launch {
                             Log.i("ListPelatihanFragment", "refresh: ")
-//                        viewModel.getUser(userId)
+                            viewModel.getUser(userId)
+                            viewModel.getTrainings()
                             delay(2000)
                             isRefreshing = false
                         }
                     }
                 }
             }
-        }
-    }
 
-    private fun alertDialog() {
-        val dialogBuilder = AlertDialog.Builder(activity)
-        with(dialogBuilder) {
-            setTitle("Peringatan")
-            setMessage("Yakin ingin menghapus pelatihan divisi ini?")
-            setPositiveButton("Iya") { _, _ ->
-                Toast.makeText(activity, "Pelatihan divisi berhasil dihapus", Toast.LENGTH_LONG)
-                    .show()
-            }
-            setNegativeButton("Tidak") { dialog, _ ->
-                dialog.dismiss()
-            }
-            show()
+            showTrainingList()
         }
     }
 
     private fun initiateObserver() {
+        viewModel.getUserResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    adapter.setUser(it.data ?: UserEntity())
+                }
+            }
+        })
 
+        viewModel.getTrainingsResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    adapter.setList(it.data ?: mutableListOf())
+                }
+            }
+        })
+    }
+
+    private fun showTrainingList() {
+        binding.run {
+            rvCardDivisi.setHasFixedSize(true)
+            rvCardDivisi.layoutManager = LinearLayoutManager(requireContext())
+            rvCardDivisi.adapter = adapter
+        }
+    }
+
+    private fun renderToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
 }
