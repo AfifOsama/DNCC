@@ -71,13 +71,12 @@
                     android:id="@+id/edt_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="1"
                     android:enabled="false"
-                    android:textColorHint="@color/black_text"
-                    android:textColor="@color/black_text" />
+                    android:lines="1"
+                    android:textColor="@color/black_text"
+                    android:textColorHint="@color/black_text" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_nama"
@@ -239,6 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/error_red"
                 android:text="@string/batal"
                 app:cornerRadius="10dp"
@@ -252,6 +252,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/success_green"
                 android:text="@string/simpan"
                 app:cornerRadius="10dp"
@@ -259,19 +260,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_layout_role" />
 
-        <ProgressBar
-            android:id="@+id/progress_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/primary_blue"
-            android:indeterminateTintMode="src_atop"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/frameLayout"
-            app:layout_constraintEnd_toEndOf="@id/frameLayout"
-            app:layout_constraintStart_toStartOf="@id/frameLayout"
-            app:layout_constraintTop_toTopOf="@id/frameLayout" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progress"
                 android:layout_width="wrap_content"
@@ -284,6 +272,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progress_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/primary_blue"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/frameLayout"
+                app:layout_constraintEnd_toEndOf="@id/frameLayout"
+                app:layout_constraintStart_toStartOf="@id/frameLayout"
+                app:layout_constraintTop_toTopOf="@id/frameLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
