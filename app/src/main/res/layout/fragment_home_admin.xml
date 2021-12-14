@@ -48,6 +48,17 @@
                         app:riv_border_width="2dp"
                         app:riv_corner_radius="10dp" />
 
+                    <ProgressBar
+                        android:id="@+id/progress_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/primary_blue"
+                        android:indeterminateTintMode="src_atop"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/img_user"
+                        app:layout_constraintEnd_toEndOf="@id/img_user"
+                        app:layout_constraintStart_toStartOf="@id/img_user"
+                        app:layout_constraintTop_toTopOf="@id/img_user" />
 
                     <TextView
                         android:id="@+id/tv_user"
