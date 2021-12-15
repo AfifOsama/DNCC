@@ -9,6 +9,6 @@ import javax.inject.Inject
 class GetMeetUseCase @Inject constructor(
     private val trainingRepository: TrainingRepository
 ) {
-    suspend operator fun invoke(meetId: String): Flow<Resource<MeetEntity>> =
-        trainingRepository.getMeet(meetId)
+    suspend operator fun invoke(trainingId: String, meetId: String): Flow<Resource<MeetEntity>> =
+        trainingRepository.getMeet(trainingId, meetId)
 }

@@ -14,8 +14,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
+import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentListPelatihanBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
+import com.dncc.dncc.presentation.pelatihan.adapter.TrainingsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,13 +32,15 @@ class ListPelatihanFragment : Fragment() {
     private val args: ListPelatihanFragmentArgs by navArgs()
     private val viewModel: TrainingViewModel by viewModels()
     private var userId = ""
+    private var role = ""
 
     private val adapter by lazy {
         TrainingsAdapter(
             onClick = {
                 findNavController().navigate(
                     ListPelatihanFragmentDirections.actionListPelatihanFragmentToDetailPelatihanFragment(
-                        it.trainingId
+                        trainingId = it.trainingId,
+                        role = role
                     )
                 )
             },
@@ -129,6 +133,7 @@ class ListPelatihanFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
                     adapter.setUser(it.data ?: UserEntity())
+                    role = it.data?.role ?: UserRoleEnum.MEMBER.role
                 }
             }
         })
@@ -144,6 +149,21 @@ class ListPelatihanFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
                     adapter.setList(it.data ?: mutableListOf())
+                }
+            }
+        })
+
+        viewModel.deleteTrainingsResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast("Berhasil menghapus pelatihan")
                 }
             }
         })

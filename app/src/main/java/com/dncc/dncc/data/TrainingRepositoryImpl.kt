@@ -3,11 +3,11 @@ package com.dncc.dncc.data
 import android.net.Uri
 import android.util.Log
 import com.dncc.dncc.common.Resource
-import com.dncc.dncc.data.source.remote.model.TrainingDto
-import com.dncc.dncc.data.source.remote.model.toTrainingEntity
+import com.dncc.dncc.data.source.remote.model.*
 import com.dncc.dncc.domain.TrainingRepository
 import com.dncc.dncc.domain.entity.training.MeetEntity
 import com.dncc.dncc.domain.entity.training.TrainingEntity
+import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.utils.checkFirebaseError
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,7 +24,6 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
     private val db = Firebase.firestore
-    private val dbTrainingParticipants = Firebase.firestore.collection("trainingParticipants")
     private val dbTraining = Firebase.firestore.collection("trainings")
     private val storageRef: StorageReference =
         FirebaseStorage.getInstance().reference
@@ -50,7 +49,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                 for (i in 0..9) {
                     Log.i(
                         "TrainingRepositoryImpl",
-                        "addMeet with pertemuan ${i+1}"
+                        "addMeet with pertemuan ${i + 1}"
                     )
                     val randomMeetId = UUID.randomUUID().toString()
                     val meet = hashMapOf(
@@ -59,7 +58,8 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                         "meetId" to randomMeetId,
                         "meetName" to "Pertemuan ${i + 1}"
                     )
-                    dbTraining.document(randomId).collection("meets").document(randomMeetId).set(meet)
+                    dbTraining.document(randomId).collection("meets").document(randomMeetId)
+                        .set(meet)
                 }
             }.addOnSuccessListener {
                 trySend(Resource.Success(true)).isSuccess
@@ -83,7 +83,9 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                 "linkWa" to trainingEntity.linkWa,
                 "mentor" to trainingEntity.mentor,
                 "schedule" to trainingEntity.schedule,
-                "trainingName" to trainingEntity.trainingName
+                "trainingName" to trainingEntity.trainingName,
+                "participantMax" to trainingEntity.participantMax,
+                "desc" to trainingEntity.desc
             )
             val snapshotListener =
                 dbTraining.document(trainingEntity.trainingId).update(data).addOnSuccessListener {
@@ -138,27 +140,97 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
 
     override suspend fun deleteTraining(trainingId: String): Flow<Resource<Boolean>> =
         callbackFlow {
-            val snapshotListener =
+            val snapshotListener = db.runBatch {
+                //delete training
                 dbTraining.document(trainingId).delete()
-                    .addOnSuccessListener {
-                        trySend(Resource.Success(true)).isSuccess
+
+                //delete meets inside training
+                dbTraining.document(trainingId).collection("meets").get().addOnCompleteListener {
+                    for (document in it.result?.documents!!) {
                         Log.i(
                             "TrainingRepositoryImpl",
-                            "deleteTraining with id $trainingId success"
+                            "delete meet success"
                         )
-                    }.addOnFailureListener { error ->
-                        trySend(Resource.Error(error.checkFirebaseError()))
+                        document.reference.delete()
                     }
+                }
+            }.addOnSuccessListener {
+                trySend(Resource.Success(true)).isSuccess
+                Log.i(
+                    "TrainingRepositoryImpl",
+                    "deleteTraining with id $trainingId success"
+                )
+            }.addOnFailureListener { error ->
+                Log.i(
+                    "TrainingRepositoryImpl",
+                    "deleteTraining with id $trainingId failed"
+                )
+                trySend(Resource.Error(error.checkFirebaseError()))
+            }
             awaitClose { snapshotListener.isCanceled() }
         }
 
-    override suspend fun getMeets(trainingId: String): Flow<Resource<List<MeetEntity>>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getParticipants(trainingId: String): Flow<Resource<List<UserEntity>>> =
+        callbackFlow {
+            val snapshotListener = dbTraining.document(trainingId).collection("users")
+                .addSnapshotListener { snapshot, e ->
+                    val response = if (snapshot != null) {
+                        val dataUsers = mutableListOf<UserDto>()
+                        snapshot.forEach {
+                            val field = it.toObject(UserDto::class.java)
+                            dataUsers.add(field)
+                            Log.i(
+                                "TrainingRepositoryImpl",
+                                "getParticipants with id ${field.userId} success"
+                            )
+                        }
+                        Resource.Success(dataUsers.map { it.toUserEntity() })
+                    } else {
+                        Resource.Error(e.checkFirebaseError())
+                    }
+                    trySend(response).isSuccess
+                }
+            awaitClose { snapshotListener.remove() }
+        }
 
-    override suspend fun getMeet(meetId: String): Flow<Resource<MeetEntity>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getMeets(trainingId: String): Flow<Resource<List<MeetEntity>>> =
+        callbackFlow {
+            val snapshotListener = dbTraining.document(trainingId).collection("meets")
+                .addSnapshotListener { snapshot, e ->
+                    val response = if (snapshot != null) {
+                        val dataUsers = mutableListOf<MeetDto>()
+                        snapshot.forEach {
+                            val field = it.toObject(MeetDto::class.java)
+                            dataUsers.add(field)
+                            Log.i(
+                                "TrainingRepositoryImpl",
+                                "getMeets with id ${field.meetId} success"
+                            )
+                        }
+                        Resource.Success(dataUsers.map { it.toMeetEntity() })
+                    } else {
+                        Resource.Error(e.checkFirebaseError())
+                    }
+                    trySend(response).isSuccess
+                }
+            awaitClose { snapshotListener.remove() }
+        }
+
+    override suspend fun getMeet(trainingId: String, meetId: String): Flow<Resource<MeetEntity>> =
+        callbackFlow {
+            val snapshotListener =
+                dbTraining.document(trainingId).collection("meets").document(meetId)
+                    .addSnapshotListener { snapshot, e ->
+                        val response = if (snapshot != null) {
+                            val dataUser = snapshot.toObject(MeetDto::class.java)
+                            Resource.Success(dataUser!!.toMeetEntity())
+                        } else {
+                            Resource.Error(e.checkFirebaseError())
+                        }
+                        trySend(response).isSuccess
+                    }
+            awaitClose { snapshotListener.remove() }
+        }
 
     override suspend fun editMeet(meetEntity: MeetEntity): Flow<Resource<Boolean>> {
         TODO("Not yet implemented")

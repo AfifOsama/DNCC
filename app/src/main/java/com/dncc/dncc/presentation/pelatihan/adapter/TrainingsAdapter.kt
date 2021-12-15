@@ -1,4 +1,4 @@
-package com.dncc.dncc.presentation.pelatihan
+package com.dncc.dncc.presentation.pelatihan.adapter
 
 import android.view.LayoutInflater
 import android.view.View
