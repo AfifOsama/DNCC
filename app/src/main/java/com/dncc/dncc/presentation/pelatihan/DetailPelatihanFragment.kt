@@ -38,6 +38,7 @@ class DetailPelatihanFragment : Fragment() {
     private var trainingId = ""
     private var role = ""
     private var linkWAG = ""
+    private var trainingEntity = TrainingEntity()
 
     private val meetsAdapter by lazy {
         MeetsAdapter(
@@ -116,7 +117,7 @@ class DetailPelatihanFragment : Fragment() {
             }
 
             btnUbah.setOnClickListener {
-                findNavController().navigate(DetailPelatihanFragmentDirections.actionDetailPelatihanFragmentToEditPelatihanFragment())
+                findNavController().navigate(DetailPelatihanFragmentDirections.actionDetailPelatihanFragmentToEditPelatihanFragment(trainingEntity))
             }
 
             if (role == UserRoleEnum.ADMIN.role) {
@@ -140,6 +141,7 @@ class DetailPelatihanFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
+                    trainingEntity = it.data ?: TrainingEntity()
                     setContent(it.data ?: TrainingEntity())
                 }
             }

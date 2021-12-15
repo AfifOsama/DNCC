@@ -83,7 +83,6 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                 "linkWa" to trainingEntity.linkWa,
                 "mentor" to trainingEntity.mentor,
                 "schedule" to trainingEntity.schedule,
-                "trainingName" to trainingEntity.trainingName,
                 "participantMax" to trainingEntity.participantMax,
                 "desc" to trainingEntity.desc
             )

@@ -193,7 +193,11 @@
         android:id="@+id/editPelatihanFragment"
         android:name="com.dncc.dncc.presentation.pelatihan.admin.EditPelatihanFragment"
         android:label="fragment_edit_pelatihan"
-        tools:layout="@layout/fragment_edit_pelatihan" />
+        tools:layout="@layout/fragment_edit_pelatihan" >
+        <argument
+            android:name="trainingEntity"
+            app:argType="com.dncc.dncc.domain.entity.training.TrainingEntity" />
+    </fragment>
     <fragment
         android:id="@+id/homeMentorFragment"
         android:name="com.dncc.dncc.presentation.home.mentor.HomeMentorFragment"
