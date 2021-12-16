@@ -48,6 +48,11 @@ class TrainingsAdapter(
                     btnDaftar.visibility = View.VISIBLE
                 }
 
+                if (userEntity.trainingId == trainingEntity.trainingId) {
+                    btnDaftar.isEnabled = false
+                    btnDaftar.text = "Terdaftar"
+                }
+
                 itemView.setOnClickListener {
                     //check if user is registered in this training, if yes invoke, if no show toast
                     if (userEntity.trainingId == trainingEntity.trainingId || userEntity.role == UserRoleEnum.ADMIN.role) {

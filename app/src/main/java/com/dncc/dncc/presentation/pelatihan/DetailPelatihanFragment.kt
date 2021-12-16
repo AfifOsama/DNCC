@@ -175,6 +175,7 @@ class DetailPelatihanFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
                     usersAdapater.setList(it.data ?: mutableListOf())
+                    binding.tvNumberAnggota.text = it.data?.size.toString()
                 }
             }
         })
