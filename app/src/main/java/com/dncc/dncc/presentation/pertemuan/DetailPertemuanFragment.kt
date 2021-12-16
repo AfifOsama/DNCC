@@ -6,17 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentDetailPertemuanBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailPertemuanFragment : Fragment() {
+
     private var _binding: FragmentDetailPertemuanBinding? = null
     private val binding get() = _binding!!
+
+//    private val viewModel by viewModels<>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,16 +42,6 @@ class DetailPertemuanFragment : Fragment() {
         binding.run {
             btnUbah.setOnClickListener {
                 findNavController().navigate(R.id.action_detailPertemuanFragment_to_editPertemuanFragment)
-            }
-            refresh.run {
-                setOnRefreshListener {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        Log.i("DetailPertemuanFragment", "refresh: ")
-//                        viewModel.getUser(userId)
-                        delay(2000)
-                        isRefreshing = false
-                    }
-                }
             }
         }
     }

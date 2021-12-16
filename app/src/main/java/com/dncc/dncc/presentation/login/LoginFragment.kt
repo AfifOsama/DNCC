@@ -20,6 +20,7 @@ import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentLoginBinding
+import com.dncc.dncc.domain.entity.user.UserEntity
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +33,7 @@ class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
     private val userId by lazy { auth.currentUser?.uid ?: "" }
+    private var userEntity = UserEntity()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,14 +68,29 @@ class LoginFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    viewModel.saveLoginState(true)
+                    viewModel.getUser(userId)
                 }
             }
         })
 
         viewModel.loginState.observe(viewLifecycleOwner, {
             if (it) {
-                viewModel.getUser(userId)
+                val userRole = userEntity.role
+                Log.i("LoginFragment", "initiateObserver: $userRole")
+                when (userRole) {
+                    UserRoleEnum.VISITOR.role -> findNavController().navigate(
+                        LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                    )
+                    UserRoleEnum.MEMBER.role -> findNavController().navigate(
+                        LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                    )
+                    UserRoleEnum.MENTOR.role -> findNavController().navigate(
+                        LoginFragmentDirections.actionLoginFragmentToHomeMentorFragment()
+                    )
+                    UserRoleEnum.ADMIN.role -> findNavController().navigate(
+                        LoginFragmentDirections.actionLoginFragmentToHomeAdminFragment()
+                    )
+                }
             }
         })
 
@@ -84,27 +101,12 @@ class LoginFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     binding.progress.visibility = View.GONE
-                    renderToast(it.message ?: "Maaf coba lagi")
+                    renderToast("Maaf coba lagi")
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    val userRole = it.data?.role ?: UserRoleEnum.VISITOR.role
-                    Log.i("LoginFragment", "initiateObserver: ${it.data?.fullName} $userRole")
-                    when (userRole) {
-                        UserRoleEnum.VISITOR.role -> findNavController().navigate(
-                            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                        )
-                        UserRoleEnum.MEMBER.role -> findNavController().navigate(
-                            LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                        )
-                        UserRoleEnum.MENTOR.role -> findNavController().navigate(
-                            LoginFragmentDirections.actionLoginFragmentToHomeMentorFragment()
-                        )
-                        UserRoleEnum.ADMIN.role -> findNavController().navigate(
-                            LoginFragmentDirections.actionLoginFragmentToHomeAdminFragment()
-                        )
-                    }
-
+                    viewModel.saveLoginState(true)
+                    userEntity = it.data ?: UserEntity()
                 }
             }
         })
