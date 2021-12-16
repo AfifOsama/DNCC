@@ -39,6 +39,10 @@ class UsersAdapter(
 
                 tvNamaUser.text = userEntity.fullName
                 tvNimUser.text = userEntity.nim
+
+                itemView.setOnClickListener {
+                    onClick.invoke(userEntity)
+                }
             }
         }
     }

@@ -24,6 +24,10 @@ class MeetsAdapter(
             binding.apply {
                 tvPertemuanKe.text = meetEntity.meetName
                 tvMeetDesc.text = meetEntity.description
+
+                itemView.setOnClickListener {
+                    onClick.invoke(meetEntity)
+                }
             }
         }
     }
