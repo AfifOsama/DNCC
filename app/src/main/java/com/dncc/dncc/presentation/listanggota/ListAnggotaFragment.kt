@@ -3,9 +3,11 @@ package com.dncc.dncc.presentation.listanggota
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -30,10 +32,18 @@ class ListAnggotaFragment : Fragment() {
     private val adapter by lazy {
         UserListAdapter(
             onClick = {
-                findNavController().navigate(ListAnggotaFragmentDirections.actionListAnggotaFragmentToProfilAnggotaFragment(it.userId))
+                findNavController().navigate(
+                    ListAnggotaFragmentDirections.actionListAnggotaFragmentToProfilAnggotaFragment(
+                        it.userId
+                    )
+                )
             },
             onEditClick = {
-                findNavController().navigate(ListAnggotaFragmentDirections.actionListAnggotaFragmentToEditProfilAnggotaFragment(it))
+                findNavController().navigate(
+                    ListAnggotaFragmentDirections.actionListAnggotaFragmentToEditProfilAnggotaFragment(
+                        it
+                    )
+                )
             }
         )
     }
@@ -60,6 +70,10 @@ class ListAnggotaFragment : Fragment() {
                 findNavController().popBackStack()
             }
 
+            btnFilter.setOnClickListener { view: View ->
+                showPopupMenu(view, R.menu.filter_popup_menu)
+            }
+
             refresh.run {
                 setOnRefreshListener {
                     CoroutineScope(Dispatchers.Main).launch {
@@ -73,6 +87,36 @@ class ListAnggotaFragment : Fragment() {
 
             showUserList()
         }
+    }
+
+    private fun showPopupMenu(view: View, filterPopupMenu: Int) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        popupMenu.apply {
+            menuInflater.inflate(filterPopupMenu, popupMenu.menu)
+            setOnMenuItemClickListener { item: MenuItem? ->
+                when (item?.itemId) {
+                    R.id.visitor -> {
+                        renderToast("Menampilkan anggota bedasarkan role visitor")
+                    }
+                    R.id.member -> {
+                        renderToast("Menampilkan anggota bedasarkan role member")
+                    }
+                    R.id.mentor -> {
+                        renderToast("Menampilkan anggota bedasarkan role mentor")
+                    }
+                    R.id.admin -> {
+                        renderToast("Menampilkan anggota bedasarkan role admin")
+                    }
+                }
+                true
+            }
+
+            setOnDismissListener {
+                it.dismiss()
+            }
+            show()
+        }
+
     }
 
     private fun initiateObserver() {
