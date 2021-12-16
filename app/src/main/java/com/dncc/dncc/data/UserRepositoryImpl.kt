@@ -108,7 +108,6 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
             .addSnapshotListener { snapshot, e ->
                 val response = if (snapshot != null) {
                     val dataUser = snapshot.toObject(UserDto::class.java)
-                    Log.i("UserRepositoryImpl", "get user ${dataUser?.fullName}")
                     Resource.Success(dataUser?.toUserEntity() ?: UserEntity())
                 } else {
                     Resource.Error(e.checkFirebaseError())
