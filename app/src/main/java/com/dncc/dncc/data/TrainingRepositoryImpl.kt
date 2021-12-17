@@ -53,10 +53,11 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                     )
                     val randomMeetId = UUID.randomUUID().toString()
                     val meet = hashMapOf(
-                        "description" to "deskripsi pelatihan",
-                        "fileUrl" to "",
+                        "description" to "deskripsi pertemuan",
+                        "filePath" to "",
                         "meetId" to randomMeetId,
-                        "meetName" to "Pertemuan ${i + 1}"
+                        "meetName" to "Pertemuan x",
+                        "trainingId" to randomId
                     )
                     dbTraining.document(randomId).collection("meets").document(randomMeetId)
                         .set(meet)
@@ -231,24 +232,38 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
             awaitClose { snapshotListener.remove() }
         }
 
-    override suspend fun editMeet(meetEntity: MeetEntity): Flow<Resource<Boolean>> {
-        TODO("Not yet implemented")
-    }
-
-    suspend fun uploadFile(
+    override suspend fun editMeet(
+        meetEntity: MeetEntity,
         filePath: String,
         trainingName: String
     ): Flow<Resource<Boolean>> = callbackFlow {
-        val file = Uri.fromFile(File(filePath))
-        val childStorageRef = storageRef.child(trainingName).child("asdasd")
-        val uploadTask = childStorageRef.putFile(file)
-        val snapshotListener = uploadTask.addOnCompleteListener {
-            if (it.isSuccessful) {
-                Log.i("TrainingRepositoryImpl", "uploadImage: success")
-                trySend(Resource.Success(true)).isSuccess
-            } else {
-                trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
+        val snapshotListener = db.runBatch {
+            val data = mapOf(
+                "description" to meetEntity.description,
+                "filePath" to meetEntity.filePath,
+                "meetName" to meetEntity.meetName
+            )
+            dbTraining.document(meetEntity.trainingId).collection("meets")
+                .document(meetEntity.meetId).update(data)
+
+            //upload file
+            if (meetEntity.filePath != "") {
+                val file = Uri.fromFile(File(filePath))
+                val childStorageRef = storageRef.child(trainingName).child(meetEntity.filePath)
+                childStorageRef.putFile(file)
             }
+        }.addOnSuccessListener {
+            trySend(Resource.Success(true)).isSuccess
+            Log.i(
+                "TrainingRepositoryImpl",
+                "editMeet with id ${meetEntity.meetId} success"
+            )
+        }.addOnFailureListener { error ->
+            Log.i(
+                "TrainingRepositoryImpl",
+                "editMeet with id ${meetEntity.meetId} failed"
+            )
+            trySend(Resource.Error(error.checkFirebaseError()))
         }
         awaitClose { snapshotListener.isCanceled() }
     }

@@ -102,6 +102,22 @@
         <action
             android:id="@+id/action_detailPertemuanFragment_to_editPertemuanFragment"
             app:destination="@id/editPertemuanFragment" />
+        <argument
+            android:name="meetId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="trainingId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="role"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="trainingName"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/profilFragment"
@@ -214,5 +230,13 @@
         android:id="@+id/editPertemuanFragment"
         android:name="com.dncc.dncc.presentation.pertemuan.EditPertemuanFragment"
         android:label="fragment_edit_pertemuan"
-        tools:layout="@layout/fragment_edit_pertemuan" />
+        tools:layout="@layout/fragment_edit_pertemuan" >
+        <argument
+            android:name="meetEntity"
+            app:argType="com.dncc.dncc.domain.entity.training.MeetEntity" />
+        <argument
+            android:name="trainingName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

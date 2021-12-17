@@ -9,6 +9,6 @@ import javax.inject.Inject
 class EditMeetUseCase @Inject constructor(
     private val trainingRepository: TrainingRepository
 ) {
-    suspend operator fun invoke(meetEntity: MeetEntity): Flow<Resource<Boolean>> =
-        trainingRepository.editMeet(meetEntity)
+    suspend operator fun invoke(meetEntity: MeetEntity, filePath: String, trainingName: String): Flow<Resource<Boolean>> =
+        trainingRepository.editMeet(meetEntity, filePath, trainingName)
 }

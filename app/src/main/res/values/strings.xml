@@ -132,4 +132,8 @@
     <string name="kegiatan_dncc">Kegiatan DNCC</string>
     <string name="detail_pelatihan_divisi">Detail Pelatihan Divisi</string>
     <string name="edit_pelatihan">Edit Pelatihan</string>
+    <string name="detail_pertemuan">Detail Pertemuan</string>
+    <string name="belum_ada_file_diupload">Belum ada file diupload</string>
+    <string name="ubah_pertemuan">Ubah Pertemuan</string>
+    <string name="deskripsi_pertemuan">Deskripsi Pertemuan</string>
 </resources>

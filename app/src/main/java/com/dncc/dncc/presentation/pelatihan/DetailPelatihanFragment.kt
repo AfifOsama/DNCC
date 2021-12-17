@@ -36,14 +36,16 @@ class DetailPelatihanFragment : Fragment() {
     private val args: DetailPelatihanFragmentArgs by navArgs()
     private val viewModel: TrainingViewModel by viewModels()
     private var trainingId = ""
-    private var role = ""
+    private var role = UserRoleEnum.MEMBER.role
     private var linkWAG = ""
     private var trainingEntity = TrainingEntity()
 
     private val meetsAdapter by lazy {
         MeetsAdapter(
             onClick = {
-                findNavController().navigate(DetailPelatihanFragmentDirections.actionDetailPelatihanFragmentToDetailPertemuanFragment())
+                findNavController().navigate(DetailPelatihanFragmentDirections.actionDetailPelatihanFragmentToDetailPertemuanFragment(
+                    it.meetId, trainingId, role, trainingEntity.trainingName
+                ))
             }
         )
     }
