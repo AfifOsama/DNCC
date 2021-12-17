@@ -127,6 +127,7 @@
     <string name="nama_mentor_hint">Nama Mentor</string>
     <string name="upload_materi">Upload Materi</string>
     <string name="profil_anda">Profil Anda</string>
+    <string name="profil">Profil %1$s</string>
     <string name="profil_anggota">Profil Anggota</string>
     <string name="edit_profil_anggota">Edit Profil Anggota</string>
     <string name="kegiatan_dncc">Kegiatan DNCC</string>

@@ -16,6 +16,7 @@ import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentProfilBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +31,9 @@ class ProfilFragment : Fragment() {
 
     private var userEntity: UserEntity = UserEntity()
 
+    private lateinit var auth: FirebaseAuth
+    private val currentUser by lazy { auth.currentUser?.uid ?: "" }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,13 +44,11 @@ class ProfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        auth = FirebaseAuth.getInstance()
         val userId = args.userId ?: ""
         viewModel.getUser(userId)
 
         initiateObserver()
-
-        binding.toolbar.actionBarTitle.text = getString(R.string.profil_anda)
 
         binding.toolbar.btnBack.setOnClickListener {
             findNavController().popBackStack()
@@ -55,7 +57,14 @@ class ProfilFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             logoutWithAlertDialog()
         }
-
+        if (args.userId == currentUser) {
+            binding.btnUbah.visibility = View.VISIBLE
+            binding.btnLogout.visibility = View.VISIBLE
+            binding.toolbar.actionBarTitle.text = getString(R.string.profil_anda)
+        } else {
+            binding.btnUbah.visibility = View.GONE
+            binding.btnLogout.visibility = View.GONE
+        }
         binding.btnUbah.setOnClickListener {
             findNavController().navigate(
                 ProfilFragmentDirections.actionProfilFragmentToEditProfilFragment(
@@ -97,6 +106,9 @@ class ProfilFragment : Fragment() {
                     .into(imgUser)
             }.addOnFailureListener {
                 it.message?.let { error -> Log.i("ProfilFragment", "error image $error") }
+            }
+            if (args.userId != currentUser) {
+                toolbar.actionBarTitle.text = getString(R.string.profil, userEntity.fullName)
             }
 
             edtEmail.setText(userEntity.email)
