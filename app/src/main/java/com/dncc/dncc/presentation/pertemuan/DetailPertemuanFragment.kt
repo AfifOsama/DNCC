@@ -98,8 +98,8 @@ class DetailPertemuanFragment : Fragment() {
             tvPertemuanKe.text = "Detail ${meetEntity.meetName}"
             tvDescription.text = meetEntity.description
 
-            if (meetEntity.filePath != "") {
-                tvFileName.text = meetEntity.filePath
+            if (meetEntity.fileName != "") {
+                tvFileName.text = meetEntity.fileName
                 btnDownload.visibility = View.VISIBLE
             } else {
                 tvFileName.text = getString(R.string.belum_ada_file_diupload)

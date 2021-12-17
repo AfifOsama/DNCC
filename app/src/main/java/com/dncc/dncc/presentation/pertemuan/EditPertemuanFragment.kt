@@ -5,7 +5,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,7 +37,6 @@ class EditPertemuanFragment : Fragment() {
     private var meetEntity = MeetEntity()
     private var trainingName = ""
 
-    private var fileReport: Uri? = null
     private var filePath: String = ""
     private var fileName: String = ""
 
@@ -69,8 +67,8 @@ class EditPertemuanFragment : Fragment() {
             edtNamaPertemuan.setText(meetEntity.meetName)
             edtDesc.setText(meetEntity.description)
 
-            if (meetEntity.filePath != "") {
-                tvUploadFile.text = meetEntity.filePath
+            if (meetEntity.fileName != "") {
+                tvUploadFile.text = meetEntity.fileName
             }
 
             btnSimpan.setOnClickListener {
@@ -113,7 +111,7 @@ class EditPertemuanFragment : Fragment() {
                         trainingId = meetEntity.trainingId,
                         meetId = meetEntity.meetId,
                         description = binding.edtDesc.text.toString(),
-                        filePath = fileName,
+                        fileName = fileName,
                         meetName = binding.edtNamaPertemuan.text.toString()
                     ),
                     filePath = filePath,
@@ -155,11 +153,11 @@ class EditPertemuanFragment : Fragment() {
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
-                fileReport = it?.data?.data
+                val fileReport = it?.data?.data
                 if (fileReport != null) {
-                    fileName = fileReport?.lastPathSegment ?: ""
+                    fileName = fileReport.lastPathSegment ?: ""
                     binding.tvUploadFile.text = fileName
-                    filePath = it?.data?.data?.getRealPathFromURI(requireContext()) ?: ""
+                    filePath = it.data?.data?.getRealPathFromURI(requireContext()) ?: ""
                 } else {
                     renderToast("Tidak ada gambar diambil")
                 }

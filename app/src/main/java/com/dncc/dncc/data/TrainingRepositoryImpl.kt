@@ -54,7 +54,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                     val randomMeetId = UUID.randomUUID().toString()
                     val meet = hashMapOf(
                         "description" to "deskripsi pertemuan",
-                        "filePath" to "",
+                        "fileName" to "",
                         "meetId" to randomMeetId,
                         "meetName" to "Pertemuan x",
                         "trainingId" to randomId
@@ -240,16 +240,16 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         val snapshotListener = db.runBatch {
             val data = mapOf(
                 "description" to meetEntity.description,
-                "filePath" to meetEntity.filePath,
+                "fileName" to meetEntity.fileName,
                 "meetName" to meetEntity.meetName
             )
             dbTraining.document(meetEntity.trainingId).collection("meets")
                 .document(meetEntity.meetId).update(data)
 
             //upload file
-            if (meetEntity.filePath != "") {
+            if (meetEntity.fileName != "") {
                 val file = Uri.fromFile(File(filePath))
-                val childStorageRef = storageRef.child(trainingName).child(meetEntity.filePath)
+                val childStorageRef = storageRef.child(trainingName).child(meetEntity.fileName)
                 childStorageRef.putFile(file)
             }
         }.addOnSuccessListener {
