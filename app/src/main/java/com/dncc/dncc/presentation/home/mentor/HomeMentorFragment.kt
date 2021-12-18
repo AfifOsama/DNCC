@@ -52,7 +52,7 @@ class HomeMentorFragment : Fragment() {
         MeetsAdapter(
             onClick = {
                 findNavController().navigate(
-                    DetailPelatihanFragmentDirections.actionDetailPelatihanFragmentToDetailPertemuanFragment(
+                    HomeMentorFragmentDirections.actionHomeMentorFragmentToDetailPertemuanFragment(
                     it.meetId, trainingId, UserRoleEnum.MENTOR.role, trainingName
                 ))
             }
@@ -63,7 +63,7 @@ class HomeMentorFragment : Fragment() {
         UsersAdapter(
             onClick = {
                 findNavController().navigate(
-                    DetailPelatihanFragmentDirections.actionDetailPelatihanFragmentToProfilFragment(
+                    HomeMentorFragmentDirections.actionHomeMentorFragmentToProfilFragment(
                         it.userId
                     )
                 )
@@ -258,7 +258,8 @@ class HomeMentorFragment : Fragment() {
         try {
             startActivity(likeIng)
         } catch (e: ActivityNotFoundException) {
-            startActivity(Intent(Intent.ACTION_VIEW, uri))
+            Log.e("HomeMentorFragment", "intentApp: ${e.message}")
+            renderToast("Link WAG belum dibuat atau salah")
         }
     }
 

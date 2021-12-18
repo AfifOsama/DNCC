@@ -218,7 +218,8 @@ class DetailPelatihanFragment : Fragment() {
         try {
             startActivity(likeIng)
         } catch (e: ActivityNotFoundException) {
-            startActivity(Intent(Intent.ACTION_VIEW, uri))
+            Log.e("DetailPelatihanFragment", "intentApp: ${e.message}")
+            renderToast("Link WAG belum dibuat atau salah")
         }
     }
 
