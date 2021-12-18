@@ -23,27 +23,96 @@ class ListUserViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        getUsers(UserRoleEnum.MEMBER)
+        getUsersByVisitor(UserRoleEnum.VISITOR)
+        getUsersByMember(UserRoleEnum.MEMBER)
+        getUsersByMentor(UserRoleEnum.MENTOR)
+        getUsersByAdmin(UserRoleEnum.ADMIN)
     }
 
-    private val _getUsersResponse = MutableLiveData<Resource<List<UserEntity>>>()
-    val getUsersResponse: LiveData<Resource<List<UserEntity>>> = _getUsersResponse
+    private val _getUsersVisitorResponse = MutableLiveData<Resource<List<UserEntity>>>()
+    val getUsersVisitorResponse: LiveData<Resource<List<UserEntity>>> = _getUsersVisitorResponse
 
-    fun getUsers(filter: UserRoleEnum) {
+    private val _getUsersMemberResponse = MutableLiveData<Resource<List<UserEntity>>>()
+    val getUsersMemberResponse: LiveData<Resource<List<UserEntity>>> = _getUsersMemberResponse
+
+    private val _getUsersMentorResponse = MutableLiveData<Resource<List<UserEntity>>>()
+    val getUsersMentorResponse: LiveData<Resource<List<UserEntity>>> = _getUsersMentorResponse
+
+    private val _getUsersAdminResponse = MutableLiveData<Resource<List<UserEntity>>>()
+    val getUsersAdminResponse: LiveData<Resource<List<UserEntity>>> = _getUsersAdminResponse
+
+    fun getUsersByVisitor(filter: UserRoleEnum) {
         viewModelScope.launch(Dispatchers.IO) {
             getUsersUseCase()
                 .onStart {
-                    _getUsersResponse.postValue(Resource.Loading())
+                    _getUsersVisitorResponse.postValue(Resource.Loading())
                 }
                 .catch { e ->
                     Log.i("ListUserViewModel", e.toString())
-                    _getUsersResponse.postValue(Resource.Error("${e.message}"))
+                    _getUsersVisitorResponse.postValue(Resource.Error("${e.message}"))
                 }
                 .collect {
                     val list: List<UserEntity> = it.data?.filter { user ->
                         user.role == filter.role
                     } ?: mutableListOf()
-                    _getUsersResponse.postValue(Resource.Success(data = list))
+                    _getUsersVisitorResponse.postValue(Resource.Success(data = list))
+                }
+        }
+    }
+
+    fun getUsersByMember(filter: UserRoleEnum) {
+        viewModelScope.launch(Dispatchers.IO) {
+            getUsersUseCase()
+                .onStart {
+                    _getUsersMemberResponse.postValue(Resource.Loading())
+                }
+                .catch { e ->
+                    Log.i("ListUserViewModel", e.toString())
+                    _getUsersMemberResponse.postValue(Resource.Error("${e.message}"))
+                }
+                .collect {
+                    val list: List<UserEntity> = it.data?.filter { user ->
+                        user.role == filter.role
+                    } ?: mutableListOf()
+                    _getUsersMemberResponse.postValue(Resource.Success(data = list))
+                }
+        }
+    }
+
+    fun getUsersByMentor(filter: UserRoleEnum) {
+        viewModelScope.launch(Dispatchers.IO) {
+            getUsersUseCase()
+                .onStart {
+                    _getUsersMentorResponse.postValue(Resource.Loading())
+                }
+                .catch { e ->
+                    Log.i("ListUserViewModel", e.toString())
+                    _getUsersMentorResponse.postValue(Resource.Error("${e.message}"))
+                }
+                .collect {
+                    val list: List<UserEntity> = it.data?.filter { user ->
+                        user.role == filter.role
+                    } ?: mutableListOf()
+                    _getUsersMentorResponse.postValue(Resource.Success(data = list))
+                }
+        }
+    }
+
+    fun getUsersByAdmin(filter: UserRoleEnum) {
+        viewModelScope.launch(Dispatchers.IO) {
+            getUsersUseCase()
+                .onStart {
+                    _getUsersAdminResponse.postValue(Resource.Loading())
+                }
+                .catch { e ->
+                    Log.i("ListUserViewModel", e.toString())
+                    _getUsersAdminResponse.postValue(Resource.Error("${e.message}"))
+                }
+                .collect {
+                    val list: List<UserEntity> = it.data?.filter { user ->
+                        user.role == filter.role
+                    } ?: mutableListOf()
+                    _getUsersAdminResponse.postValue(Resource.Success(data = list))
                 }
         }
     }
