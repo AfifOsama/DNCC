@@ -233,25 +233,17 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         }
 
     override suspend fun editMeet(
-        meetEntity: MeetEntity,
-        filePath: String,
-        trainingName: String
+        meetEntity: MeetEntity
     ): Flow<Resource<Boolean>> = callbackFlow {
         val snapshotListener = db.runBatch {
             val data = mapOf(
                 "description" to meetEntity.description,
-                "fileName" to meetEntity.fileName,
-                "meetName" to meetEntity.meetName
+                "fileName" to meetEntity.fileDownloadLink,
+                "meetName" to meetEntity.meetName,
+                "fileDownloadLink" to meetEntity.fileDownloadLink
             )
             dbTraining.document(meetEntity.trainingId).collection("meets")
                 .document(meetEntity.meetId).update(data)
-
-            //upload file
-            if (meetEntity.fileName != "") {
-                val file = Uri.fromFile(File(filePath))
-                val childStorageRef = storageRef.child(trainingName).child(meetEntity.fileName)
-                childStorageRef.putFile(file)
-            }
         }.addOnSuccessListener {
             trySend(Resource.Success(true)).isSuccess
             Log.i(

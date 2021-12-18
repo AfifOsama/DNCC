@@ -45,9 +45,9 @@ class MeetViewModel @Inject constructor(
         }
     }
 
-    fun editMeet(meetEntity: MeetEntity, filePath: String, trainingName: String) {
+    fun editMeet(meetEntity: MeetEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            editMeetUseCase(meetEntity, filePath, trainingName)
+            editMeetUseCase(meetEntity)
                 .onStart {
                     _editMeetResponse.postValue(Resource.Loading())
                 }

@@ -114,10 +114,6 @@
             android:name="role"
             app:argType="string"
             app:nullable="true" />
-        <argument
-            android:name="trainingName"
-            app:argType="string"
-            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/profilFragment"
@@ -237,9 +233,5 @@
         <argument
             android:name="meetEntity"
             app:argType="com.dncc.dncc.domain.entity.training.MeetEntity" />
-        <argument
-            android:name="trainingName"
-            app:argType="string"
-            app:nullable="true" />
     </fragment>
 </navigation>

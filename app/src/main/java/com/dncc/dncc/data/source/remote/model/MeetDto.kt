@@ -6,7 +6,7 @@ data class MeetDto(
     val trainingId: String = "",
     val meetId: String = "",
     val description: String = "",
-    val fileName: String = "",
+    val fileDownloadLink: String = "",
     val meetName: String = ""
 )
 
@@ -15,7 +15,7 @@ fun MeetDto.toMeetEntity(): MeetEntity {
         trainingId = trainingId,
         meetId = meetId,
         description = description,
-        fileName = fileName,
+        fileDownloadLink = fileDownloadLink,
         meetName = meetName
     )
 }

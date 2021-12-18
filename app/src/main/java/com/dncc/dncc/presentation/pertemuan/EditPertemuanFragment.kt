@@ -1,19 +1,11 @@
 package com.dncc.dncc.presentation.pertemuan
 
-import android.Manifest
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -22,7 +14,6 @@ import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentEditPertemuanBinding
 import com.dncc.dncc.domain.entity.training.MeetEntity
-import com.dncc.dncc.utils.getRealPathFromURI
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,10 +26,6 @@ class EditPertemuanFragment : Fragment() {
     private val viewModel by viewModels<MeetViewModel>()
 
     private var meetEntity = MeetEntity()
-    private var trainingName = ""
-
-    private var filePath: String = ""
-    private var fileName: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +39,6 @@ class EditPertemuanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         meetEntity = args.meetEntity
-        trainingName = args.trainingName ?: ""
         initiateUI()
         initiateObserver()
     }
@@ -67,16 +53,8 @@ class EditPertemuanFragment : Fragment() {
             edtNamaPertemuan.setText(meetEntity.meetName)
             edtDesc.setText(meetEntity.description)
 
-            if (meetEntity.fileName != "") {
-                tvUploadFile.text = meetEntity.fileName
-            }
-
             btnSimpan.setOnClickListener {
                 alertDialog()
-            }
-
-            tvUploadFile.setOnClickListener {
-                getFile()
             }
         }
     }
@@ -111,11 +89,9 @@ class EditPertemuanFragment : Fragment() {
                         trainingId = meetEntity.trainingId,
                         meetId = meetEntity.meetId,
                         description = binding.edtDesc.text.toString(),
-                        fileName = fileName,
+//                        fileDownloadLink = binding.edtFileDownloadLink.text.toString(),
                         meetName = binding.edtNamaPertemuan.text.toString()
                     ),
-                    filePath = filePath,
-                    trainingName = trainingName
                 )
             }
             setNegativeButton("Tidak") { dialog, _ ->
@@ -124,47 +100,6 @@ class EditPertemuanFragment : Fragment() {
             show()
         }
     }
-
-    private fun getFile() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_DENIED
-            ) {
-                val permission =
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                ActivityCompat.requestPermissions(requireActivity(), permission, 200)
-            } else {
-                openFile()
-            }
-        } else {
-            openFile()
-        }
-    }
-
-    private fun openFile() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "*/*"
-        resultLauncher.launch(intent, null)
-    }
-
-    //minimum req appcompat:1.3.1
-    private var resultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
-                val fileReport = it?.data?.data
-                if (fileReport != null) {
-                    fileName = fileReport.lastPathSegment ?: ""
-                    binding.tvUploadFile.text = fileName
-                    filePath = it.data?.data?.getRealPathFromURI(requireContext()) ?: ""
-                } else {
-                    renderToast("Tidak ada gambar diambil")
-                }
-            } else {
-                renderToast("Terjadi kesalahan mohon pilih gambar lagi")
-            }
-        }
 
     private fun renderToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

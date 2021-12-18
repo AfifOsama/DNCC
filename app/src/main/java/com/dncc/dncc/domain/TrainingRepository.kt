@@ -15,9 +15,5 @@ interface TrainingRepository {
     suspend fun getParticipants(trainingId: String): Flow<Resource<List<UserEntity>>>
     suspend fun getMeets(trainingId: String): Flow<Resource<List<MeetEntity>>>
     suspend fun getMeet(trainingId: String, meetId: String): Flow<Resource<MeetEntity>>
-    suspend fun editMeet(
-        meetEntity: MeetEntity,
-        filePath: String,
-        trainingName: String
-    ): Flow<Resource<Boolean>>
+    suspend fun editMeet(meetEntity: MeetEntity): Flow<Resource<Boolean>>
 }

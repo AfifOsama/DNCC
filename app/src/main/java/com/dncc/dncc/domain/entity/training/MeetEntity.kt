@@ -8,6 +8,6 @@ data class MeetEntity(
     val trainingId: String = "",
     val meetId: String = "",
     val description: String = "",
-    val fileName: String = "",
+    val fileDownloadLink: String = "",
     val meetName: String = ""
 ): Parcelable
