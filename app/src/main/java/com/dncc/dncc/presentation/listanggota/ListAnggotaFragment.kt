@@ -58,9 +58,8 @@ class ListAnggotaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initiateUI()
-        initiateObserver()
+        initiateObserverMember()
     }
 
     private fun initiateUI() {
@@ -78,7 +77,7 @@ class ListAnggotaFragment : Fragment() {
                 setOnRefreshListener {
                     CoroutineScope(Dispatchers.Main).launch {
                         Log.i("ListAnggotaFragment", "refresh: ")
-                        viewModel.getUsers(UserRoleEnum.MEMBER)
+                        viewModel.getUsersByMember(UserRoleEnum.MEMBER)
                         delay(2000)
                         isRefreshing = false
                     }
@@ -96,15 +95,19 @@ class ListAnggotaFragment : Fragment() {
             setOnMenuItemClickListener { item: MenuItem? ->
                 when (item?.itemId) {
                     R.id.visitor -> {
+                        initiateObserverVisitor()
                         renderToast("Menampilkan anggota bedasarkan role visitor")
                     }
                     R.id.member -> {
+                        initiateObserverMember()
                         renderToast("Menampilkan anggota bedasarkan role member")
                     }
                     R.id.mentor -> {
+                        initiateObserverMentor()
                         renderToast("Menampilkan anggota bedasarkan role mentor")
                     }
                     R.id.admin -> {
+                        initiateObserverAdmin()
                         renderToast("Menampilkan anggota bedasarkan role admin")
                     }
                 }
@@ -119,8 +122,62 @@ class ListAnggotaFragment : Fragment() {
 
     }
 
-    private fun initiateObserver() {
-        viewModel.getUsersResponse.observe(viewLifecycleOwner, {
+    private fun initiateObserverVisitor() {
+        viewModel.getUsersVisitorResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    adapter.setList(it.data ?: mutableListOf())
+                }
+            }
+        })
+    }
+
+    private fun initiateObserverMember() {
+        viewModel.getUsersMemberResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    adapter.setList(it.data ?: mutableListOf())
+                }
+            }
+        })
+    }
+
+    private fun initiateObserverMentor() {
+        viewModel.getUsersMentorResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    adapter.setList(it.data ?: mutableListOf())
+                }
+            }
+        })
+    }
+
+    private fun initiateObserverAdmin() {
+        viewModel.getUsersAdminResponse.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
                     binding.progress.visibility = View.VISIBLE
