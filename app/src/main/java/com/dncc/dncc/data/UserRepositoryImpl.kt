@@ -31,6 +31,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
     private val dbUsers = Firebase.firestore.collection("users")
     private val imagesRef: StorageReference =
         FirebaseStorage.getInstance().reference.child("images")
+    private val dbTraining = Firebase.firestore.collection("trainings")
 
     override suspend fun register(registerEntity: RegisterEntity): Flow<Resource<Boolean>> =
         callbackFlow {
@@ -177,9 +178,42 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
             awaitClose { snapshotListener.isCanceled() }
         }
 
-    override suspend fun registerTraining(trainingId: String): Flow<Resource<Boolean>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun registerTraining(trainingId: String): Flow<Resource<Boolean>> =
+        callbackFlow {
+//            val snapshotListener = db.runBatch {
+//                val userEntity = editUserEntity.userEntity
+//                dbUsers.document(userEntity.userId).update(
+//                    mapOf(
+//                        "fullName" to userEntity.fullName,
+//                        "major" to userEntity.major,
+//                        "nim" to userEntity.nim,
+//                        "noHp" to userEntity.noHp,
+//                        "training" to userEntity.training,
+//                        "role" to userEntity.role
+//                    )
+//                )
+//
+//                //upload photo
+//                if (editUserEntity.pathImage != "") {
+//                    val file = Uri.fromFile(File(editUserEntity.pathImage))
+//                    val storageRef = imagesRef.child(userEntity.userId)
+//                    storageRef.putFile(file)
+//                }
+//            }.addOnSuccessListener {
+//                Log.i(
+//                    "UserRepositoryImpl",
+//                    "editUser success"
+//                )
+//                trySend(Resource.Success(true)).isSuccess
+//            }.addOnFailureListener { error ->
+//                Log.i(
+//                    "UserRepositoryImpl",
+//                    "editUser failed"
+//                )
+//                trySend(Resource.Error(error.checkFirebaseError()))
+//            }
+//            awaitClose { snapshotListener.isCanceled() }
+        }
 
     override suspend fun logout(): Flow<Resource<Boolean>> = callbackFlow {
         auth.signOut()

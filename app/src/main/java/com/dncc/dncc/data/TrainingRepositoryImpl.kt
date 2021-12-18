@@ -1,6 +1,5 @@
 package com.dncc.dncc.data
 
-import android.net.Uri
 import android.util.Log
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.data.source.remote.model.*
@@ -11,13 +10,10 @@ import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.utils.checkFirebaseError
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import java.io.File
 import java.util.*
 import javax.inject.Inject
 
@@ -25,8 +21,6 @@ import javax.inject.Inject
 class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
     private val db = Firebase.firestore
     private val dbTraining = Firebase.firestore.collection("trainings")
-    private val storageRef: StorageReference =
-        FirebaseStorage.getInstance().reference
 
     override suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<Boolean>> =
         callbackFlow {

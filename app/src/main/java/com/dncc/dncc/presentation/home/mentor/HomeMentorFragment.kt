@@ -21,11 +21,9 @@ import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentHomeMentorBinding
 import com.dncc.dncc.domain.entity.training.TrainingEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
-import com.dncc.dncc.presentation.pelatihan.DetailPelatihanFragmentDirections
 import com.dncc.dncc.presentation.pelatihan.TrainingViewModel
 import com.dncc.dncc.presentation.pelatihan.adapter.MeetsAdapter
 import com.dncc.dncc.presentation.pelatihan.adapter.UsersAdapter
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -45,7 +43,6 @@ class HomeMentorFragment : Fragment() {
 
     private var userId = ""
     private var trainingId = ""
-    private var trainingName = ""
     private var linkWAG = ""
 
     private val meetsAdapter by lazy {
@@ -53,8 +50,9 @@ class HomeMentorFragment : Fragment() {
             onClick = {
                 findNavController().navigate(
                     HomeMentorFragmentDirections.actionHomeMentorFragmentToDetailPertemuanFragment(
-                    it.meetId, trainingId, UserRoleEnum.MENTOR.role, trainingName
-                ))
+                        it.meetId, trainingId, UserRoleEnum.MENTOR.role
+                    )
+                )
             }
         )
     }
@@ -83,7 +81,6 @@ class HomeMentorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         userId = args.userEntity.userId
         trainingId = args.userEntity.trainingId
-        trainingName = args.userEntity.training
 
         viewModel.getUser(userId)
         viewModel.getTraining(trainingId)
@@ -128,7 +125,11 @@ class HomeMentorFragment : Fragment() {
             }
 
             profileSection.setOnClickListener {
-                findNavController().navigate(HomeMentorFragmentDirections.actionHomeMentorFragmentToProfilFragment(userId))
+                findNavController().navigate(
+                    HomeMentorFragmentDirections.actionHomeMentorFragmentToProfilFragment(
+                        userId
+                    )
+                )
             }
 
             showUserList()

@@ -44,7 +44,7 @@ class DetailPelatihanFragment : Fragment() {
         MeetsAdapter(
             onClick = {
                 findNavController().navigate(DetailPelatihanFragmentDirections.actionDetailPelatihanFragmentToDetailPertemuanFragment(
-                    it.meetId, trainingId, role, trainingEntity.trainingName
+                    it.meetId, trainingId, role
                 ))
             }
         )
