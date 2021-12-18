@@ -37,28 +37,33 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
             val snapshotListener = db.runBatch {
                 //create user
                 auth.createUserWithEmailAndPassword(registerEntity.email, registerEntity.password)
+                    .addOnSuccessListener {
+                        Log.i(
+                            "UserRepositoryImpl",
+                            "createUserWithEmailAndPassword success"
+                        )
+                        val userId = it.user?.uid ?: ""
 
-                val userId = auth.currentUser?.uid ?: ""
+                        //upload photo
+                        val file = Uri.fromFile(File(registerEntity.photoPath))
+                        val storageRef = imagesRef.child(userId)
+                        storageRef.putFile(file)
 
-                //upload photo
-                val file = Uri.fromFile(File(registerEntity.photoPath))
-                val storageRef = imagesRef.child(userId)
-                storageRef.putFile(file)
-
-                //put in firestore
-                dbUsers.document(userId).set(
-                    mapOf(
-                        "email" to registerEntity.email,
-                        "fullName" to registerEntity.fullName,
-                        "major" to registerEntity.major,
-                        "nim" to registerEntity.nim,
-                        "noHp" to registerEntity.noHp,
-                        "role" to UserRoleEnum.VISITOR.role,
-                        "userId" to userId,
-                        "training" to TrainingEnum.EMPTY.trainingName,
-                        "trainingId" to ""
-                    )
-                )
+                        //put in firestore
+                        dbUsers.document(userId).set(
+                            mapOf(
+                                "email" to registerEntity.email,
+                                "fullName" to registerEntity.fullName,
+                                "major" to registerEntity.major,
+                                "nim" to registerEntity.nim,
+                                "noHp" to registerEntity.noHp,
+                                "role" to UserRoleEnum.VISITOR.role,
+                                "userId" to userId,
+                                "training" to TrainingEnum.EMPTY.trainingName,
+                                "trainingId" to ""
+                            )
+                        )
+                    }
             }.addOnSuccessListener {
                 Log.i(
                     "UserRepositoryImpl",

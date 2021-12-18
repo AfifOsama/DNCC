@@ -225,6 +225,9 @@
         <action
             android:id="@+id/action_homeMentorFragment_to_profilFragment"
             app:destination="@id/profilFragment" />
+        <argument
+            android:name="userEntity"
+            app:argType="com.dncc.dncc.domain.entity.user.UserEntity" />
     </fragment>
     <fragment
         android:id="@+id/editPertemuanFragment"

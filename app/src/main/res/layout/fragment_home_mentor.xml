@@ -38,6 +38,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
+                        android:clickable="false"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.makeramen.roundedimageview.RoundedImageView
@@ -99,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="4dp"
-                            android:text="@string/admin"
+                            android:text="@string/mentor"
                             android:textColor="@color/black_text"
                             app:layout_constraintStart_toEndOf="@id/img_user"
                             app:layout_constraintTop_toBottomOf="@id/tv_nim" />
@@ -318,6 +319,19 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_card_anggota"
                 tools:listitem="@layout/item_card_pertemuan" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/primary_blue"
+                android:indeterminateTintMode="src_atop"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

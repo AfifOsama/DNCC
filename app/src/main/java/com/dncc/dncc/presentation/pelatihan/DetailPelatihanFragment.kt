@@ -185,6 +185,7 @@ class DetailPelatihanFragment : Fragment() {
 
     private fun setContent(trainingEntity: TrainingEntity) {
         binding.run {
+            tvPelatihanDescription.text = trainingEntity.desc
             tvNamaMentor.text = trainingEntity.mentor
             tvWaktu.text = trainingEntity.schedule
             tvNumberAnggota.text = trainingEntity.participantNow.toString()
