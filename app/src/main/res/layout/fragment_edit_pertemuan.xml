@@ -41,7 +41,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_nama_mentor"
+            android:id="@+id/input_layout_desc"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -65,27 +65,30 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_upload_file"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_file"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_baseline_attach_file"
+            android:hint="@string/link_file"
+            android:textColorHint="@color/hint_color"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintTextAppearance="@style/nunitoRegular_12"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_layout_nama_mentor" />
+            app:layout_constraintTop_toBottomOf="@id/input_layout_desc"
+            app:shapeAppearance="@style/TextInputRoundedContainer">
 
-        <TextView
-            android:id="@+id/tv_upload_file"
-            style="@style/nunitoRegular_14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/upload_materi"
-            android:textColor="@color/black_text"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_upload_file"
-            app:layout_constraintStart_toEndOf="@id/btn_upload_file"
-            app:layout_constraintTop_toTopOf="@+id/btn_upload_file" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_file"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:textColor="@color/black_text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_batal"
@@ -110,7 +113,7 @@
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_upload_file" />
+            app:layout_constraintTop_toBottomOf="@id/input_layout_file" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress"

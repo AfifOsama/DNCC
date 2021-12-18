@@ -141,4 +141,6 @@
     <string name="visitor">Visitor</string>
     <string name="member">Member</string>
     <string name="Mentor">Mentor</string>
+    <string name="link_file_hint">Link File</string>
+    <string name="link_file">Link file</string>
 </resources>
