@@ -18,70 +18,149 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/header_home_mentor"
+                android:id="@+id/header_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:background="@drawable/shape_rectangle_actionbar"
                 android:elevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="147dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
 
-                    <TextView
-                        android:id="@+id/tv_pelatihan_title"
-                        style="@style/nunitoBold_16"
-                        android:layout_width="240dp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/profile_section"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="18dp"
-                        android:text="@string/selamat_datang_mentor"
-                        android:textColor="@color/black_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tv_pelatihan_description"
-                        style="@style/nunitoRegular_12"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="4dp"
-                        android:lines="3"
-                        android:text="@string/divisi_description"
-                        android:textColor="@color/black_text"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_pelatihan_title" />
-
-                    <TextView
-                        android:id="@+id/tv_link_wag"
-                        style="@style/robotoMedium_12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginHorizontal="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="@string/link_group_whatsapp"
-                        android:textColor="@color/dark_blue"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_pelatihan_description" />
+                        app:layout_constraintTop_toTopOf="parent">
 
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/img_user"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/perm_identity"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="w,1:1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.1"
+                            app:riv_border_color="@color/transparent"
+                            app:riv_border_width="2dp"
+                            app:riv_corner_radius="10dp" />
 
-                    <ImageView
-                        android:id="@+id/static_img_pelatihan"
-                        android:layout_width="112dp"
-                        android:layout_height="80dp"
-                        android:layout_marginEnd="24dp"
-                        android:contentDescription="@string/pelatihan"
-                        android:src="@drawable/divisi_mobile"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <ProgressBar
+                            android:id="@+id/progress_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminateTint="@color/primary_blue"
+                            android:indeterminateTintMode="src_atop"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@id/img_user"
+                            app:layout_constraintEnd_toEndOf="@id/img_user"
+                            app:layout_constraintStart_toStartOf="@id/img_user"
+                            app:layout_constraintTop_toTopOf="@id/img_user" />
+
+                        <TextView
+                            android:id="@+id/tv_user"
+                            style="@style/nunitoSemiBold_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/user_name"
+                            android:textColor="@color/black_text"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/img_user"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.1" />
+
+                        <TextView
+                            android:id="@+id/tv_nim"
+                            style="@style/nunitoRegular_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/nim"
+                            android:textColor="@color/black_text"
+                            app:layout_constraintStart_toEndOf="@id/img_user"
+                            app:layout_constraintTop_toBottomOf="@id/tv_user" />
+
+                        <TextView
+                            android:id="@+id/tv_role"
+                            style="@style/nunitoBold_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/admin"
+                            android:textColor="@color/black_text"
+                            app:layout_constraintStart_toEndOf="@id/img_user"
+                            app:layout_constraintTop_toBottomOf="@id/tv_nim" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/profile_section">
+
+                        <TextView
+                            android:id="@+id/tv_pelatihan_title"
+                            style="@style/nunitoBold_16"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="18dp"
+                            android:text="@string/selamat_datang_mentor"
+                            android:textColor="@color/black_text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_pelatihan_description"
+                            style="@style/nunitoRegular_12"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="4dp"
+                            android:lines="3"
+                            android:text="@string/divisi_description"
+                            android:textColor="@color/black_text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_pelatihan_title" />
+
+                        <TextView
+                            android:id="@+id/tv_link_wag"
+                            style="@style/robotoMedium_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/link_group_whatsapp"
+                            android:textColor="@color/dark_blue"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_pelatihan_description" />
+
+                        <ImageView
+                            android:id="@+id/static_img_pelatihan"
+                            android:layout_width="112dp"
+                            android:layout_height="80dp"
+                            android:layout_marginEnd="24dp"
+                            android:contentDescription="@string/pelatihan"
+                            android:src="@drawable/divisi_mobile"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.cardview.widget.CardView
@@ -97,7 +176,7 @@
                 app:cardMaxElevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header_home_mentor">
+                app:layout_constraintTop_toBottomOf="@id/header_home">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

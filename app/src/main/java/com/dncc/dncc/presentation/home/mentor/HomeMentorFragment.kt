@@ -9,14 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.FragmentHomeMentorBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeMentorFragment : Fragment() {
+
     private var _binding: FragmentHomeMentorBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,9 +36,8 @@ class HomeMentorFragment : Fragment() {
 
     private fun initiateUI() {
         binding.run {
-            headerHomeMentor.setOnClickListener {
-                findNavController().navigate(R.id.action_homeMentorFragment_to_profilFragment)
-            }
+
+
             refresh.run {
                 setOnRefreshListener {
                     CoroutineScope(Dispatchers.Main).launch {

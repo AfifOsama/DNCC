@@ -1,6 +1,9 @@
 package com.dncc.dncc.presentation.pertemuan
 
+import android.R.attr
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +17,16 @@ import com.dncc.dncc.common.Resource
 import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentDetailPertemuanBinding
 import com.dncc.dncc.domain.entity.training.MeetEntity
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FileDownloadTask
+import com.google.firebase.storage.ktx.storage
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
+import android.R.attr.path
+import java.nio.file.Files
+
 
 @AndroidEntryPoint
 class DetailPertemuanFragment : Fragment() {
@@ -65,11 +77,39 @@ class DetailPertemuanFragment : Fragment() {
             }
 
             btnUbah.setOnClickListener {
-                findNavController().navigate(DetailPertemuanFragmentDirections.actionDetailPertemuanFragmentToEditPertemuanFragment(meetEntity, trainingName))
+                findNavController().navigate(
+                    DetailPertemuanFragmentDirections.actionDetailPertemuanFragmentToEditPertemuanFragment(
+                        meetEntity,
+                        trainingName
+                    )
+                )
             }
 
             btnDownload.setOnClickListener {
+                progress.visibility = View.VISIBLE
 
+                val storageReference =
+                    Firebase.storage.reference.child(trainingName).child(meetEntity.fileName)
+                val ONE_MEGABYTE: Long = 1024 * 1024
+                storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                    val path = meetEntity.fileName
+                    val folderFile = File("Download\\dncc\\")
+                    folderFile.mkdirs()
+
+                    val myFile = File(folderFile, meetEntity.fileName)
+                    myFile.createNewFile()
+                    Log.i(
+                        "DetailPertemuanFragment",
+                        "file path $path"
+                    )
+                    progress.visibility = View.GONE
+                }.addOnFailureListener { exception ->
+                    Log.i(
+                        "DetailPertemuanFragment",
+                        "firebase local item file not created created $exception"
+                    )
+                    progress.visibility = View.GONE
+                }
             }
         }
     }
