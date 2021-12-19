@@ -13,6 +13,6 @@ interface UserRepository {
     suspend fun getUser(userId: String): Flow<Resource<UserEntity>>
     suspend fun getUsers(): Flow<Resource<List<UserEntity>>>
     suspend fun editUser(editUserEntity: EditUserEntity): Flow<Resource<Boolean>>
-    suspend fun registerTraining(trainingId: String): Flow<Resource<Boolean>>
+    suspend fun registerTraining(trainingId: String, userEntity: UserEntity): Flow<Resource<Boolean>>
     suspend fun logout(): Flow<Resource<Boolean>>
 }

@@ -178,41 +178,63 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
             awaitClose { snapshotListener.isCanceled() }
         }
 
-    override suspend fun registerTraining(trainingId: String): Flow<Resource<Boolean>> =
+    //check the training participantNow < participant max
+    //update participantNow in training
+    //store user data inside training user document
+    //update training and trainingId in user document
+    override suspend fun registerTraining(
+        trainingId: String,
+        userEntity: UserEntity
+    ): Flow<Resource<Boolean>> =
         callbackFlow {
-//            val snapshotListener = db.runBatch {
-//                val userEntity = editUserEntity.userEntity
-//                dbUsers.document(userEntity.userId).update(
-//                    mapOf(
-//                        "fullName" to userEntity.fullName,
-//                        "major" to userEntity.major,
-//                        "nim" to userEntity.nim,
-//                        "noHp" to userEntity.noHp,
-//                        "training" to userEntity.training,
-//                        "role" to userEntity.role
-//                    )
-//                )
-//
-//                //upload photo
-//                if (editUserEntity.pathImage != "") {
-//                    val file = Uri.fromFile(File(editUserEntity.pathImage))
-//                    val storageRef = imagesRef.child(userEntity.userId)
-//                    storageRef.putFile(file)
-//                }
-//            }.addOnSuccessListener {
-//                Log.i(
-//                    "UserRepositoryImpl",
-//                    "editUser success"
-//                )
-//                trySend(Resource.Success(true)).isSuccess
-//            }.addOnFailureListener { error ->
-//                Log.i(
-//                    "UserRepositoryImpl",
-//                    "editUser failed"
-//                )
-//                trySend(Resource.Error(error.checkFirebaseError()))
-//            }
-//            awaitClose { snapshotListener.isCanceled() }
+            val snapshotListener = db.runTransaction { transaction ->
+                val trainingRef = dbTraining.document(trainingId)
+                val participant = dbTraining.document(trainingId).collection("participant")
+                val snapshot = transaction.get(trainingRef)
+
+                val trainingName: String = snapshot.getLong("trainingName").toString()
+                val participantNow: Int = snapshot.getLong("participantNow")?.toInt() ?: 0
+                val participantMax: Int = snapshot.getLong("participantMax")?.toInt() ?: 0
+
+                //if participantNow < participantMax register user to training
+                if (participantNow < participantMax) {
+
+                    //update participantNow in training
+                    transaction.update(trainingRef, "participantNow", participantNow + 1)
+
+                    //store user data inside training user document
+                    transaction.set(
+                        participant.document(userEntity.userId), mapOf(
+                            "fullName" to userEntity.fullName,
+                            "userId" to userEntity.userId,
+                            "nim" to userEntity.nim
+                        )
+                    )
+
+                    //update training and trainingId in user document
+                    transaction.update(
+                        dbUsers.document(userEntity.userId), mapOf(
+                            "training" to trainingName,
+                            "trainingId" to trainingId
+                        )
+                    )
+                }
+                // Success
+                null
+            }.addOnSuccessListener {
+                Log.i(
+                    "UserRepositoryImpl",
+                    "registerTraining success"
+                )
+                trySend(Resource.Success(true)).isSuccess
+            }.addOnFailureListener { error ->
+                Log.i(
+                    "UserRepositoryImpl",
+                    "registerTraining failed"
+                )
+                trySend(Resource.Error(error.checkFirebaseError()))
+            }
+            awaitClose { snapshotListener.isCanceled() }
         }
 
     override suspend fun logout(): Flow<Resource<Boolean>> = callbackFlow {

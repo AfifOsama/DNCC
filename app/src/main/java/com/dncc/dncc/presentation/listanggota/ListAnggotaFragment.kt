@@ -16,6 +16,7 @@ import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentListAnggotaBinding
+import com.dncc.dncc.utils.afterTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -58,8 +59,9 @@ class ListAnggotaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initiateUI()
-        initiateObserverMember()
+        initiateObserver()
     }
 
     private fun initiateUI() {
@@ -77,15 +79,53 @@ class ListAnggotaFragment : Fragment() {
                 setOnRefreshListener {
                     CoroutineScope(Dispatchers.Main).launch {
                         Log.i("ListAnggotaFragment", "refresh: ")
-                        viewModel.getUsersByMember(UserRoleEnum.MEMBER)
+                        viewModel.getUsers()
                         delay(2000)
                         isRefreshing = false
                     }
                 }
             }
 
+            edtSearch.afterTextChanged {
+                viewModel.filterUsers(it)
+            }
+
             showUserList()
         }
+    }
+
+    private fun initiateObserver() {
+        viewModel.getUsersResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    viewModel.filterUsers("")
+                }
+            }
+        })
+
+        viewModel.filteredUser.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    adapter.setList(it.data ?: mutableListOf())
+                }
+            }
+        })
     }
 
     private fun showPopupMenu(view: View, filterPopupMenu: Int) {
@@ -94,21 +134,25 @@ class ListAnggotaFragment : Fragment() {
             menuInflater.inflate(filterPopupMenu, popupMenu.menu)
             setOnMenuItemClickListener { item: MenuItem? ->
                 when (item?.itemId) {
+                    R.id.all -> {
+                        viewModel.filterUsers("")
+                        renderToast("Menampilkan seluruh user")
+                    }
+                    R.id.admin -> {
+                        viewModel.filterUsers(UserRoleEnum.ADMIN)
+                        renderToast("Menampilkan anggota bedasarkan role admin")
+                    }
                     R.id.visitor -> {
-                        initiateObserverVisitor()
+                        viewModel.filterUsers(UserRoleEnum.VISITOR)
                         renderToast("Menampilkan anggota bedasarkan role visitor")
                     }
                     R.id.member -> {
-                        initiateObserverMember()
+                        viewModel.filterUsers(UserRoleEnum.MEMBER)
                         renderToast("Menampilkan anggota bedasarkan role member")
                     }
                     R.id.mentor -> {
-                        initiateObserverMentor()
+                        viewModel.filterUsers(UserRoleEnum.MENTOR)
                         renderToast("Menampilkan anggota bedasarkan role mentor")
-                    }
-                    R.id.admin -> {
-                        initiateObserverAdmin()
-                        renderToast("Menampilkan anggota bedasarkan role admin")
                     }
                 }
                 true
@@ -119,79 +163,6 @@ class ListAnggotaFragment : Fragment() {
             }
             show()
         }
-
-    }
-
-    private fun initiateObserverVisitor() {
-        viewModel.getUsersVisitorResponse.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    binding.progress.visibility = View.GONE
-                    renderToast(it.message ?: "maaf harap coba lagi")
-                }
-                is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
-                    adapter.setList(it.data ?: mutableListOf())
-                }
-            }
-        })
-    }
-
-    private fun initiateObserverMember() {
-        viewModel.getUsersMemberResponse.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    binding.progress.visibility = View.GONE
-                    renderToast(it.message ?: "maaf harap coba lagi")
-                }
-                is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
-                    adapter.setList(it.data ?: mutableListOf())
-                }
-            }
-        })
-    }
-
-    private fun initiateObserverMentor() {
-        viewModel.getUsersMentorResponse.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    binding.progress.visibility = View.GONE
-                    renderToast(it.message ?: "maaf harap coba lagi")
-                }
-                is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
-                    adapter.setList(it.data ?: mutableListOf())
-                }
-            }
-        })
-    }
-
-    private fun initiateObserverAdmin() {
-        viewModel.getUsersAdminResponse.observe(viewLifecycleOwner, {
-            when (it) {
-                is Resource.Loading -> {
-                    binding.progress.visibility = View.VISIBLE
-                }
-                is Resource.Error -> {
-                    binding.progress.visibility = View.GONE
-                    renderToast(it.message ?: "maaf harap coba lagi")
-                }
-                is Resource.Success -> {
-                    binding.progress.visibility = View.GONE
-                    adapter.setList(it.data ?: mutableListOf())
-                }
-            }
-        })
     }
 
     private fun showUserList() {

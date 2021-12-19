@@ -166,7 +166,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
 
     override suspend fun getParticipants(trainingId: String): Flow<Resource<List<UserEntity>>> =
         callbackFlow {
-            val snapshotListener = dbTraining.document(trainingId).collection("users")
+            val snapshotListener = dbTraining.document(trainingId).collection("participant")
                 .addSnapshotListener { snapshot, e ->
                     val response = if (snapshot != null) {
                         val dataUsers = mutableListOf<UserDto>()

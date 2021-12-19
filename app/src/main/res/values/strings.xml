@@ -141,4 +141,6 @@
     <string name="visitor">Visitor</string>
     <string name="member">Member</string>
     <string name="Mentor">Mentor</string>
+    <string name="nama_user">Nama User</string>
+    <string name="semua_user">Semua User</string>
 </resources>
