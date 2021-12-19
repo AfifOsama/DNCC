@@ -145,4 +145,5 @@
     <string name="semua_user">Semua User</string>
     <string name="link_file_hint">Link File</string>
     <string name="link_file">Link file</string>
+    <string name="link_file_belum_ada">Link file belum ada</string>
 </resources>

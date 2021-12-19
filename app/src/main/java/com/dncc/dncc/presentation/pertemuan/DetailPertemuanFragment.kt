@@ -72,7 +72,11 @@ class DetailPertemuanFragment : Fragment() {
             }
 
             cardFile.setOnClickListener{
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://www.stackoverflow.com")))
+                if (meetEntity.fileDownloadLink != "") {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(meetEntity.fileDownloadLink)))
+                } else {
+                    renderToast("Link File belum ada")
+                }
             }
         }
     }
@@ -100,6 +104,11 @@ class DetailPertemuanFragment : Fragment() {
         binding.run {
             tvPertemuanKe.text = "Detail ${meetEntity.meetName}"
             tvDescription.text = meetEntity.description
+            if (meetEntity.fileDownloadLink != "") {
+                tvFileLink.text = meetEntity.fileDownloadLink
+            } else {
+                tvFileLink.text = getString(R.string.link_file_belum_ada)
+            }
         }
     }
 

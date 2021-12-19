@@ -89,7 +89,7 @@ class EditPertemuanFragment : Fragment() {
                         trainingId = meetEntity.trainingId,
                         meetId = meetEntity.meetId,
                         description = binding.edtDesc.text.toString(),
-//                        fileDownloadLink = binding.edtFileDownloadLink.text.toString(),
+                        fileDownloadLink = binding.edtFile.text.toString(),
                         meetName = binding.edtNamaPertemuan.text.toString()
                     ),
                 )
