@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ListPelatihanFragment : Fragment() {
+
     private var _binding: FragmentListPelatihanBinding? = null
     private val binding get() = _binding!!
 
@@ -62,7 +63,7 @@ class ListPelatihanFragment : Fragment() {
                     setTitle("Peringatan")
                     setMessage("Yakin ingin mendaftar pelatihan ${trainingEntity.trainingName}?")
                     setPositiveButton("Iya") { _, _ ->
-
+                        viewModel.registerTraining(trainingEntity.trainingId, userEntity)
                     }
                     setNegativeButton("Tidak") { dialog, _ ->
                         dialog.dismiss()
@@ -164,6 +165,25 @@ class ListPelatihanFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
                     renderToast("Berhasil menghapus pelatihan")
+                }
+            }
+        })
+
+        viewModel.registerTrainingResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    if (it.data == true) {
+                        renderToast("Berhasil mendaftar pelatihan")
+                    } else {
+                        renderToast("Gagal mendaftar pelatihan")
+                    }
                 }
             }
         })

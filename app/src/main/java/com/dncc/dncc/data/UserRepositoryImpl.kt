@@ -66,16 +66,10 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                         )
                     }
             }.addOnSuccessListener {
-                Log.i(
-                    "UserRepositoryImpl",
-                    "register success"
-                )
+                Log.i("UserRepositoryImpl", "register success")
                 trySend(Resource.Success(true)).isSuccess
             }.addOnFailureListener { error ->
-                Log.i(
-                    "UserRepositoryImpl",
-                    "register failed"
-                )
+                Log.i("UserRepositoryImpl", "register failed")
                 trySend(Resource.Error(error.checkFirebaseError()))
             }
             awaitClose { snapshotListener.isCanceled() }
@@ -100,7 +94,7 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
         val snapshotListener = auth.sendPasswordResetEmail(email)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Log.i("UserRepositoryImpl", "send email forgot passowrd success")
+                    Log.i("UserRepositoryImpl", "send email forgot password success")
                     trySend(Resource.Success(true)).isSuccess
                 } else {
                     trySend(Resource.Error(it.exception.checkFirebaseError())).isSuccess
@@ -163,16 +157,10 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                     storageRef.putFile(file)
                 }
             }.addOnSuccessListener {
-                Log.i(
-                    "UserRepositoryImpl",
-                    "editUser success"
-                )
+                Log.i("UserRepositoryImpl", "editUser success")
                 trySend(Resource.Success(true)).isSuccess
             }.addOnFailureListener { error ->
-                Log.i(
-                    "UserRepositoryImpl",
-                    "editUser failed"
-                )
+                Log.i("UserRepositoryImpl", "editUser failed")
                 trySend(Resource.Error(error.checkFirebaseError()))
             }
             awaitClose { snapshotListener.isCanceled() }
@@ -187,18 +175,19 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
         userEntity: UserEntity
     ): Flow<Resource<Boolean>> =
         callbackFlow {
+            Log.i("UserRepositoryImpl", "registerTraining $trainingId")
             val snapshotListener = db.runTransaction { transaction ->
                 val trainingRef = dbTraining.document(trainingId)
                 val participant = dbTraining.document(trainingId).collection("participant")
                 val snapshot = transaction.get(trainingRef)
 
-                val trainingName: String = snapshot.getLong("trainingName").toString()
-                val participantNow: Int = snapshot.getLong("participantNow")?.toInt() ?: 0
-                val participantMax: Int = snapshot.getLong("participantMax")?.toInt() ?: 0
+                val trainingName: String = snapshot.getString("trainingName").toString()
+                val participantNow: Int = snapshot.getDouble("participantNow")?.toInt() ?: 0
+                val participantMax: Int = snapshot.getDouble("participantMax")?.toInt() ?: 0
 
+                Log.i("UserRepositoryImpl", "registerTraining check participantNow $participantNow < participantMax $participantMax")
                 //if participantNow < participantMax register user to training
                 if (participantNow < participantMax) {
-
                     //update participantNow in training
                     transaction.update(trainingRef, "participantNow", participantNow + 1)
 
@@ -222,16 +211,10 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                 // Success
                 null
             }.addOnSuccessListener {
-                Log.i(
-                    "UserRepositoryImpl",
-                    "registerTraining success"
-                )
+                Log.i("UserRepositoryImpl", "registerTraining success")
                 trySend(Resource.Success(true)).isSuccess
             }.addOnFailureListener { error ->
-                Log.i(
-                    "UserRepositoryImpl",
-                    "registerTraining failed"
-                )
+                Log.i("UserRepositoryImpl", "registerTraining failed")
                 trySend(Resource.Error(error.checkFirebaseError()))
             }
             awaitClose { snapshotListener.isCanceled() }

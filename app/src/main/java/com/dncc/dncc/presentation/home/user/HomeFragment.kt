@@ -43,6 +43,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
     private val userId by lazy { auth.currentUser?.uid ?: "" }
+    private var userEntity = UserEntity()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,7 +76,11 @@ class HomeFragment : Fragment() {
                 )
             }
             btnPertemuan.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_detailPelatihanFragment)
+                if (userEntity.trainingId != "") {
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailPelatihanFragment(userEntity.trainingId, userEntity.role))
+                } else {
+                    renderToast("Kamu belum terdaftar di pelatihan")
+                }
             }
             headerHome.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToProfilFragment(userId)
@@ -106,7 +111,9 @@ class HomeFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    setUserView(it.data ?: UserEntity())
+                    userEntity = it.data ?: UserEntity()
+                    setUserView(userEntity)
+                    binding.btnPertemuan.isClickable = true
                 }
             }
         })

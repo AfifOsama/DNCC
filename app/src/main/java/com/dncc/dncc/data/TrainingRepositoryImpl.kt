@@ -48,7 +48,7 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
                     val randomMeetId = UUID.randomUUID().toString()
                     val meet = hashMapOf(
                         "description" to "deskripsi pertemuan",
-                        "fileName" to "",
+                        "fileDownloadLink" to "",
                         "meetId" to randomMeetId,
                         "meetName" to "Pertemuan x",
                         "trainingId" to randomId

@@ -15,6 +15,9 @@ import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentDetailPertemuanBinding
 import com.dncc.dncc.domain.entity.training.MeetEntity
 import dagger.hilt.android.AndroidEntryPoint
+import android.content.Intent
+import android.net.Uri
+
 
 @AndroidEntryPoint
 class DetailPertemuanFragment : Fragment() {
@@ -66,6 +69,10 @@ class DetailPertemuanFragment : Fragment() {
                         meetEntity
                     )
                 )
+            }
+
+            cardFile.setOnClickListener{
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://www.stackoverflow.com")))
             }
         }
     }

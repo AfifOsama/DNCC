@@ -143,6 +143,7 @@
                     android:layout_width="80dp"
                     android:layout_height="23dp"
                     android:layout_marginTop="4dp"
+                    android:clickable="false"
                     app:layout_constraintEnd_toEndOf="@+id/static_img_pertemuan"
                     app:layout_constraintStart_toStartOf="@+id/static_img_pertemuan"
                     app:layout_constraintTop_toBottomOf="@+id/static_img_pertemuan">
