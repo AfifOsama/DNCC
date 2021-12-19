@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import coil.load
+import com.bumptech.glide.Glide
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentHomeAdminBinding
@@ -61,10 +61,18 @@ class HomeAdminFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeAdminFragment_to_tambahPelatihanFragment)
             }
             cardMenu3.setOnClickListener {
-                findNavController().navigate(HomeAdminFragmentDirections.actionHomeAdminFragmentToListPelatihanFragment(userId))
+                findNavController().navigate(
+                    HomeAdminFragmentDirections.actionHomeAdminFragmentToListPelatihanFragment(
+                        userId
+                    )
+                )
             }
             headerHome.setOnClickListener {
-                findNavController().navigate(HomeAdminFragmentDirections.actionHomeAdminFragmentToProfilFragment(userId))
+                findNavController().navigate(
+                    HomeAdminFragmentDirections.actionHomeAdminFragmentToProfilFragment(
+                        userId
+                    )
+                )
             }
             refresh.run {
                 setOnRefreshListener {
@@ -100,11 +108,13 @@ class HomeAdminFragment : Fragment() {
     private fun setUserView(userEntity: UserEntity) {
         binding.run {
             val imagePath = FirebaseStorage.getInstance().reference.child("images").child(userId)
+            progressImg.visibility = View.VISIBLE
             imagePath.downloadUrl.addOnSuccessListener {
-                imgUser.load(it.toString()) {
-                    placeholder(R.drawable.logodncc)
-                    error(R.drawable.logodncc)
-                }
+                progressImg.visibility = View.GONE
+                Glide.with(requireContext())
+                    .load(it)
+                    .error(R.drawable.logodncc)
+                    .into(imgUser)
             }.addOnFailureListener {
                 it.message?.let { error -> Log.i("HomeFragment", "error image $error") }
             }

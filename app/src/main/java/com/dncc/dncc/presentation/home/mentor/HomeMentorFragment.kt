@@ -14,7 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.load
+import com.bumptech.glide.Glide
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.common.UserRoleEnum
@@ -207,11 +207,13 @@ class HomeMentorFragment : Fragment() {
     private fun setUserContent(userEntity: UserEntity) {
         binding.run {
             val imagePath = FirebaseStorage.getInstance().reference.child("images").child(userId)
+            progressImg.visibility = View.VISIBLE
             imagePath.downloadUrl.addOnSuccessListener {
-                imgUser.load(it.toString()) {
-                    placeholder(R.drawable.logodncc)
-                    error(R.drawable.logodncc)
-                }
+                progressImg.visibility = View.GONE
+                Glide.with(requireContext())
+                    .load(it)
+                    .error(R.drawable.logodncc)
+                    .into(imgUser)
             }.addOnFailureListener {
                 it.message?.let { error -> Log.i("HomeFragment", "error image $error") }
             }

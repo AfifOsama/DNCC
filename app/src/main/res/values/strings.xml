@@ -143,4 +143,6 @@
     <string name="Mentor">Mentor</string>
     <string name="nama_user">Nama User</string>
     <string name="semua_user">Semua User</string>
+    <string name="link_file_hint">Link File</string>
+    <string name="link_file">Link file</string>
 </resources>

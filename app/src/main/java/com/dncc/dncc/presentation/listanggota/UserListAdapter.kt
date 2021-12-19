@@ -2,9 +2,10 @@ package com.dncc.dncc.presentation.listanggota
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
+import com.bumptech.glide.Glide
 import com.dncc.dncc.R
 import com.dncc.dncc.databinding.ItemCardAdminAnggotaBinding
 import com.dncc.dncc.domain.entity.user.UserEntity
@@ -30,11 +31,13 @@ class UserListAdapter(
             binding.apply {
                 val imagePath =
                     FirebaseStorage.getInstance().reference.child("images").child(userEntity.userId)
+                progressImg.visibility = View.VISIBLE
                 imagePath.downloadUrl.addOnSuccessListener {
-                    imgAnggota.load(it.toString()) {
-                        placeholder(R.drawable.logodncc)
-                        error(R.drawable.logodncc)
-                    }
+                    progressImg.visibility = View.GONE
+                    Glide.with(itemView.context)
+                        .load(it)
+                        .error(R.drawable.logodncc)
+                        .into(imgAnggota)
                 }.addOnFailureListener {
                     it.message?.let { error -> Log.i("HomeFragment", "error image $error") }
                 }
