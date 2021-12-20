@@ -122,7 +122,7 @@ class DetailPelatihanFragment : Fragment() {
                 findNavController().navigate(DetailPelatihanFragmentDirections.actionDetailPelatihanFragmentToEditPelatihanFragment(trainingEntity))
             }
 
-            if (role == UserRoleEnum.ADMIN.role || role == UserRoleEnum.MENTOR.role) {
+            if (role == UserRoleEnum.ADMIN.role) {
                 btnUbah.visibility = View.VISIBLE
             }
 

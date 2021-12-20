@@ -161,15 +161,25 @@
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </com.google.android.material.appbar.AppBarLayout>
+
+            <Button
+                android:id="@+id/btn_ubah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/ubah"
+                android:clickable="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_home" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_mentor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:elevation="8dp"
                 app:cardBackgroundColor="@color/white"
@@ -177,7 +187,7 @@
                 app:cardMaxElevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header_home">
+                app:layout_constraintTop_toBottomOf="@id/btn_ubah">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

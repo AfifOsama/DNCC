@@ -21,6 +21,7 @@ import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.databinding.FragmentHomeMentorBinding
 import com.dncc.dncc.domain.entity.training.TrainingEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
+import com.dncc.dncc.presentation.pelatihan.DetailPelatihanFragmentDirections
 import com.dncc.dncc.presentation.pelatihan.TrainingViewModel
 import com.dncc.dncc.presentation.pelatihan.adapter.MeetsAdapter
 import com.dncc.dncc.presentation.pelatihan.adapter.UsersAdapter
@@ -44,6 +45,7 @@ class HomeMentorFragment : Fragment() {
     private var userId = ""
     private var trainingId = ""
     private var linkWAG = ""
+    private var trainingEntity = TrainingEntity()
 
     private val meetsAdapter by lazy {
         MeetsAdapter(
@@ -132,6 +134,10 @@ class HomeMentorFragment : Fragment() {
                 )
             }
 
+            btnUbah.setOnClickListener {
+                findNavController().navigate(HomeMentorFragmentDirections.actionHomeMentorFragmentToEditPelatihanFragment(trainingEntity))
+            }
+
             showUserList()
             showMeetList()
         }
@@ -165,7 +171,9 @@ class HomeMentorFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    setTrainingContent(it.data ?: TrainingEntity())
+                    binding.btnUbah.isClickable = true
+                    trainingEntity = it.data ?: TrainingEntity()
+                    setTrainingContent(trainingEntity)
                 }
             }
         })

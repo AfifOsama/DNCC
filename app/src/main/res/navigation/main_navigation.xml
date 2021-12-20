@@ -224,6 +224,9 @@
         <argument
             android:name="userEntity"
             app:argType="com.dncc.dncc.domain.entity.user.UserEntity" />
+        <action
+            android:id="@+id/action_homeMentorFragment_to_editPelatihanFragment"
+            app:destination="@id/editPelatihanFragment" />
     </fragment>
     <fragment
         android:id="@+id/editPertemuanFragment"
