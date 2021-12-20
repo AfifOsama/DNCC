@@ -89,8 +89,12 @@ class EditPelatihanFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    renderToast("Berhasil mengubah pelatihan")
-                    findNavController().popBackStack()
+                    if (it.data == true) {
+                        renderToast("Berhasil mengubah pelatihan")
+                        findNavController().popBackStack()
+                    } else {
+                        renderToast("Gagal mengubah pelatihan")
+                    }
                 }
             }
         })

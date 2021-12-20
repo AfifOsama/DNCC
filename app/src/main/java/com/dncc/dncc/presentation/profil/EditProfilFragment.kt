@@ -98,8 +98,12 @@ class EditProfilFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    renderToast("Berhasil mengubah data")
-                    findNavController().popBackStack()
+                    if (it.data == true) {
+                        renderToast("Berhasil mengubah data")
+                        findNavController().popBackStack()
+                    } else {
+                        renderToast("Gagal mengubah data")
+                    }
                 }
             }
         })

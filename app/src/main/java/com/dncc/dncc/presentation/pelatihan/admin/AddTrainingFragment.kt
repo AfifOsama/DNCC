@@ -84,8 +84,12 @@ class AddTrainingFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    renderToast("berhasil menambahkan pelatihan")
-                    findNavController().popBackStack()
+                    if (it.data == true) {
+                        renderToast("Berhasil menambahkan pelatihan")
+                        findNavController().popBackStack()
+                    } else {
+                        renderToast("Gagal menambahkan pelatihan")
+                    }
                 }
             }
         })

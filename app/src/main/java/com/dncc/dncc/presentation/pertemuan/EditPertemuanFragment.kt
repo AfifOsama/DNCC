@@ -71,8 +71,12 @@ class EditPertemuanFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    renderToast("Berhasil mengubah detail pertemuan")
-                    findNavController().popBackStack()
+                    if (it.data == true) {
+                        renderToast("Berhasil mengubah detail pertemuan")
+                        findNavController().popBackStack()
+                    } else {
+                        renderToast("Gagal mengubah detail pertemuan")
+                    }
                 }
             }
         })

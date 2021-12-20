@@ -67,7 +67,11 @@ class LoginFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    viewModel.getUser(userId)
+                    if(it.data == true) {
+                        viewModel.getUser(userId)
+                    } else {
+                        renderToast(it.message ?: "Maaf coba lagi")
+                    }
                 }
             }
         })

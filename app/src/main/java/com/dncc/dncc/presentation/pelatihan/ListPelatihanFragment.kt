@@ -164,7 +164,11 @@ class ListPelatihanFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    renderToast("Berhasil menghapus pelatihan")
+                    if (it.data == true) {
+                        renderToast("Berhasil menghapus pelatihan")
+                    } else {
+                        renderToast("Gagal menghapus pelatihan")
+                    }
                 }
             }
         })

@@ -55,8 +55,11 @@ class ForgetPasswordFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    Log.i("ForgetPasswordFragment", "initiateObserver: ${it.data}")
-                    renderToast("Silahkan cek email kamu")
+                    if (it.data == true) {
+                        renderToast("Silahkan cek email kamu")
+                    } else {
+                        renderToast("gagal mengirim email ubah password")
+                    }
                 }
             }
         })

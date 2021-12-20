@@ -96,8 +96,12 @@ class RegisterFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
-                    renderToast("berhasil mendaftarkan akun")
-                    findNavController().popBackStack()
+                    if (it.data == true) {
+                        renderToast("berhasil mendaftarkan akun")
+                        findNavController().popBackStack()
+                    } else {
+                        renderToast("gagal mendaftarkan akun")
+                    }
                 }
             }
         })
