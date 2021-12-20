@@ -20,9 +20,9 @@
     <string name="bodytext1">Dian Nuswantoro Computer Club adalah UKM kampus Universitas Dian Nuswantoro Semarang yang berpusat pada bidang Ilmu Komputer</string>
     <string name="sub_heading1">Foto-foto Kegiatan DNCC</string>
     <string name="visi_dncc">Visi DNCC</string>
-    <string name="body2">1. Bersama-sama membangun DNCC dan menjadi mahasiswa yang lebih disiplin, berprestasi, kreatif dan berakhlak mulia, serta mengoptimalkan kemampuan anggota untuk menjadi generasi yang bermanfaat.<br /> 2. Menjadi wadah dan media bagi mahasiswa untuk mengembangkan daya kreasi dan keterampilan mahasiswa. <br /> 3. Ikut serta untuk memajukan dan mengembangkan Universitas Dian Nuswatoro.</string>
+    <string name="body2">1. Bersama-sama membangun DNCC dan menjadi mahasiswa yang lebih disiplin, berprestasi, kreatif dan berakhlak mulia, serta mengoptimalkan kemampuan anggota untuk menjadi generasi yang bermanfaat.\n2. Menjadi wadah dan media bagi mahasiswa untuk mengembangkan daya kreasi dan keterampilan mahasiswa.\n3. Ikut serta untuk memajukan dan mengembangkan Universitas Dian Nuswatoro.</string>
     <string name="misi_dncc">Misi DNCC</string>
-    <string name="body3">1. Menjadi wadah bagi mahasiswa Universitas Dian Nuswantoro untuk berkreasi dan mengasah kemampuan di bidang Teknologi Informatika.<br /> 2. Memberikan informasi dan ilmu pengetahuan tentang teknologi informasi terbaru yang bermanfaat bagi masyarakat sekitar. <br />3. Mencetak sumber daya manusia yang kreatif, berpikir aktif dan kritis serta mampu bekerja dalam kelompok maupun individu.</string>
+    <string name="body3">1. Menjadi wadah bagi mahasiswa Universitas Dian Nuswantoro untuk berkreasi dan mengasah kemampuan di bidang Teknologi Informatika.\n2. Memberikan informasi dan ilmu pengetahuan tentang teknologi informasi terbaru yang bermanfaat bagi masyarakat sekitar.\n3. Mencetak sumber daya manusia yang kreatif, berpikir aktif dan kritis serta mampu bekerja dalam kelompok maupun individu.</string>
     <string name="forgot_your_password">forgot your password?</string>
 
     <string-array name="data_name_kegiatan">
