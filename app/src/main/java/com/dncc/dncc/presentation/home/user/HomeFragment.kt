@@ -140,9 +140,9 @@ class HomeFragment : Fragment() {
             if (userEntity.training == TrainingEnum.EMPTY.trainingName) {
                 trainingText = "Kamu belum mengikuti pelatihan apapun".toSpannable()
             } else {
-                trainingText = "Pelatihan ${userEntity.role}".toSpannable()
-                val spanRole = 7 + userEntity.role.length
-                trainingText[7..spanRole] = bold
+                trainingText = "Pelatihan ${userEntity.training}".toSpannable()
+                val spanTraining = 10 + userEntity.training.length
+                trainingText[10..spanTraining] = bold
             }
 
             tvTraining.text = trainingText
