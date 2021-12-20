@@ -59,16 +59,20 @@ class ListPelatihanFragment : Fragment() {
                 }
             },
             onRegister = { trainingEntity, userEntity ->
-                with(AlertDialog.Builder(activity)) {
-                    setTitle("Peringatan")
-                    setMessage("Yakin ingin mendaftar pelatihan ${trainingEntity.trainingName}?")
-                    setPositiveButton("Iya") { _, _ ->
-                        viewModel.registerTraining(trainingEntity.trainingId, userEntity)
+                if (userEntity.trainingId == "") {
+                    with(AlertDialog.Builder(activity)) {
+                        setTitle("Peringatan")
+                        setMessage("Yakin ingin mendaftar pelatihan ${trainingEntity.trainingName}?")
+                        setPositiveButton("Iya") { _, _ ->
+                            viewModel.registerTraining(trainingEntity.trainingId, userEntity)
+                        }
+                        setNegativeButton("Tidak") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        show()
                     }
-                    setNegativeButton("Tidak") { dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    show()
+                } else {
+                    renderToast("Anda sudah terdaftar pada pelatihan ${userEntity.training}")
                 }
             },
             toast = {

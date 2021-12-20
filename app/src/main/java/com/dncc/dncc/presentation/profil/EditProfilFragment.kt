@@ -83,6 +83,10 @@ class EditProfilFragment : Fragment() {
             frameLayout.setOnClickListener {
                 getPictures()
             }
+
+            btnBatal.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 

@@ -86,12 +86,16 @@ class EditProfilAnggotaFragment : Fragment() {
                 }
             }
 
+            btnBatal.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
             frameLayout.setOnClickListener {
                 getPictures()
             }
 
             val roles = resources.getStringArray(R.array.role)
-            binding.dropdownRoles.setAdapter(
+            dropdownRoles.setAdapter(
                 ArrayAdapter(
                     requireContext(),
                     R.layout.list_item_dropdown,
@@ -100,7 +104,7 @@ class EditProfilAnggotaFragment : Fragment() {
             )
 
             val divisi = resources.getStringArray(R.array.divisi)
-            binding.dropdownDivisi.setAdapter(
+            dropdownDivisi.setAdapter(
                 ArrayAdapter(
                     requireContext(),
                     R.layout.list_item_dropdown,

@@ -56,6 +56,10 @@ class EditPertemuanFragment : Fragment() {
             btnSimpan.setOnClickListener {
                 alertDialog()
             }
+
+            btnBatal.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
