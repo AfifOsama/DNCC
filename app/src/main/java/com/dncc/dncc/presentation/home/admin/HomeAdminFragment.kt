@@ -67,6 +67,7 @@ class HomeAdminFragment : Fragment() {
                     )
                 )
             }
+            cardMenu4.setOnClickListener { }
             headerHome.setOnClickListener {
                 findNavController().navigate(
                     HomeAdminFragmentDirections.actionHomeAdminFragmentToProfilFragment(
