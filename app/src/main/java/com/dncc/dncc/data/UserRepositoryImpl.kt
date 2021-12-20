@@ -13,6 +13,7 @@ import com.dncc.dncc.domain.entity.user.EditUserEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.utils.checkFirebaseError
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -185,7 +186,10 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                 val participantNow: Int = snapshot.getDouble("participantNow")?.toInt() ?: 0
                 val participantMax: Int = snapshot.getDouble("participantMax")?.toInt() ?: 0
 
-                Log.i("UserRepositoryImpl", "registerTraining check participantNow $participantNow < participantMax $participantMax")
+                Log.i(
+                    "UserRepositoryImpl",
+                    "registerTraining check participantNow $participantNow < participantMax $participantMax"
+                )
                 //if participantNow < participantMax register user to training
                 if (participantNow < participantMax) {
                     //update participantNow in training
@@ -207,9 +211,13 @@ class UserRepositoryImpl @Inject constructor() : UserRepository {
                             "trainingId" to trainingId
                         )
                     )
+                    true
+                } else {
+                    throw FirebaseFirestoreException(
+                        "Training participant is full",
+                        FirebaseFirestoreException.Code.ABORTED
+                    )
                 }
-                // Success
-                null
             }.addOnSuccessListener {
                 Log.i("UserRepositoryImpl", "registerTraining success")
                 trySend(Resource.Success(true)).isSuccess

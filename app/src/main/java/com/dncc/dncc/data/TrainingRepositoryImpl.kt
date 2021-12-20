@@ -254,4 +254,8 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         awaitClose { snapshotListener.isCanceled() }
     }
 
+    //delete all training data
+    //delete training and trainingId from all users and check if it mentor, change role to member
+    //delete all trainings
+
 }
