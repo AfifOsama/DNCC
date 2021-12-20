@@ -1,5 +1,6 @@
 package com.dncc.dncc.presentation.home.admin
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.dncc.dncc.R
 import com.dncc.dncc.common.Resource
 import com.dncc.dncc.databinding.FragmentHomeAdminBinding
+import com.dncc.dncc.domain.entity.training.MeetEntity
 import com.dncc.dncc.domain.entity.user.UserEntity
 import com.dncc.dncc.presentation.home.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -67,7 +69,9 @@ class HomeAdminFragment : Fragment() {
                     )
                 )
             }
-            cardMenu4.setOnClickListener { }
+            cardMenu4.setOnClickListener {
+                alertDialog()
+            }
             headerHome.setOnClickListener {
                 findNavController().navigate(
                     HomeAdminFragmentDirections.actionHomeAdminFragmentToProfilFragment(
@@ -123,6 +127,36 @@ class HomeAdminFragment : Fragment() {
             tvUser.text = userEntity.fullName
             tvNim.text = userEntity.nim
             tvRole.text = userEntity.role
+        }
+    }
+
+    private fun alertDialog() {
+        val dialogBuilder = AlertDialog.Builder(activity)
+        with(dialogBuilder) {
+            setTitle("Peringatan")
+            setMessage("Yakin ingin menghapus semua data pelatihan?")
+            setPositiveButton("Iya") { _, _ ->
+                doubleCheckAlertDialog()
+            }
+            setNegativeButton("Tidak") { dialog, _ ->
+                dialog.dismiss()
+            }
+            show()
+        }
+    }
+
+    private fun doubleCheckAlertDialog() {
+        val dialogBuilder = AlertDialog.Builder(activity)
+        with(dialogBuilder) {
+            setTitle("Peringatan")
+            setMessage("Semua data yang dihapus tidak dapat dikembalikan lagi, sudah yakin?")
+            setPositiveButton("Iya") { _, _ ->
+
+            }
+            setNegativeButton("Tidak") { dialog, _ ->
+                dialog.dismiss()
+            }
+            show()
         }
     }
 
