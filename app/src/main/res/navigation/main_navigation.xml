@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.dncc.dncc.presentation.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeAdminFragment"
+            app:destination="@id/homeAdminFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeMentorFragment"
+            app:destination="@id/homeMentorFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.dncc.dncc.presentation.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.dncc.dncc.presentation.forgetpw.ForgetPasswordFragment"
+        android:label="fragment_forget_password"
+        tools:layout="@layout/fragment_forget_password" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.dncc.dncc.presentation.home.user.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_listPelatihanFragment"
+            app:destination="@id/listPelatihanFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailPelatihanFragment"
+            app:destination="@id/detailPelatihanFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profilFragment"
+            app:destination="@id/profilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.ListPelatihanFragment"
+        android:label="ListPelatihanFragment"
+        tools:layout="@layout/fragment_list_pelatihan">
+        <action
+            android:id="@+id/action_listPelatihanFragment_to_detailPelatihanFragment"
+            app:destination="@id/detailPelatihanFragment" />
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.DetailPelatihanFragment"
+        android:label="fragment_detail_pelatihan"
+        tools:layout="@layout/fragment_detail_pelatihan">
+        <action
+            android:id="@+id/action_detailPelatihanFragment_to_detailPertemuanFragment"
+            app:destination="@id/detailPertemuanFragment" />
+        <action
+            android:id="@+id/action_detailPelatihanFragment_to_editPelatihanFragment"
+            app:destination="@id/editPelatihanFragment" />
+        <argument
+            android:name="trainingId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="role"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_detailPelatihanFragment_to_profilFragment"
+            app:destination="@id/profilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPertemuanFragment"
+        android:name="com.dncc.dncc.presentation.pertemuan.DetailPertemuanFragment"
+        android:label="fragment_detail_pertemuan"
+        tools:layout="@layout/fragment_detail_pertemuan">
+        <action
+            android:id="@+id/action_detailPertemuanFragment_to_editPertemuanFragment"
+            app:destination="@id/editPertemuanFragment" />
+        <argument
+            android:name="meetId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="trainingId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="role"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.dncc.dncc.presentation.profil.ProfilFragment"
+        android:label="fragment_profil"
+        tools:layout="@layout/fragment_profil">
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_profilFragment_to_editProfilFragment"
+            app:destination="@id/editProfilFragment" />
+        <action
+            android:id="@+id/action_profilFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfilFragment"
+        android:name="com.dncc.dncc.presentation.profil.EditProfilFragment"
+        android:label="EditProfilFragment"
+        tools:layout="@layout/fragment_edit_profil">
+        <argument
+            android:name="userEntity"
+            app:argType="com.dncc.dncc.domain.entity.user.UserEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeAdminFragment"
+        android:name="com.dncc.dncc.presentation.home.admin.HomeAdminFragment"
+        android:label="fragment_home_admin"
+        tools:layout="@layout/fragment_home_admin">
+        <action
+            android:id="@+id/action_homeAdminFragment_to_listAnggotaFragment"
+            app:destination="@id/listAnggotaFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_profilFragment"
+            app:destination="@id/profilFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_tambahPelatihanFragment"
+            app:destination="@id/tambahPelatihanFragment" />
+        <action
+            android:id="@+id/action_homeAdminFragment_to_listPelatihanFragment"
+            app:destination="@id/listPelatihanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listAnggotaFragment"
+        android:name="com.dncc.dncc.presentation.listanggota.ListAnggotaFragment"
+        android:label="fragment_list_anggota"
+        tools:layout="@layout/fragment_list_anggota">
+        <action
+            android:id="@+id/action_listAnggotaFragment_to_profilAnggotaFragment"
+            app:destination="@id/profilAnggotaFragment" />
+        <action
+            android:id="@+id/action_listAnggotaFragment_to_editProfilAnggotaFragment"
+            app:destination="@id/editProfilAnggotaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilAnggotaFragment"
+        android:name="com.dncc.dncc.presentation.profil.admin.ProfilAnggotaFragment"
+        android:label="fragment_profil_anggota"
+        tools:layout="@layout/fragment_profil_anggota">
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_profilAnggotaFragment_to_editProfilAnggotaFragment"
+            app:destination="@id/editProfilAnggotaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfilAnggotaFragment"
+        android:name="com.dncc.dncc.presentation.profil.admin.EditProfilAnggotaFragment"
+        android:label="fragment_edit_profil_anggota"
+        tools:layout="@layout/fragment_edit_profil_anggota" >
+        <argument
+            android:name="userEntity"
+            app:argType="com.dncc.dncc.domain.entity.user.UserEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.admin.AddTrainingFragment"
+        android:label="fragment_tambah_pelatihan"
+        tools:layout="@layout/fragment_create_pelatihan" />
+    <fragment
+        android:id="@+id/editPelatihanFragment"
+        android:name="com.dncc.dncc.presentation.pelatihan.admin.EditPelatihanFragment"
+        android:label="fragment_edit_pelatihan"
+        tools:layout="@layout/fragment_edit_pelatihan" >
+        <argument
+            android:name="trainingEntity"
+            app:argType="com.dncc.dncc.domain.entity.training.TrainingEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeMentorFragment"
+        android:name="com.dncc.dncc.presentation.home.mentor.HomeMentorFragment"
+        android:label="fragment_home_mentor"
+        tools:layout="@layout/fragment_home_mentor">
+        <action
+            android:id="@+id/action_homeMentorFragment_to_detailPertemuanFragment"
+            app:destination="@id/detailPertemuanFragment" />
+        <action
+            android:id="@+id/action_homeMentorFragment_to_profilFragment"
+            app:destination="@id/profilFragment" />
+        <argument
+            android:name="userEntity"
+            app:argType="com.dncc.dncc.domain.entity.user.UserEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPertemuanFragment"
+        android:name="com.dncc.dncc.presentation.pertemuan.EditPertemuanFragment"
+        android:label="fragment_edit_pertemuan"
+        tools:layout="@layout/fragment_edit_pertemuan" >
+        <argument
+            android:name="meetEntity"
+            app:argType="com.dncc.dncc.domain.entity.training.MeetEntity" />
+    </fragment>
+</navigation>

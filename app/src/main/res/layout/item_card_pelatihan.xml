@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_divisi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardMaxElevation="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_training"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_margin="16dp"
+                android:contentDescription="@string/divisi_illustration"
+                android:src="@drawable/divisi_web"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_training_name"
+                style="@style/nunitoSemiBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/divisi_web"
+                android:textColor="@color/black_text"
+                app:layout_constraintBottom_toTopOf="@id/icon_group"
+                app:layout_constraintStart_toEndOf="@id/img_training"
+                app:layout_constraintTop_toTopOf="@id/img_training" />
+
+            <ImageView
+                android:id="@+id/icon_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/anggota"
+                android:src="@drawable/ic_baseline_groups_24"
+                app:layout_constraintBottom_toTopOf="@id/tv_schedule"
+                app:layout_constraintStart_toEndOf="@id/img_training"
+                app:layout_constraintTop_toBottomOf="@id/tv_training_name" />
+
+            <TextView
+                android:id="@+id/tv_participant_now"
+                style="@style/nunitoSemiBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/_4"
+                android:textColor="@color/black_text"
+                app:layout_constraintBottom_toBottomOf="@id/icon_group"
+                app:layout_constraintStart_toEndOf="@id/icon_group"
+                app:layout_constraintTop_toTopOf="@id/icon_group" />
+
+            <TextView
+                android:id="@+id/tv_slash_barrier"
+                style="@style/nunitoSemiBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/slash_barrier"
+                android:textColor="@color/black_text"
+                app:layout_constraintBottom_toBottomOf="@id/icon_group"
+                app:layout_constraintStart_toEndOf="@id/tv_participant_now"
+                app:layout_constraintTop_toTopOf="@id/icon_group" />
+
+            <TextView
+                android:id="@+id/tv_participant_max"
+                style="@style/nunitoSemiBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/_15"
+                android:textColor="@color/black_text"
+                app:layout_constraintBottom_toBottomOf="@id/icon_group"
+                app:layout_constraintStart_toEndOf="@id/tv_slash_barrier"
+                app:layout_constraintTop_toTopOf="@id/icon_group" />
+
+            <TextView
+                android:id="@+id/tv_schedule"
+                style="@style/nunitoSemiBold_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/rabu_20_00"
+                android:textColor="@color/black_text"
+                app:layout_constraintBottom_toBottomOf="@+id/img_training"
+                app:layout_constraintStart_toEndOf="@id/img_training"
+                app:layout_constraintTop_toBottomOf="@id/icon_group" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_daftar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/daftar"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/btn_delete"
+                style="@style/Widget.AppCompat.ActionButton"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_margin="14dp"
+                android:contentDescription="@string/delete_button"
+                android:src="@drawable/ic_baseline_remove_circle_outline_24"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

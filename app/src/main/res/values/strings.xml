@@ -1,3 +1,149 @@
 <resources>
     <string name="app_name">DNCC</string>
+    <string name="masuk">Masuk</string>
+    <string name="email_edt">Email</string>
+    <string name="sandi_edt">Sandi</string>
+    <string name="lupa_kata_sandi">Lupa Kata Sandi?</string>
+    <string name="kirim_email">Kirim Email</string>
+    <string name="setelah_klik_kirim_email_cek_email_kamu_untuk_mengubah_kata_sandi">*Setelah klik Kirim Email, cek Email kamu untuk mengubah kata sandi.</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="prodi">Prodi</string>
+    <string name="nomor_induk_mahasiswa">Nomor Induk Mahasiswa</string>
+    <string name="nomor_handphone">Nomor Handphone</string>
+    <string name="daftar">Daftar</string>
+    <string name="user_name">Shinoa Hiiragi</string>
+    <string name="nim">A11.2019.11377</string>
+    <string name="pelatihan">Pelatihan</string>
+    <string name="kamu_telah_hadir_4_dari_10_pertemuan">Kamu telah hadir 4 dari 10 pertemuan</string>
+    <string name="pertemuan">Pertemuan</string>
+    <string name="header1">We’re Not Only Organization But Also Family</string>
+    <string name="bodytext1">Dian Nuswantoro Computer Club adalah UKM kampus Universitas Dian Nuswantoro Semarang yang berpusat pada bidang Ilmu Komputer</string>
+    <string name="sub_heading1">Foto-foto Kegiatan DNCC</string>
+    <string name="visi_dncc">Visi DNCC</string>
+    <string name="body2">1. Bersama-sama membangun DNCC dan menjadi mahasiswa yang lebih disiplin, berprestasi, kreatif dan berakhlak mulia, serta mengoptimalkan kemampuan anggota untuk menjadi generasi yang bermanfaat.<br /> 2. Menjadi wadah dan media bagi mahasiswa untuk mengembangkan daya kreasi dan keterampilan mahasiswa. <br /> 3. Ikut serta untuk memajukan dan mengembangkan Universitas Dian Nuswatoro.</string>
+    <string name="misi_dncc">Misi DNCC</string>
+    <string name="body3">1. Menjadi wadah bagi mahasiswa Universitas Dian Nuswantoro untuk berkreasi dan mengasah kemampuan di bidang Teknologi Informatika.<br /> 2. Memberikan informasi dan ilmu pengetahuan tentang teknologi informasi terbaru yang bermanfaat bagi masyarakat sekitar. <br />3. Mencetak sumber daya manusia yang kreatif, berpikir aktif dan kritis serta mampu bekerja dalam kelompok maupun individu.</string>
+    <string name="forgot_your_password">forgot your password?</string>
+
+    <string-array name="data_name_kegiatan">
+        <item>AFG</item>
+        <item>Baksos</item>
+        <item>BTNG</item>
+        <item>Dinacom</item>
+        <item>Expo</item>
+        <item>Mubes</item>
+        <item>Reor</item>
+        <item>Ultah</item>
+    </string-array>
+    <integer-array name="data_photo_kegiatan">
+        <item>@drawable/afg</item>
+        <item>@drawable/baksos</item>
+        <item>@drawable/btng</item>
+        <item>@drawable/dinacom</item>
+        <item>@drawable/expo</item>
+        <item>@drawable/mubes</item>
+        <item>@drawable/reor</item>
+        <item>@drawable/ultah</item>
+    </integer-array>
+    <string-array name="role">
+        <item>visitor</item>
+        <item>member</item>
+        <item>mentor</item>
+        <item>admin</item>
+    </string-array>
+    <string-array name="divisi">
+        <item>belum mengikuti pelatihan</item>
+        <item>divisi web</item>
+        <item>divisi multimedia</item>
+        <item>divisi jaringan</item>
+        <item>divisi desktop</item>
+        <item>divisi broadcast</item>>
+        <item>divisi mobile</item>
+    </string-array>
+    <string-array name="add_training">
+        <item>divisi web</item>
+        <item>divisi multimedia</item>
+        <item>divisi jaringan</item>
+        <item>divisi desktop</item>
+        <item>divisi broadcast</item>>
+        <item>divisi mobile</item>
+    </string-array>
+    <string name="pelatihan_divisi">Pelatihan Divisi Mobile</string>
+    <string name="divisi_description">Mobile developer ditujukan pada mereka yang punya spesialiasi dalam teknologi perangkat bergerak</string>
+    <string name="daftar_divisi_description">DNCC mengadakan pelatihan rutin yang membahas tentang ilmu komputer </string>
+    <string name="link_group_whatsapp"><u>Link Grub Whatsapp</u></string>
+    <string name="link_group_whatsapp_hint">Link Grub Whatsapp</string>
+    <string name="daftar_pelatihan_divisi">Daftar Pelatihan Divisi</string>
+    <string name="divisi_web">Divisi Web</string>
+    <string name="number_of_anggota">4/10</string>
+    <string name="terdaftar">Terdaftar</string>
+    <string name="dncc_app">DNCC APP</string>
+    <string name="back_button">back button</string>
+    <string name="upload_img_button">upload img button</string>
+    <string name="divisi_illustration">divisi illustration</string>
+    <string name="nama_mentor">Eko Prasetya</string>
+    <string name="mentor">mentor</string>
+    <string name="waktu">waktu</string>
+    <string name="dummy_time">Rabu, 07:00</string>
+    <string name="pertemuan_4">Pertemuan 4</string>
+    <string name="judul_pertemuan">Membuat Aplikasi Note Sederhana </string>
+    <string name="_20_anggota">20 Anggota</string>
+    <string name="icon_book">icon book</string>
+    <string name="detail_pertemuan_ke">Detail Pertemuan Ke-</string>
+    <string name="download">Download</string>
+    <string name="myfile_docx">myfile.docx</string>
+    <string name="arrow_down">arrow down</string>
+    <string name="logout">Logout</string>
+    <string name="ubah">Ubah</string>
+    <string name="simpan">Simpan</string>
+    <string name="batal">Batal</string>
+    <string name="admin">Admin</string>
+    <string name="daftar_anggota_ukm">Daftar Anggota DNCC</string>
+    <string name="berisi_list_anggota_ukm_beserta_profilnya">berisi list anggota UKM DNCC beserta profilnya</string>
+    <string name="tambah_pelatihan">Tambah Pelatihan</string>
+    <string name="menambah_pelatihan_divisi">menambah Pelatihan Divisi</string>
+    <string name="list_pelatihan">List Pelatihan</string>
+    <string name="berisi_list_pelatihan_divisi_beserta_detailnya">berisi list pelatihan divisi beserta detailnya</string>
+    <string name="divisi_mobile">Divisi Mobile</string>
+    <string name="daftar_anggota_dncc">Daftar Anggota UKM DNCC</string>
+    <string name="divisi">Divisi</string>
+    <string name="anggota">Anggota</string>
+    <string name="role">Role</string>
+    <string name="nama_pelatihan">Nama Pelatihan</string>
+    <string name="deskripsi_pelatihan">Deskripsi Pelatihan</string>
+    <string name="hari">Hari</string>
+    <string name="jam">Jam</string>
+    <string name="tambah">Tambah</string>
+    <string name="rabu_20_00">Rabu, 20:00</string>
+    <string name="_4">4</string>
+    <string name="slash_barrier">/</string>
+    <string name="_15">15</string>
+    <string name="daftar_pelatihan">Daftar Pelatihan</string>
+    <string name="delete_button">delete button</string>
+    <string name="maksimal_anggota">Maksimal Anggota</string>
+    <string name="_08_00">08:00</string>
+    <string name="selamat_datang_mentor">Selamat datang, Mentor!</string>
+    <string name="nama_pertemuan">Nama Pertemuan</string>
+    <string name="nama_mentor_hint">Nama Mentor</string>
+    <string name="upload_materi">Upload Materi</string>
+    <string name="profil_anda">Profil Anda</string>
+    <string name="profil">Profil %1$s</string>
+    <string name="profil_anggota">Profil Anggota</string>
+    <string name="edit_profil_anggota">Edit Profil Anggota</string>
+    <string name="kegiatan_dncc">Kegiatan DNCC</string>
+    <string name="detail_pelatihan_divisi">Detail Pelatihan Divisi</string>
+    <string name="edit_pelatihan">Edit Pelatihan</string>
+    <string name="detail_pertemuan">Detail Pertemuan</string>
+    <string name="belum_ada_file_diupload">Belum ada file diupload</string>
+    <string name="ubah_pertemuan">Ubah Pertemuan</string>
+    <string name="deskripsi_pertemuan">Deskripsi Pertemuan</string>
+    <string name="filter">Filter</string>
+    <string name="visitor">Visitor</string>
+    <string name="member">Member</string>
+    <string name="Mentor">Mentor</string>
+    <string name="nama_user">Nama User</string>
+    <string name="semua_user">Semua User</string>
+    <string name="link_file_hint">Link File</string>
+    <string name="link_file">Link file</string>
+    <string name="link_file_belum_ada">Link file belum ada</string>
 </resources>
