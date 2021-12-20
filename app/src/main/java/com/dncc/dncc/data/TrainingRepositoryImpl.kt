@@ -2,6 +2,7 @@ package com.dncc.dncc.data
 
 import android.util.Log
 import com.dncc.dncc.common.Resource
+import com.dncc.dncc.common.UserRoleEnum
 import com.dncc.dncc.data.source.remote.model.*
 import com.dncc.dncc.domain.TrainingRepository
 import com.dncc.dncc.domain.entity.training.MeetEntity
@@ -21,6 +22,7 @@ import javax.inject.Inject
 class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
     private val db = Firebase.firestore
     private val dbTraining = Firebase.firestore.collection("trainings")
+    private val dbUsers = Firebase.firestore.collection("users")
 
     override suspend fun addTraining(trainingEntity: TrainingEntity): Flow<Resource<Boolean>> =
         callbackFlow {
@@ -254,8 +256,72 @@ class TrainingRepositoryImpl @Inject constructor() : TrainingRepository {
         awaitClose { snapshotListener.isCanceled() }
     }
 
-    //delete all training data
-    //delete training and trainingId from all users and check if it mentor, change role to member
     //delete all trainings
+    //delete training and trainingId from all users and check if it mentor, change role to member
+    override suspend fun deleteTrainingsData(): Flow<Resource<Boolean>> = callbackFlow {
+        val snapshotListener = db.runBatch {
+            //delete all training data
+            dbTraining.get().addOnCompleteListener { taskTraining ->
+                for (trainingDocument in taskTraining.result?.documents!!) {
+                    trainingDocument.reference.delete()
+
+                    //delete meets inside training
+                    dbTraining.document(trainingDocument.id).collection("meets").get()
+                        .addOnCompleteListener {
+                            for (meetDocument in it.result?.documents!!) {
+                                meetDocument.reference.delete()
+                            }
+                        }
+
+                    //delete participant inside training
+                    dbTraining.document(trainingDocument.id).collection("participant").get()
+                        .addOnCompleteListener {
+                            for (participantDocument in it.result?.documents!!) {
+                                participantDocument.reference.delete()
+                            }
+                        }
+                }
+            }
+
+            //delete training and trainingId from all users and check if it mentor, change role to member
+            dbUsers.get().addOnCompleteListener { taskUsers ->
+                for (userDocument in taskUsers.result?.documents!!) {
+                    db.runTransaction { transaction ->
+                        val userId = userDocument.id
+                        val userRef = dbUsers.document(userId)
+                        val snapshot = transaction.get(userRef)
+
+                        val role: String = snapshot.getString("role").toString()
+
+                        if (role == UserRoleEnum.MENTOR.role) {
+                            dbUsers.document(userId)
+                                .update(mapOf("role" to UserRoleEnum.MEMBER.role))
+                        }
+
+                        dbUsers.document(userId)
+                            .update(
+                                mapOf(
+                                    "training" to "",
+                                    "trainingId" to ""
+                                )
+                            )
+                    }
+                }
+            }
+        }.addOnSuccessListener {
+            trySend(Resource.Success(true)).isSuccess
+            Log.i(
+                "TrainingRepositoryImpl",
+                "deleteTrainingsData success"
+            )
+        }.addOnFailureListener { error ->
+            Log.i(
+                "TrainingRepositoryImpl",
+                "deleteTrainingsData failed"
+            )
+            trySend(Resource.Error(error.checkFirebaseError()))
+        }
+        awaitClose { snapshotListener.isCanceled() }
+    }
 
 }

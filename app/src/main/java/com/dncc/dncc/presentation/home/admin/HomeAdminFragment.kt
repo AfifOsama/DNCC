@@ -1,5 +1,6 @@
 package com.dncc.dncc.presentation.home.admin
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -57,9 +58,11 @@ class HomeAdminFragment : Fragment() {
             cardMenu1.setOnClickListener {
                 findNavController().navigate(HomeAdminFragmentDirections.actionHomeAdminFragmentToListAnggotaFragment())
             }
+
             cardMenu2.setOnClickListener {
                 findNavController().navigate(R.id.action_homeAdminFragment_to_tambahPelatihanFragment)
             }
+
             cardMenu3.setOnClickListener {
                 findNavController().navigate(
                     HomeAdminFragmentDirections.actionHomeAdminFragmentToListPelatihanFragment(
@@ -67,6 +70,21 @@ class HomeAdminFragment : Fragment() {
                     )
                 )
             }
+
+            cardMenu4.setOnClickListener {
+                with(AlertDialog.Builder(activity)) {
+                    setTitle("Peringatan")
+                    setMessage("Yakin ingin menghapus seluruh data pelatihan?")
+                    setPositiveButton("Iya") { _, _ ->
+                        viewModel.deleteTrainingsData()
+                    }
+                    setNegativeButton("Tidak") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    show()
+                }
+            }
+
             headerHome.setOnClickListener {
                 findNavController().navigate(
                     HomeAdminFragmentDirections.actionHomeAdminFragmentToProfilFragment(
@@ -100,6 +118,22 @@ class HomeAdminFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progress.visibility = View.GONE
                     setUserView(it.data ?: UserEntity())
+                }
+            }
+        })
+
+        viewModel.deleteTrainingsDataResponse.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progress.visibility = View.VISIBLE
+                }
+                is Resource.Error -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast(it.message ?: "maaf harap coba lagi")
+                }
+                is Resource.Success -> {
+                    binding.progress.visibility = View.GONE
+                    renderToast("Berhasil menghapus seluruh data pelatihan")
                 }
             }
         })
