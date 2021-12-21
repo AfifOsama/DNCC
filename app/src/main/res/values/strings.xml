@@ -146,4 +146,6 @@
     <string name="link_file_hint">Link File</string>
     <string name="link_file">Link file</string>
     <string name="link_file_belum_ada">Link file belum ada</string>
+    <string name="reset_pelatihan">Reset Data Pelatihan</string>
+    <string name="fitur_ini_digunakan_untuk_menghapus_semua_data_pelatihan">fitur untuk menghapus semua data pelatihan</string>
 </resources>
