@@ -48,7 +48,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="18dp"
-                            android:text="@string/pelatihan_divisi"
+                            tools:text="@string/pelatihan_divisi"
                             android:textColor="@color/black_text"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />

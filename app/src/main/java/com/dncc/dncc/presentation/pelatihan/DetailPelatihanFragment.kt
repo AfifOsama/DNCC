@@ -85,8 +85,8 @@ class DetailPelatihanFragment : Fragment() {
 
     private fun initiateUI() {
         binding.run {
-            binding.toolbar.actionBarTitle.text = getString(R.string.detail_pelatihan_divisi)
-            binding.toolbar.btnBack.setOnClickListener {
+            toolbar.actionBarTitle.text = getString(R.string.detail_pelatihan_divisi)
+            toolbar.btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
 
@@ -190,6 +190,7 @@ class DetailPelatihanFragment : Fragment() {
             tvWaktu.text = trainingEntity.schedule
             tvNumberAnggota.text = trainingEntity.participantNow.toString()
             linkWAG = trainingEntity.linkWa
+            tvPelatihanTitle.text = "Pelatihan ${trainingEntity.trainingName}"
         }
     }
 
